@@ -86,10 +86,16 @@
     <ClCompile Include="GLTexture.cpp" />
     <ClCompile Include="Model_3DS.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
+    <ClCompile Include="Playground.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="TextureBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLTexture.h" />
+    <ClInclude Include="Playground.h" />
     <ClInclude Include="Model_3DS.h" />
+    <ClInclude Include="OpenGLMeshLoader.h" />
+    <ClInclude Include="TextureBuilder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
