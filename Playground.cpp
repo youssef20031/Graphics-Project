@@ -431,9 +431,16 @@ void drawPlayer() {
 	glPushMatrix();
 
 	// Translate to the player's position in the world
-	glTranslatef(playerX, playerY, playerZ);
+	glTranslatef(playerX, playerY, playerZ);	
 
-	// Rotate the player around the Y-axis based on the direction
+	// rotate player's head independently of his body
+	glPushMatrix();
+	glRotatef(playerDirectionRotationFacing, 0.0, 1.0, 0.0);
+	glColor3f(0.94f, 0.80f, 0.72f);
+	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * 3 / 4, playerHeight, -playerWidth / 2, playerWidth / 2);
+	glPopMatrix();
+
+	// rotate whole player body except for his head (camera bardo)
 	glRotatef(playerDirectionRotationBody, 0.0, 1.0, 0.0);
 
 	glPushMatrix();
@@ -441,8 +448,6 @@ void drawPlayer() {
 	drawCuboid(-playerWidth / 2, playerWidth / 2, 0.0f, playerHeight * 3 / 4, - playerWidth / 2, playerWidth / 2);
 	glColor3f(1.0f, 0.843f, 0.0f);
 	drawCuboid(playerWidth / 2, playerWidth / 2 + 0.001f, 0.0f, playerHeight * 3 / 4, - playerWidth / 2, playerWidth / 2);
-	glColor3f(0.94f, 0.80f, 0.72f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * 3 / 4, playerHeight, - playerWidth / 2, playerWidth / 2);
 	glPopMatrix();
 	glPopMatrix();
 }
