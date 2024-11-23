@@ -5,8 +5,35 @@
 #define GLUT_KEY_ESCAPE 27
 #define DEG2RAD(a) (a * 0.0174532925)
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 bool keyStates[256] = { false }; // to track state of keys pressed
 bool specialKeyStates[256] = { false }; // to track state of special keys pressed
+
+GLfloat playerX = 0.0f;
+GLfloat playerY = 0.1f;
+GLfloat playerZ = 0.0f;
+GLfloat playerHeight = 0.6f;
+GLfloat playerWidth = 0.2f;
+GLfloat playerMovementSpeed = 0.005f;
+
+// player rotating animation
+GLfloat playerDirectionRotationFacing = 0.0f; // direction player facing
+GLfloat playerDirectionRotationBody = 0.0f; // direction player facing
+GLfloat playerRotationAnimationSpeed = 1.0f;
+GLfloat playerRotationSpeed = 0.25f;
+bool rotatingLeft = false;
+bool rotatingRight = false;
+bool rotatingForward = false;
+bool rotatingBack = false;
+
+
+// which view is currently active
+enum ViewMode { FIRST_PERSON, THIRD_PERSON, FREE };
+ViewMode viewMode = THIRD_PERSON;
+
 
 // Vector3f class constructor and methods
 Vector3f::Vector3f(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
@@ -96,9 +123,15 @@ void Camera::look() {
 	);
 }
 
+void Camera::setView(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ) {
+	eye = Vector3f(eyeX, eyeY, eyeZ);
+	center = Vector3f(centerX, centerY, centerZ);
+	up = Vector3f(upX, upY, upZ);
+}
+
 Camera camera;
 
-void drawWall(double xStart, double yStart, double zStart, double xEnd, double yEnd, double zEnd) {
+void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
 	glPushMatrix();
 
 	double centerX = (xStart + xEnd) / 2.0;
@@ -117,8 +150,6 @@ void drawWall(double xStart, double yStart, double zStart, double xEnd, double y
 
 	glPopMatrix();
 }
-
-
 
 void setupLights() {
 	GLfloat ambient[] = { 0.7f, 0.7f, 0.7, 1.0f };
@@ -208,6 +239,214 @@ void drawAxis() {
 	glPopMatrix();
 }
 
+void setFirstPersonCamera() {
+	GLfloat angleRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+
+	// Calculate the direction the player is facing using sin and cos
+	GLfloat centerOffsetX = cos(angleRadians) * 2.0f;  // 2.0f is the distance from the player
+	GLfloat centerOffsetZ = -(sin(angleRadians) * 2.0f);  // 2.0f is the distance from the player
+
+	GLfloat eyeOffsetX = cos(angleRadians) * 0.2f;  // 2.0f is the distance from the player
+	GLfloat eyeOffsetZ = -(sin(angleRadians) * 0.2f);  // 2.0f is the distance from the player
+
+	// Set the camera position
+	camera.setView(playerX + eyeOffsetX, playerY + playerHeight * 0.875, playerZ + eyeOffsetZ, playerX + centerOffsetX, playerY + (playerHeight / 2), playerZ + centerOffsetZ);
+}
+
+void setThirdPersonCamera() {
+	GLfloat angleRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+
+	// Calculate the direction the player is facing using sin and cos
+	GLfloat centerOffsetX = cos(angleRadians) * 2.0f;  // 2.0f is the distance from the player
+	GLfloat centerOffsetZ = -(sin(angleRadians) * 2.0f);  // 2.0f is the distance from the player
+
+	GLfloat eyeOffsetX = cos(angleRadians) * - 2.0f;  // 2.0f is the distance from the player
+	GLfloat eyeOffsetZ = -(sin(angleRadians) * - 2.0f);  // 2.0f is the distance from the player
+
+	// Set the camera position
+	camera.setView(playerX + eyeOffsetX, playerY + (playerHeight * 2), playerZ + eyeOffsetZ, playerX + centerOffsetX, playerY + (playerHeight / 2), playerZ + centerOffsetZ);
+}
+
+void updatePlayerRotation() {
+	// 8 cases
+	if (rotatingForward && rotatingRight) {
+		// check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - -45.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - -45.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		// forward right
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > -46.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < -44.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	}
+	else if (rotatingForward && rotatingLeft) {
+		// check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - 45.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - 45.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		// forward left
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > 46.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < 44.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	}
+	else if (rotatingBack && rotatingRight) {
+		// check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - -135.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - -135.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		// back right
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > -136.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < -134.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	} 
+	else if (rotatingBack && rotatingLeft) {
+		// check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - 135.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - 135.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		// back left
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > 136.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < 134.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	}
+	else if (rotatingForward) {
+		// check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - 0.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - 0.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		// forward
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > 1.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < -1.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	}
+	else if (rotatingBack) {
+		// check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - 180.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - 180.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		// back
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > 181.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < 179.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	}
+	else
+	if (rotatingRight) {
+		 //check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - -90.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - -90.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		 //right
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > -89.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < -91.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	}
+	else if (rotatingLeft) {
+		 //check if difference between current rotation and the desired is more than 180, if so then add or remove a 360)
+		if (playerDirectionRotationBody - playerDirectionRotationFacing - 90.0f >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing - 90.0f <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		 //left
+		if (playerDirectionRotationBody - playerDirectionRotationFacing > 91.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing < 89.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+	}
+
+	// start rotating back to the direction the face is facing if he stopped moving in a certain direction
+	if (!rotatingBack && !rotatingLeft && !rotatingRight) {
+		if (playerDirectionRotationBody - playerDirectionRotationFacing >= 180.0f) {
+			playerDirectionRotationBody -= 360.0f;
+		}
+		else if (playerDirectionRotationBody - playerDirectionRotationFacing <= -180.0f) {
+			playerDirectionRotationBody += 360.0f;
+		}
+
+		if (playerDirectionRotationBody > playerDirectionRotationFacing + 1.0f) {
+			playerDirectionRotationBody -= playerRotationAnimationSpeed;
+		}
+		else if (playerDirectionRotationBody < playerDirectionRotationFacing - 1.0f) {
+			playerDirectionRotationBody += playerRotationAnimationSpeed;
+		}
+
+	}
+}
+
+
+void drawPlayer() {
+	glPushMatrix();
+
+	// Translate to the player's position in the world
+	glTranslatef(playerX, playerY, playerZ);
+
+	// Rotate the player around the Y-axis based on the direction
+	glRotatef(playerDirectionRotationBody, 0.0, 1.0, 0.0);
+
+	glPushMatrix();
+	glColor3f(1.0f, 0.0f, 0.0f);
+	drawCuboid(-playerWidth / 2, playerWidth / 2, 0.0f, playerHeight * 3 / 4, - playerWidth / 2, playerWidth / 2);
+	glColor3f(1.0f, 0.843f, 0.0f);
+	drawCuboid(playerWidth / 2, playerWidth / 2 + 0.001f, 0.0f, playerHeight * 3 / 4, - playerWidth / 2, playerWidth / 2);
+	glColor3f(0.94f, 0.80f, 0.72f);
+	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * 3 / 4, playerHeight, - playerWidth / 2, playerWidth / 2);
+	glPopMatrix();
+	glPopMatrix();
+}
+
 /////////////////////////////// Display ////////////////////////////////
 
 void Display() {
@@ -223,9 +462,9 @@ void Display() {
 	drawAxis();
 
 	glColor3f(0.2f, 0.7f, 0.8f);
-	//drawWall(0.0f, 0.0f, 0.0f, 0.1f, 2.0f, 2.0f);
-	drawWall(0.0f, 0.0f, 0.0f, 0.3f, 0.2f, 0.1f);
+	drawCuboid(0.0f, 3.0f, 0.0f, 0.1f, 0.0f, 3.0f); // ground
 
+	drawPlayer();
 
 	glFlush();
 	glutSwapBuffers();
@@ -251,12 +490,18 @@ void Keyboard(unsigned char key, int x, int y) {
 
 		// camera states
 	case '1':
-		printf("Top View Active\n");
-		//setTopView();
+		printf("First Person View Active\n");
+		viewMode = FIRST_PERSON;
+		setFirstPersonCamera();
 		break;
 	case '2':
-		printf("Front View Active\n");
-		//setFrontView();
+		printf("Third Person View Active\n");
+		viewMode = THIRD_PERSON;
+		setThirdPersonCamera();
+		break;
+	case '3':
+		printf("Free View Active\n");
+		viewMode = FREE;
 		break;
 
 		// camera movement
@@ -364,9 +609,92 @@ void SpecialUp(int key, int x, int y) {
 	glutPostRedisplay();
 }
 
-void updateKeys() {
+void updateStates() {
+	updateCameraMovement(); // update key presses
+
+	updatePlayerMovement(); // updates player movement duhhhhh
+
+	updatePlayerRotation();
+
+	glutPostRedisplay();
+}
+
+void updatePlayerMovement() {
+	bool moving = false;
+	if (keyStates['w']) {
+		// calculate the new x and z positions
+		GLfloat speedX = playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
+		GLfloat speedZ = playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
+		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		//}
+		moving = true;
+	}
+	if (keyStates['s']) {
+		// calculate the new x and z positions
+		GLfloat speedX = -playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
+		GLfloat speedZ = -playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
+		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		//}
+		moving = true;
+	}
+	if (keyStates['d']) {
+		// calculate the new x and z positions
+		GLfloat speedX = playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
+		GLfloat speedZ = playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
+		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		//}
+		moving = true;
+	}
+	if (keyStates['a']) {
+		// calculate the new x and z positions
+		GLfloat speedX = -playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
+		GLfloat speedZ = -playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
+		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		//}
+		moving = true;
+	}
+
+	if (specialKeyStates[GLUT_KEY_LEFT]) {
+		playerDirectionRotationFacing += playerRotationSpeed;
+		moving = true;
+	}
+	if (specialKeyStates[GLUT_KEY_RIGHT]) {
+		playerDirectionRotationFacing -= playerRotationSpeed;
+		moving = true;
+	}
+
+
+
+	// player direction rotation
+	rotatingForward = keyStates['w'];
+	rotatingBack = keyStates['s'];
+	rotatingLeft = keyStates['a'];
+	rotatingRight = keyStates['d'];
+
+	if (moving) {
+		// update camera as well
+		if (viewMode == FIRST_PERSON) {
+			setFirstPersonCamera();
+		}
+		if (viewMode == THIRD_PERSON) {
+			setThirdPersonCamera();
+		}
+	}
+}
+
+void updateCameraMovement() {
 	float d = 0.002;
 	float a = 0.08;
+
+	if (viewMode != FREE) return;
 
 	if (keyStates['i']) {
 		camera.moveY(d);
@@ -399,6 +727,4 @@ void updateKeys() {
 	if (specialKeyStates[GLUT_KEY_RIGHT]) {
 		camera.rotateY(-a);
 	}
-
-	glutPostRedisplay();
 }

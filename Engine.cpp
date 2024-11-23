@@ -43,7 +43,7 @@ void playgroundMain(int argc, char** argv) {
 	glutInitWindowSize(640, 480);
 	glutInitWindowPosition(50, 50);
 
-	glutIdleFunc(updateKeys);
+	glutIdleFunc(updateStates);
 	
 	glutCreateWindow("Playground");
 	glutDisplayFunc(Display);
