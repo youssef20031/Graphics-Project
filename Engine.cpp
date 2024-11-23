@@ -46,7 +46,11 @@ void playgroundMain(int argc, char** argv) {
 	glutCreateWindow("Lab 5");
 	glutDisplayFunc(Display);
 	glutKeyboardFunc(Keyboard);
+	glutKeyboardUpFunc(KeyboardUp);
 	glutSpecialFunc(Special);
+	glutSpecialUpFunc(SpecialUp);
+
+	glutIdleFunc(updateKeys);
 
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
@@ -68,6 +72,6 @@ void playgroundMain(int argc, char** argv) {
 //=======================================================================
 
 void main(int argc, char** argv) {
-	realDeal(argc, argv);
-	//playgroundMain(argc, argv);
+	//realDeal(argc, argv);
+	playgroundMain(argc, argv);
 }

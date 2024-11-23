@@ -45,13 +45,6 @@ public:
 // Camera instance
 extern Camera camera;
 
-// Functions for drawing objects
-void drawWall(double thickness);
-void drawTableLeg(double thick, double len);
-void drawJackPart();
-void drawJack();
-void drawTable(double topWid, double topThick, double legThick, double legLen);
-
 // Lighting setup functions
 void setupLights();
 
@@ -63,6 +56,10 @@ void Display();
 
 // Keyboard and special key functions
 void Keyboard(unsigned char key, int x, int y);
+void KeyboardUp(unsigned char key, int x, int y);
 void Special(int key, int x, int y);
+void SpecialUp(int key, int x, int y);
+
+void updateKeys();
 
 #endif // PLAYGROUND_H

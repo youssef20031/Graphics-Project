@@ -5,6 +5,9 @@
 #define GLUT_KEY_ESCAPE 27
 #define DEG2RAD(a) (a * 0.0174532925)
 
+bool keyStates[256] = { false }; // to track state of keys pressed
+bool specialKeyStates[256] = { false }; // to track state of special keys pressed
+
 // Vector3f class constructor and methods
 Vector3f::Vector3f(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
 
@@ -95,60 +98,27 @@ void Camera::look() {
 
 Camera camera;
 
-void drawWall(double thickness) {
+void drawWall(double xStart, double yStart, double zStart, double xEnd, double yEnd, double zEnd) {
 	glPushMatrix();
-	glTranslated(0.5, 0.5 * thickness, 0.5);
-	glScaled(1.0, thickness, 1.0);
-	glutSolidCube(1);
-	glPopMatrix();
-}
-void drawTableLeg(double thick, double len) {
-	glPushMatrix();
-	glTranslated(0, len / 2, 0);
-	glScaled(thick, len, thick);
-	glutSolidCube(1.0);
-	glPopMatrix();
-}
-void drawJackPart() {
-	glPushMatrix();
-	glScaled(0.2, 0.2, 1.0);
-	glutSolidSphere(1, 15, 15);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslated(0, 0, 1.2);
-	glutSolidSphere(0.2, 15, 15);
-	glTranslated(0, 0, -2.4);
-	glutSolidSphere(0.2, 15, 15);
-	glPopMatrix();
-}
-void drawJack() {
-	glPushMatrix();
-	drawJackPart();
-	glRotated(90.0, 0, 1, 0);
-	drawJackPart();
-	glRotated(90.0, 1, 0, 0);
-	drawJackPart();
-	glPopMatrix();
-}
-void drawTable(double topWid, double topThick, double legThick, double legLen) {
-	glPushMatrix();
-	glTranslated(0, legLen, 0);
-	glScaled(topWid, topThick, topWid);
-	glutSolidCube(1.0);
-	glPopMatrix();
 
-	double dist = 0.95 * topWid / 2.0 - legThick / 2.0;
-	glPushMatrix();
-	glTranslated(dist, 0, dist);
-	drawTableLeg(legThick, legLen);
-	glTranslated(0, 0, -2 * dist);
-	drawTableLeg(legThick, legLen);
-	glTranslated(-2 * dist, 0, 2 * dist);
-	drawTableLeg(legThick, legLen);
-	glTranslated(0, 0, -2 * dist);
-	drawTableLeg(legThick, legLen);
+	double centerX = (xStart + xEnd) / 2.0;
+	double centerY = (yStart + yEnd) / 2.0;
+	double centerZ = (zStart + zEnd) / 2.0;
+
+	double scaleX = fabs(xEnd - xStart);
+	double scaleY = fabs(yEnd - yStart);
+	double scaleZ = fabs(zEnd - zStart);
+
+	glTranslated(centerX, centerY, centerZ);
+
+	glScaled(scaleX, scaleY, scaleZ);
+
+	glutSolidCube(1);
+
 	glPopMatrix();
 }
+
+
 
 void setupLights() {
 	GLfloat ambient[] = { 0.7f, 0.7f, 0.7, 1.0f };
@@ -175,65 +145,137 @@ void setupCamera() {
 	camera.look();
 }
 
+void renderBitmapString(float x, float y, void* font, const char* string) {
+	glRasterPos2f(x, y);
+	while (*string) {
+		glutBitmapCharacter(font, *string);
+		string++;
+	}
+}
+
+void displayCameraCoords() {
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 640, 0, 480);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glDisable(GL_LIGHTING);
+	glColor3f(0.0f, 0.0f, 0.0f);
+
+	char coords[100];
+	snprintf(coords, sizeof(coords), "Camera Position: (%.2f, %.2f, %.2f)", camera.eye.x, camera.eye.y, camera.eye.z);
+	renderBitmapString(10, 420, GLUT_BITMAP_HELVETICA_18, coords);
+
+	char centerCoords[100];
+	snprintf(centerCoords, sizeof(centerCoords), "Camera Center: (%.2f, %.2f, %.2f)", camera.center.x, camera.center.y, camera.center.z);
+	renderBitmapString(10, 400, GLUT_BITMAP_HELVETICA_18, centerCoords);
+
+	char upCoords[100];
+	snprintf(upCoords, sizeof(upCoords), "Camera Up: (%.2f, %.2f, %.2f)", camera.up.x, camera.up.y, camera.up.z);
+	renderBitmapString(10, 380, GLUT_BITMAP_HELVETICA_18, upCoords);
+
+	glEnable(GL_LIGHTING);
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+}
+
+void drawAxis() {
+	glPushMatrix();
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 10.0f);
+	glEnd();
+
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 10.0f, 0.0f);
+	glEnd();
+
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(10.0f, 0.0f, 0.0f);
+	glEnd();
+
+	glPopMatrix();
+}
+
+/////////////////////////////// Display ////////////////////////////////
+
 void Display() {
 	setupCamera();
 	setupLights();
 
+	glutFullScreen();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glPushMatrix();
-	glTranslated(0.4, 0.4, 0.6);
-	glRotated(45, 0, 0, 1);
-	glScaled(0.08, 0.08, 0.08);
-	drawJack();
-	glPopMatrix();
-	glPushMatrix();
-	glTranslated(0.6, 0.38, 0.5);
-	glRotated(30, 0, 1, 0);
-	glutSolidTeapot(0.08);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslated(0.25, 0.42, 0.35);
-	glutSolidSphere(0.1, 15, 15);
-	glPopMatrix();
-	glPushMatrix();
-	glTranslated(0.4, 0.0, 0.4);
-	drawTable(0.6, 0.02, 0.02, 0.3);
-	glPopMatrix();
-	drawWall(0.02);
-	glPushMatrix();
-	glRotated(90, 0, 0, 1.0);
-	drawWall(0.02);
-	glPopMatrix();
-	glPushMatrix();
-	glRotated(-90, 1.0, 0.0, 0.0);
-	drawWall(0.02);
-	glPopMatrix();
+	displayCameraCoords();
+
+	drawAxis();
+
+	glColor3f(0.2f, 0.7f, 0.8f);
+	//drawWall(0.0f, 0.0f, 0.0f, 0.1f, 2.0f, 2.0f);
+	drawWall(0.0f, 0.0f, 0.0f, 0.3f, 0.2f, 0.1f);
+
 
 	glFlush();
 }
-
 void Keyboard(unsigned char key, int x, int y) {
-	float d = 0.01;
-
 	switch (key) {
+		// player movement
 	case 'w':
-		camera.moveY(d);
+		keyStates['w'] = true;
 		break;
 	case 's':
-		camera.moveY(-d);
+		keyStates['s'] = true;
 		break;
 	case 'a':
-		camera.moveX(d);
+		keyStates['a'] = true;
 		break;
 	case 'd':
-		camera.moveX(-d);
+		keyStates['d'] = true;
 		break;
-	case 'q':
-		camera.moveZ(d);
+	case ' ':
+		keyStates[' '] = true;
 		break;
-	case 'e':
-		camera.moveZ(-d);
+
+		// camera states
+	case '1':
+		printf("Top View Active\n");
+		//setTopView();
+		break;
+	case '2':
+		printf("Front View Active\n");
+		//setFrontView();
+		break;
+
+		// camera movement
+	case 'i':
+		keyStates['i'] = true;
+		break;
+	case 'k':
+		keyStates['k'] = true;
+		break;
+	case 'j':
+		keyStates['j'] = true;
+		break;
+	case 'l':
+		keyStates['l'] = true;
+		break;
+	case 'u':
+		keyStates['u'] = true;
+		break;
+	case 'o':
+		keyStates['o'] = true;
 		break;
 
 	case GLUT_KEY_ESCAPE:
@@ -242,24 +284,120 @@ void Keyboard(unsigned char key, int x, int y) {
 
 	glutPostRedisplay();
 }
-void Special(int key, int x, int y) {
-	float a = 1.0;
+void KeyboardUp(unsigned char key, int x, int y) {
+	switch (key) {
+		// player movement
+	case 'w':
+		keyStates['w'] = false;
+		break;
+	case 's':
+		keyStates['s'] = false;
+		break;
+	case 'a':
+		keyStates['a'] = false;
+		break;
+	case 'd':
+		keyStates['d'] = false;
+		break;
+	case ' ':
+		keyStates[' '] = false;
+		break;
 
+		// camera movement
+	case 'i':
+		keyStates['i'] = false;
+		break;
+	case 'k':
+		keyStates['k'] = false;
+		break;
+	case 'j':
+		keyStates['j'] = false;
+		break;
+	case 'l':
+		keyStates['l'] = false;
+		break;
+	case 'u':
+		keyStates['u'] = false;
+		break;
+	case 'o':
+		keyStates['o'] = false;
+		break;
+	}
+
+	glutPostRedisplay();
+}
+void Special(int key, int x, int y) {
 	switch (key) {
 	case GLUT_KEY_UP:
-		camera.rotateX(a);
+		specialKeyStates[GLUT_KEY_UP] = true;
 		break;
 	case GLUT_KEY_DOWN:
-		camera.rotateX(-a);
+		specialKeyStates[GLUT_KEY_DOWN] = true;
 		break;
 	case GLUT_KEY_LEFT:
-		camera.rotateY(a);
+		specialKeyStates[GLUT_KEY_LEFT] = true;
 		break;
 	case GLUT_KEY_RIGHT:
-		camera.rotateY(-a);
+		specialKeyStates[GLUT_KEY_RIGHT] = true;
+		break;
+	}
+
+	glutPostRedisplay();
+}
+void SpecialUp(int key, int x, int y) {
+	switch (key) {
+	case GLUT_KEY_UP:
+		specialKeyStates[GLUT_KEY_UP] = false;
+		break;
+	case GLUT_KEY_DOWN:
+		specialKeyStates[GLUT_KEY_DOWN] = false;
+		break;
+	case GLUT_KEY_LEFT:
+		specialKeyStates[GLUT_KEY_LEFT] = false;
+		break;
+	case GLUT_KEY_RIGHT:
+		specialKeyStates[GLUT_KEY_RIGHT] = false;
 		break;
 	}
 
 	glutPostRedisplay();
 }
 
+void updateKeys() {
+	float d = 0.0000002;
+	float a = 0.00002;
+
+	if (keyStates['i']) {
+		camera.moveY(d);
+	}
+	if (keyStates['k']) {
+		camera.moveY(-d);
+	}
+	if (keyStates['j']) {
+		camera.moveX(d);
+	}
+	if (keyStates['l']) {
+		camera.moveX(-d);
+	}
+	if (keyStates['u']) {
+		camera.moveZ(d);
+	}
+	if (keyStates['o']) {
+		camera.moveZ(-d);
+	}
+
+	if (specialKeyStates[GLUT_KEY_UP]) {
+		camera.rotateX(a);
+	}
+	if (specialKeyStates[GLUT_KEY_DOWN]) {
+		camera.rotateX(-a);
+	}
+	if (specialKeyStates[GLUT_KEY_LEFT]) {
+		camera.rotateY(a);
+	}
+	if (specialKeyStates[GLUT_KEY_RIGHT]) {
+		camera.rotateY(-a);
+	}
+
+
+}
