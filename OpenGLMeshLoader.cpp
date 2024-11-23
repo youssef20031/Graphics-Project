@@ -1,6 +1,6 @@
-#include "TextureBuilder.h"
-#include "Model_3DS.h"
-#include "GLTexture.h"
+#include "TextureBuilder.h" 
+#include "Model_3DS.h"  // class to view .3d models that we'll import
+#include "GLTexture.h" // class to load textures
 #include <glut.h>
 
 int WIDTH = 1280;
