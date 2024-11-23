@@ -43,16 +43,16 @@ void playgroundMain(int argc, char** argv) {
 	glutInitWindowSize(640, 480);
 	glutInitWindowPosition(50, 50);
 
-	glutCreateWindow("Lab 5");
+	glutIdleFunc(updateKeys);
+	
+	glutCreateWindow("Playground");
 	glutDisplayFunc(Display);
 	glutKeyboardFunc(Keyboard);
 	glutKeyboardUpFunc(KeyboardUp);
 	glutSpecialFunc(Special);
 	glutSpecialUpFunc(SpecialUp);
 
-	glutIdleFunc(updateKeys);
-
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
 	glEnable(GL_DEPTH_TEST);

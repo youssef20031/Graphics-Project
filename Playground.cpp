@@ -228,6 +228,7 @@ void Display() {
 
 
 	glFlush();
+	glutSwapBuffers();
 }
 void Keyboard(unsigned char key, int x, int y) {
 	switch (key) {
@@ -364,8 +365,8 @@ void SpecialUp(int key, int x, int y) {
 }
 
 void updateKeys() {
-	float d = 0.0000002;
-	float a = 0.00002;
+	float d = 0.002;
+	float a = 0.08;
 
 	if (keyStates['i']) {
 		camera.moveY(d);
@@ -399,5 +400,5 @@ void updateKeys() {
 		camera.rotateY(-a);
 	}
 
-
+	glutPostRedisplay();
 }
