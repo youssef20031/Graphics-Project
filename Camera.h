@@ -2,6 +2,7 @@
 #pragma once
 
 #include <math.h>
+#include "stdio.h"
 #include "Vector3f.h"
 #include <glut.h>
 
@@ -33,6 +34,8 @@ public:
         float centerX = 0.0f, float centerY = 0.0f, float centerZ = 0.0f,
         float upX = 0.0f, float upY = 1.0f, float upZ = 0.0f);  // Update the camera position and orientation
 };
+void setupCamera();
+void displayCameraCoords();
 
 // Camera instance declaration
 extern Camera camera;

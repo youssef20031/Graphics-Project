@@ -73,54 +73,7 @@ void setupLights() {
 	glLightfv(GL_LIGHT0, GL_POSITION, lightIntensity);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightIntensity);
 }
-void setupCamera() {
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(60, 640 / 480, 0.001, 100);
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	camera.look();
-}
-
-void renderBitmapString(float x, float y, void* font, const char* string) {
-	glRasterPos2f(x, y);
-	while (*string) {
-		glutBitmapCharacter(font, *string);
-		string++;
-	}
-}
-
-void displayCameraCoords() {
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	gluOrtho2D(0, 640, 0, 480);
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-
-	glDisable(GL_LIGHTING);
-	glColor3f(0.0f, 0.0f, 0.0f);
-
-	char coords[100];
-	snprintf(coords, sizeof(coords), "Camera Position: (%.2f, %.2f, %.2f)", camera.eye.x, camera.eye.y, camera.eye.z);
-	renderBitmapString(10, 420, GLUT_BITMAP_HELVETICA_18, coords);
-
-	char centerCoords[100];
-	snprintf(centerCoords, sizeof(centerCoords), "Camera Center: (%.2f, %.2f, %.2f)", camera.center.x, camera.center.y, camera.center.z);
-	renderBitmapString(10, 400, GLUT_BITMAP_HELVETICA_18, centerCoords);
-
-	char upCoords[100];
-	snprintf(upCoords, sizeof(upCoords), "Camera Up: (%.2f, %.2f, %.2f)", camera.up.x, camera.up.y, camera.up.z);
-	renderBitmapString(10, 380, GLUT_BITMAP_HELVETICA_18, upCoords);
-
-	glEnable(GL_LIGHTING);
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
-}
 
 void drawAxis() {
 	glPushMatrix();
