@@ -1,13 +1,16 @@
 #pragma once
-#pragma once
 
 #include <math.h>
 #include "stdio.h"
 #include "Vector3f.h"
+#include "Controls.h"
+#include "Player.h"
 #include <glut.h>
 
 // Constants
 #define DEG2RAD(a) (a * 0.0174532925)
+
+enum ViewMode { FIRST_PERSON, THIRD_PERSON, FREE };
 
 // Camera class definition
 class Camera {
@@ -36,8 +39,13 @@ public:
 };
 void setupCamera();
 void displayCameraCoords();
+void updateCameraMovement();
+void setFirstPersonCamera();
+void setThirdPersonCamera();
+
 
 // Camera instance declaration
-extern Camera camera;
 
-enum ViewMode { FIRST_PERSON, THIRD_PERSON, FREE };
+extern Camera camera;
+extern ViewMode viewMode;
+

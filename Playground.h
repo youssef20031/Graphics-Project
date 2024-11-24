@@ -7,6 +7,8 @@
 #include "Camera.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Player.h"
+#include "Controls.h"
 #include <glut.h>
 
 // Constants

@@ -2,9 +2,11 @@
 #include "Camera.h"
 #include "stdio.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 // Camera class constructor and methods
-
-
 
 
 Camera::Camera(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ) {
@@ -114,6 +116,74 @@ void displayCameraCoords() {
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 }
+
+void updateCameraMovement() {
+	float d = 0.002;
+	float a = 0.08;
+
+	if (viewMode != FREE) return;
+
+	if (keyStates['i']) {
+		camera.moveY(d);
+	}
+	if (keyStates['k']) {
+		camera.moveY(-d);
+	}
+	if (keyStates['j']) {
+		camera.moveX(d);
+	}
+	if (keyStates['l']) {
+		camera.moveX(-d);
+	}
+	if (keyStates['u']) {
+		camera.moveZ(d);
+	}
+	if (keyStates['o']) {
+		camera.moveZ(-d);
+	}
+
+	if (specialKeyStates[GLUT_KEY_UP]) {
+		camera.rotateX(a);
+	}
+	if (specialKeyStates[GLUT_KEY_DOWN]) {
+		camera.rotateX(-a);
+	}
+	if (specialKeyStates[GLUT_KEY_LEFT]) {
+		camera.rotateY(a);
+	}
+	if (specialKeyStates[GLUT_KEY_RIGHT]) {
+		camera.rotateY(-a);
+	}
+}
+
+void setFirstPersonCamera() {
+	GLfloat angleRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+
+	// Calculate the direction the player is facing using sin and cos
+	GLfloat centerOffsetX = cos(angleRadians) * 2.0f;  // 2.0f is the distance from the player
+	GLfloat centerOffsetZ = -(sin(angleRadians) * 2.0f);  // 2.0f is the distance from the player
+
+	GLfloat eyeOffsetX = cos(angleRadians) * 0.2f;  // 2.0f is the distance from the player
+	GLfloat eyeOffsetZ = -(sin(angleRadians) * 0.2f);  // 2.0f is the distance from the player
+
+	// Set the camera position
+	camera.setView(playerX + eyeOffsetX, playerY + playerHeight * 0.875, playerZ + eyeOffsetZ, playerX + centerOffsetX, playerY + (playerHeight / 2), playerZ + centerOffsetZ);
+}
+
+void setThirdPersonCamera() {
+	GLfloat angleRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+
+	// Calculate the direction the player is facing using sin and cos
+	GLfloat centerOffsetX = cos(angleRadians) * 2.0f;  // 2.0f is the distance from the player
+	GLfloat centerOffsetZ = -(sin(angleRadians) * 2.0f);  // 2.0f is the distance from the player
+
+	GLfloat eyeOffsetX = cos(angleRadians) * -2.0f;  // 2.0f is the distance from the player
+	GLfloat eyeOffsetZ = -(sin(angleRadians) * -2.0f);  // 2.0f is the distance from the player
+
+	// Set the camera position
+	camera.setView(playerX + eyeOffsetX, playerY + (playerHeight * 2), playerZ + eyeOffsetZ, playerX + centerOffsetX, playerY + (playerHeight / 2), playerZ + centerOffsetZ);
+}
+
 
 Camera camera;
 
