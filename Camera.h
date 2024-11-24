@@ -39,3 +39,5 @@ void displayCameraCoords();
 
 // Camera instance declaration
 extern Camera camera;
+
+enum ViewMode { FIRST_PERSON, THIRD_PERSON, FREE };

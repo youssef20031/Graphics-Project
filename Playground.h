@@ -13,6 +13,8 @@
 #define GLUT_KEY_ESCAPE 27
 #define DEG2RAD(a) (a * 0.0174532925)
 
+
+
 // Lighting setup functions
 void setupLights();
 

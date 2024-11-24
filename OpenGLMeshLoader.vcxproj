@@ -87,6 +87,7 @@
     <ClCompile Include="GLTexture.cpp" />
     <ClCompile Include="Model_3DS.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Playground.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="TextureBuilder.cpp" />
@@ -95,6 +96,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GLTexture.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Playground.h" />
     <ClInclude Include="Model_3DS.h" />
     <ClInclude Include="OpenGLMeshLoader.h" />

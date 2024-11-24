@@ -4,6 +4,9 @@
 
 // Camera class constructor and methods
 
+
+
+
 Camera::Camera(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ) {
 	eye = Vector3f(eyeX, eyeY, eyeZ);
 	center = Vector3f(centerX, centerY, centerZ);
@@ -113,3 +116,5 @@ void displayCameraCoords() {
 }
 
 Camera camera;
+
+

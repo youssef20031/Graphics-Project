@@ -10,6 +10,8 @@
 #define M_PI 3.14159265358979323846
 #endif
 
+ViewMode viewMode = THIRD_PERSON;
+
 bool keyStates[256] = { false }; // to track state of keys pressed
 bool specialKeyStates[256] = { false }; // to track state of special keys pressed
 
@@ -30,10 +32,6 @@ bool rotatingRight = false;
 bool rotatingForward = false;
 bool rotatingBack = false;
 
-
-// which view is currently active
-enum ViewMode { FIRST_PERSON, THIRD_PERSON, FREE };
-ViewMode viewMode = THIRD_PERSON;
 
 
 
@@ -98,6 +96,7 @@ void drawAxis() {
 
 	glPopMatrix();
 }
+
 
 void setFirstPersonCamera() {
 	GLfloat angleRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
