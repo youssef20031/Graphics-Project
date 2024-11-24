@@ -8,6 +8,8 @@ void updateStates() {
 
 	updatePlayerMovement(); // updates player movement duhhhhh
 
+	updatePlayerVerticalMovement(); // updates player jumping and falling
+
 	updatePlayerRotation();
 
 	glutPostRedisplay();

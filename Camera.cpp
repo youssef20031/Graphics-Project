@@ -1,5 +1,6 @@
 
 #include "Camera.h"
+#include "Player.h"
 #include "stdio.h"
 
 #ifndef M_PI
@@ -109,6 +110,10 @@ void displayCameraCoords() {
 	char upCoords[100];
 	snprintf(upCoords, sizeof(upCoords), "Camera Up: (%.2f, %.2f, %.2f)", camera.up.x, camera.up.y, camera.up.z);
 	renderBitmapString(10, 380, GLUT_BITMAP_HELVETICA_18, upCoords);
+
+	char playerYSpeed[100];
+	snprintf(playerYSpeed, sizeof(playerYSpeed), "Player Y Speed: (%.2f)", playerVerticalSpeed);
+	renderBitmapString(10, 360, GLUT_BITMAP_HELVETICA_18, playerYSpeed);
 
 	glEnable(GL_LIGHTING);
 	glMatrixMode(GL_PROJECTION);

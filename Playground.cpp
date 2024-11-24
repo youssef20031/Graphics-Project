@@ -8,8 +8,12 @@ void Display() {
 	displayCameraCoords();
 	drawAxis();
 	glColor3f(0.2f, 0.7f, 0.8f);
-	drawCuboid(0.0f, 3.0f, 0.0f, 0.1f, 0.0f, 3.0f); // ground
-	drawPlayer(); 
+	for (int i = 0; i < numberOfObstacles; i++)
+	{
+		GLfloat* currentObstacle = obstacles[i];
+		drawCuboid(currentObstacle[0], currentObstacle[1], currentObstacle[2], currentObstacle[3], currentObstacle[4], currentObstacle[5]);
+	}
+	drawPlayer();
 	glFlush();
 	glutSwapBuffers();
 }

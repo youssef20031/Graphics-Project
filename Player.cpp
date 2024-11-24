@@ -1,10 +1,8 @@
 #include "Player.h"
 #include "Camera.h"
 
-
-
 GLfloat playerX = 0.0f;
-GLfloat playerY = 0.1f;
+GLfloat playerY = 0.2f;
 GLfloat playerZ = 0.0f;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
@@ -24,6 +22,22 @@ bool rotatingRight = false;
 bool rotatingForward = false;
 bool rotatingBack = false;
 
+// player jump stuff
+bool isPlayerJumping = false;
+GLfloat playerVerticalSpeed = 0.0f;
+GLfloat playerVerticalJumpInitialSpeed = 0.012f;
+GLfloat fallAcceleration = -0.00008f; // e3tebro gravity
+
+// obstacles
+GLfloat obstacles[numberOfObstacles][6] = {
+	{ 0.0f, 3.0f, 0.0f, 0.1f, 0.0f, 3.0f }, // ground
+	{ 0.0f, 3.0f, 0.0f, 0.3f, 1.0f, 1.1f },  // wall 1
+	{ 0.0f, 3.0f, 0.0f, 0.5f, 1.1f, 1.2f },  // wall 2
+	{ 0.0f, 3.0f, 0.0f, 0.7f, 1.2f, 1.3f },  // wall 3
+	{ 0.0f, 3.0f, 0.0f, 0.9f, 1.3f, 1.4f },  // wall 4
+	{ 0.0f, 3.0f, 0.0f, 1.1f, 1.4f, 1.5f },  // wall 5
+	{ 0.0f, 3.0f, 0.0f, 1.3f, 1.5f, 1.6f }  // wall 6
+};
 
 void updatePlayerRotation() {
 	// 8 cases
@@ -184,92 +198,46 @@ void updatePlayerRotation() {
 	}
 }
 
-void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
-	glPushMatrix();
-
-	double centerX = (xStart + xEnd) / 2.0;
-	double centerY = (yStart + yEnd) / 2.0;
-	double centerZ = (zStart + zEnd) / 2.0;
-
-	double scaleX = fabs(xEnd - xStart);
-	double scaleY = fabs(yEnd - yStart);
-	double scaleZ = fabs(zEnd - zStart);
-
-	glTranslated(centerX, centerY, centerZ);
-
-	glScaled(scaleX, scaleY, scaleZ);
-
-	glutSolidCube(1);
-
-	glPopMatrix();
-}
-
-
-void drawPlayer() {
-	glPushMatrix();
-
-	// Translate to the player's position in the world
-	glTranslatef(playerX, playerY, playerZ);
-
-	// rotate player's head independently of his body
-	glPushMatrix();
-	glRotatef(playerDirectionRotationFacing, 0.0, 1.0, 0.0);
-	glColor3f(0.94f, 0.80f, 0.72f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * 3 / 4, playerHeight, -playerWidth / 2, playerWidth / 2);
-	glPopMatrix();
-
-	// rotate whole player body except for his head (camera bardo)
-	glRotatef(playerDirectionRotationBody, 0.0, 1.0, 0.0);
-
-	glPushMatrix();
-	glColor3f(1.0f, 0.0f, 0.0f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
-	glColor3f(1.0f, 0.843f, 0.0f);
-	drawCuboid(playerWidth / 2, playerWidth / 2 + 0.001f, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
-	glPopMatrix();
-	glPopMatrix();
-}
-
 void updatePlayerMovement() {
 	bool moving = false;
 	if (keyStates['w']) {
 		// calculate the new x and z positions
 		GLfloat speedX = playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
-		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
-		playerX += speedX;
-		playerZ += speedZ;
-		//}
+		if (!isColliding(speedX, 0, speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		}
 		moving = true;
 	}
 	if (keyStates['s']) {
 		// calculate the new x and z positions
 		GLfloat speedX = -playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = -playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
-		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
-		playerX += speedX;
-		playerZ += speedZ;
-		//}
+		if (!isColliding(speedX, 0, speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		}
 		moving = true;
 	}
 	if (keyStates['d']) {
 		// calculate the new x and z positions
 		GLfloat speedX = playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
-		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
-		playerX += speedX;
-		playerZ += speedZ;
-		//}
+		if (!isColliding(speedX, 0, speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		}
 		moving = true;
 	}
 	if (keyStates['a']) {
 		// calculate the new x and z positions
 		GLfloat speedX = -playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = -playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
-		//if (!isCollision(playerX + speedX, playerY, playerZ + speedZ)) {
-		playerX += speedX;
-		playerZ += speedZ;
-		//}
+		if (!isColliding(speedX, 0, speedZ)) {
+			playerX += speedX;
+			playerZ += speedZ;
+		}
 		moving = true;
 	}
 
@@ -300,5 +268,124 @@ void updatePlayerMovement() {
 		}
 	}
 }
+
+void updatePlayerVerticalMovement() {
+	bool moving = updateFalling();
+	// jump if not already falling
+	if (!isPlayerJumping && keyStates[' ']) {
+		isPlayerJumping = true;
+		playerVerticalSpeed = playerVerticalJumpInitialSpeed;
+	}
+	if (moving) {
+		// update camera as well
+		if (viewMode == FIRST_PERSON) {
+			setFirstPersonCamera();
+		}
+		if (viewMode == THIRD_PERSON) {
+			setThirdPersonCamera();
+		}
+	}
+}
+// returns true if player is falling
+bool updateFalling() {
+	// calculate new falling speed
+	playerVerticalSpeed += fallAcceleration;
+
+	// check if there's something under (collision)
+	if (isColliding(0, playerVerticalSpeed, 0)) {
+		playerVerticalSpeed = 0.0f; // set vertical speed to rest
+		isPlayerJumping = false;
+		return false;
+	}
+	else {
+		// move player downwards
+		playerY += playerVerticalSpeed;
+		return true;
+	}
+}
+// checks if player's new center coords overlaps some obstacle's start and end coords
+bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat x2End, GLfloat y2Start, GLfloat y2End, GLfloat z2Start, GLfloat z2End) {
+	GLfloat playerXStart = x1 - playerWidth / 2;
+	GLfloat playerXEnd = x1 + playerWidth / 2;
+	GLfloat playerYStart = y1;
+	GLfloat playerYEnd = y1 + playerHeight;
+	GLfloat playerZStart = z1 - playerWidth / 2;
+	GLfloat playerZEnd = z1 + playerWidth / 2;
+	bool xOverlapping = ((x2Start <= playerXStart && playerXStart <= x2End) ||
+		(x2Start <= playerXEnd && playerXEnd <= x2End) ||
+		(playerXStart <= x2Start && x2Start <= playerXEnd) ||
+		(playerXStart <= x2End && x2End <= playerXEnd));
+	bool yOverlapping = ((y2Start <= playerYStart && playerYStart <= y2End) ||
+		(y2Start <= playerYEnd && playerYEnd <= y2End) ||
+		(playerYStart <= y2Start && y2Start <= playerYEnd) ||
+		(playerYStart <= y2End && y2End <= playerYEnd));
+	bool zOverlapping = ((z2Start <= playerZStart && playerZStart <= z2End) ||
+		(z2Start <= playerZEnd && playerZEnd <= z2End) ||
+		(playerZStart <= z2Start && z2Start <= playerZEnd) ||
+		(playerZStart <= z2End && z2End <= playerZEnd));
+	return xOverlapping && yOverlapping && zOverlapping;
+}
+// checks if player's new change in position would collide (overlap) any of the obstacles
+bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
+	// calculate new coords
+	GLfloat centerX = playerX + deltaX;
+	GLfloat centerY = playerY + deltaY;
+	GLfloat centerZ = playerZ + deltaZ;
+	for (int i = 0; i < numberOfObstacles; i++)
+	{
+		GLfloat* currentObstacle = obstacles[i];
+		if (checkCollision(centerX, centerY, centerZ, currentObstacle[0], currentObstacle[1], currentObstacle[2], currentObstacle[3], currentObstacle[4], currentObstacle[5])) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
+	glPushMatrix();
+
+	double centerX = (xStart + xEnd) / 2.0;
+	double centerY = (yStart + yEnd) / 2.0;
+	double centerZ = (zStart + zEnd) / 2.0;
+
+	double scaleX = fabs(xEnd - xStart);
+	double scaleY = fabs(yEnd - yStart);
+	double scaleZ = fabs(zEnd - zStart);
+
+	glTranslated(centerX, centerY, centerZ);
+
+	glScaled(scaleX, scaleY, scaleZ);
+
+	glutSolidCube(1);
+
+	glPopMatrix();
+}
+
+void drawPlayer() {
+	glPushMatrix();
+
+	// Translate to the player's position in the world
+	glTranslatef(playerX, playerY, playerZ);
+
+	// rotate player's head independently of his body
+	glPushMatrix();
+	glRotatef(playerDirectionRotationFacing, 0.0, 1.0, 0.0);
+	glColor3f(0.94f, 0.80f, 0.72f);
+	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * 3 / 4, playerHeight, -playerWidth / 2, playerWidth / 2);
+	glPopMatrix();
+
+	// rotate whole player body except for his head (camera bardo)
+	glRotatef(playerDirectionRotationBody, 0.0, 1.0, 0.0);
+
+	glPushMatrix();
+	glColor3f(1.0f, 0.0f, 0.0f);
+	drawCuboid(-playerWidth / 2, playerWidth / 2, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
+	glColor3f(1.0f, 0.843f, 0.0f);
+	drawCuboid(playerWidth / 2, playerWidth / 2 + 0.001f, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
+	glPopMatrix();
+	glPopMatrix();
+}
+
 
 
