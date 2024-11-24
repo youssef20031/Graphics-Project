@@ -185,6 +185,8 @@ void setThirdPersonCamera() {
 }
 
 
+ViewMode viewMode = THIRD_PERSON;
+
 Camera camera;
 
 

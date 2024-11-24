@@ -1,0 +1,34 @@
+#pragma once
+#pragma once
+
+#include <glut.h>
+
+// Constants
+#define WIDTH 800  
+#define HEIGHT 600 
+
+
+
+
+void realDeal(int argc, char** argv);
+
+
+void playgroundMain(int argc, char** argv);
+
+// Callback declarations for `realDeal`
+void myDisplay();
+void myKeyboard(unsigned char key, int x, int y);
+void myMotion(int x, int y);
+void myMouse(int button, int state, int x, int y);
+void myReshape(int w, int h);
+void myInit();
+void LoadAssets();
+
+// Callback declarations for `playgroundMain`
+void Display();
+void Keyboard(unsigned char key, int x, int y);
+void KeyboardUp(unsigned char key, int x, int y);
+void Special(int key, int x, int y);
+void SpecialUp(int key, int x, int y);
+void updateStates();
+void drawAxis();

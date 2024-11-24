@@ -1,5 +1,42 @@
 #include <OpenGLMeshLoader.h>
+#include "Engine.h"
 #include <Playground.h>
+
+
+void updateStates() {
+	updateCameraMovement(); // update key presses
+
+	updatePlayerMovement(); // updates player movement duhhhhh
+
+	updatePlayerRotation();
+
+	glutPostRedisplay();
+}
+
+void drawAxis() {
+	glPushMatrix();
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 10.0f);
+	glEnd();
+
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 10.0f, 0.0f);
+	glEnd();
+
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(10.0f, 0.0f, 0.0f);
+	glEnd();
+
+	glPopMatrix();
+}
+
 
 void realDeal(int argc, char** argv)
 {

@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include "Player.h"
 #include "Controls.h"
+#include "Engine.h"
+#include "Lighting.h"
 #include <glut.h>
 
 // Constants
@@ -20,20 +22,8 @@
 // Lighting setup functions
 void setupLights();
 
-// Camera setup function
-void setupCamera();
-
 // Display function
 void Display();
 
-// Keyboard and special key functions
-void Keyboard(unsigned char key, int x, int y);
-void KeyboardUp(unsigned char key, int x, int y);
-void Special(int key, int x, int y);
-void SpecialUp(int key, int x, int y);
-
-void updateStates();
-void updateCameraMovement();
-void updatePlayerMovement();
 
 #endif // PLAYGROUND_H

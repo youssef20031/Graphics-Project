@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GLTexture.cpp" />
+    <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="Model_3DS.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -97,7 +98,9 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Controls.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="GLTexture.h" />
+    <ClInclude Include="Lighting.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Playground.h" />
     <ClInclude Include="Model_3DS.h" />
