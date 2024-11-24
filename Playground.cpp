@@ -1,7 +1,7 @@
 
 #include "Playground.h"
 #include <cmath>  // for sqrt() and cos(), sin()
-#include "Vector3f.h"
+
 
 #define GLUT_KEY_ESCAPE 27
 #define DEG2RAD(a) (a * 0.0174532925)
