@@ -18,6 +18,9 @@ extern GLfloat playerMovementSpeed;
 
 // Player rotation variables
 extern GLfloat playerDirectionRotationFacing; // Direction player is facing
+extern GLfloat playerDirectionRotationFacingVertical; // Direction player is facing up and down
+extern GLfloat playerDirectionRotationFacingVerticalMin; 
+extern GLfloat playerDirectionRotationFacingVerticalMax; 
 extern GLfloat playerDirectionRotationBody;   // Direction player body is animating
 extern GLfloat playerRotationAnimationSpeed;
 extern GLfloat playerRotationSpeed;

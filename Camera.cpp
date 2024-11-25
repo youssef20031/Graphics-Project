@@ -162,31 +162,65 @@ void updateCameraMovement() {
 }
 
 void setFirstPersonCamera() {
-	GLfloat angleRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+	GLfloat angleYawRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+	GLfloat anglePitchRadians = playerDirectionRotationFacingVertical * M_PI / 180.0f;  // Convert to radians
 
 	// Calculate the direction the player is facing using sin and cos
-	GLfloat centerOffsetX = cos(angleRadians) * 2.0f;  // 2.0f is the distance from the player
-	GLfloat centerOffsetZ = -(sin(angleRadians) * 2.0f);  // 2.0f is the distance from the player
+	GLfloat centerOffsetX = cos(anglePitchRadians) * cos(angleYawRadians) * 2.0f; // 2.0f is the distance from the player
+	GLfloat centerOffsetY = sin(anglePitchRadians) * 2.0f;  // 2.0f is the distance from the player
+	GLfloat centerOffsetZ = -cos(anglePitchRadians) * sin(angleYawRadians) * 2.0f;  // 2.0f is the distance from the player
 
-	GLfloat eyeOffsetX = cos(angleRadians) * 0.2f;  // 2.0f is the distance from the player
-	GLfloat eyeOffsetZ = -(sin(angleRadians) * 0.2f);  // 2.0f is the distance from the player
+	GLfloat eyeOffsetX = cos(angleYawRadians) * 0.2f;  // 0.2f is the distance from the player
+	GLfloat eyeOffsetZ = -(sin(angleYawRadians) * 0.2f);  // 0.2f is the distance from the player
+
+	// Adjust the up vector to match the pitch direction
+	GLfloat upX = -sin(anglePitchRadians) * cos(angleYawRadians);  // Up vector X-component
+	GLfloat upY = cos(anglePitchRadians);  // Up vector Y-component
+	GLfloat upZ = sin(anglePitchRadians) * sin(angleYawRadians);  // Up vector Z-component
 
 	// Set the camera position
-	camera.setView(playerX + eyeOffsetX, playerY + playerHeight * 0.875, playerZ + eyeOffsetZ, playerX + centerOffsetX, playerY + (playerHeight / 2), playerZ + centerOffsetZ);
+	camera.setView(
+		playerX + eyeOffsetX, 
+		playerY + playerHeight * 0.875, 
+		playerZ + eyeOffsetZ, 
+		playerX + centerOffsetX, 
+		playerY + (playerHeight / 2) + centerOffsetY, 
+		playerZ + centerOffsetZ,
+		upX,
+		upY,
+		upZ
+	);
 }
 
 void setThirdPersonCamera() {
-	GLfloat angleRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+	GLfloat angleYawRadians = playerDirectionRotationFacing * M_PI / 180.0f;  // Convert to radians
+	GLfloat anglePitchRadians = playerDirectionRotationFacingVertical * M_PI / 180.0f;  // Convert to radians
 
 	// Calculate the direction the player is facing using sin and cos
-	GLfloat centerOffsetX = cos(angleRadians) * 2.0f;  // 2.0f is the distance from the player
-	GLfloat centerOffsetZ = -(sin(angleRadians) * 2.0f);  // 2.0f is the distance from the player
+	GLfloat centerOffsetX = cos(anglePitchRadians) * cos(angleYawRadians) * 2.0f; // 2.0f is the distance from the player
+	GLfloat centerOffsetY = sin(anglePitchRadians) * 2.0f;  // 2.0f is the distance from the player
+	GLfloat centerOffsetZ = -cos(anglePitchRadians) * sin(angleYawRadians) * 2.0f;  // 2.0f is the distance from the player
 
-	GLfloat eyeOffsetX = cos(angleRadians) * -2.0f;  // 2.0f is the distance from the player
-	GLfloat eyeOffsetZ = -(sin(angleRadians) * -2.0f);  // 2.0f is the distance from the player
+	GLfloat eyeOffsetX = cos(angleYawRadians) * -2.5f;  // -2.0f is the distance from the player
+	GLfloat eyeOffsetZ = -(sin(angleYawRadians) * -2.5f);  // -2.0f is the distance from the player
+
+	// Adjust the up vector to match the pitch direction
+	GLfloat upX = -sin(anglePitchRadians) * cos(angleYawRadians);  // Up vector X-component
+	GLfloat upY = cos(anglePitchRadians);  // Up vector Y-component
+	GLfloat upZ = sin(anglePitchRadians) * sin(angleYawRadians);  // Up vector Z-component
 
 	// Set the camera position
-	camera.setView(playerX + eyeOffsetX, playerY + (playerHeight * 2), playerZ + eyeOffsetZ, playerX + centerOffsetX, playerY + (playerHeight / 2), playerZ + centerOffsetZ);
+	camera.setView(
+		playerX + eyeOffsetX,
+		playerY + playerHeight * 2,
+		playerZ + eyeOffsetZ,
+		playerX + centerOffsetX,
+		playerY + (playerHeight / 2) + centerOffsetY,
+		playerZ + centerOffsetZ,
+		upX,
+		upY,
+		upZ
+	);
 }
 
 

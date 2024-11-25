@@ -14,6 +14,9 @@ GLfloat playerMovementSpeed = 0.005f;
 
 // player rotating animation
 GLfloat playerDirectionRotationFacing = 0.0f; // direction player facing
+GLfloat playerDirectionRotationFacingVertical = 0.0f; // direction player is facing up and down
+GLfloat playerDirectionRotationFacingVerticalMin = -30.0f;
+GLfloat playerDirectionRotationFacingVerticalMax = 30.0f; 
 GLfloat playerDirectionRotationBody = 0.0f; // direction player facing
 GLfloat playerRotationAnimationSpeed = 1.0f;
 GLfloat playerRotationSpeed = 0.25f;
@@ -249,6 +252,14 @@ void updatePlayerMovement() {
 		playerDirectionRotationFacing -= playerRotationSpeed;
 		moving = true;
 	}
+	if (specialKeyStates[GLUT_KEY_UP] && playerDirectionRotationFacingVertical <= playerDirectionRotationFacingVerticalMax) {
+		playerDirectionRotationFacingVertical += playerRotationSpeed;
+		moving = true;
+	}
+	if (specialKeyStates[GLUT_KEY_DOWN] && playerDirectionRotationFacingVertical >= playerDirectionRotationFacingVerticalMin) {
+		playerDirectionRotationFacingVertical -= playerRotationSpeed;
+		moving = true;
+	}
 
 
 
@@ -370,9 +381,11 @@ void drawPlayer() {
 
 	// rotate player's head independently of his body
 	glPushMatrix();
+	glTranslatef(0, playerHeight * 7 / 8, 0);
 	glRotatef(playerDirectionRotationFacing, 0.0, 1.0, 0.0);
+	glRotatef(playerDirectionRotationFacingVertical, 0.0, 0.0, 1.0);
 	glColor3f(0.94f, 0.80f, 0.72f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * 3 / 4, playerHeight, -playerWidth / 2, playerWidth / 2);
+	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * -1 / 8, playerHeight * 1 / 8, -playerWidth / 2, playerWidth / 2);
 	glPopMatrix();
 
 	// rotate whole player body except for his head (camera bardo)
