@@ -93,6 +93,7 @@
     <ClCompile Include="Common\CommonCPP\Vector3f.cpp" />
     <ClCompile Include="GLTexture.cpp" />
     <ClCompile Include="Level1\Level1CPP\Playground.cpp" />
+    <ClCompile Include="Level1\Level1CPP\PlaygroundObstacles.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,7 @@
     <ClInclude Include="Common\CommonH\Vector3f.h" />
     <ClInclude Include="GLTexture.h" />
     <ClInclude Include="Level1\Level1H\Playground.h" />
+    <ClInclude Include="Level1\Level1H\PlaygroundObstacles.h" />
     <ClInclude Include="OpenGLMeshLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

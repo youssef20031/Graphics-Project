@@ -4,6 +4,7 @@
 #include "Vector3f.h"
 #include "Controls.h"
 #include "Camera.h"
+#include "../../Level1/Level1H/PlaygroundObstacles.h"
 #include <glut.h>
 
 #pragma once
@@ -36,9 +37,6 @@ extern bool isPlayerJumping;
 extern GLfloat playerVerticalSpeed;
 extern GLfloat playerVerticalJumpInitialSpeed;
 extern GLfloat fallAcceleration; // e3tebro gravity
-
-const int numberOfObstacles = 7;
-extern GLfloat obstacles[numberOfObstacles][6];
 
 // Function declarations
 void updatePlayerRotation();    // Updates player's body rotation for animation
