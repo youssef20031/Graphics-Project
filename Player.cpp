@@ -201,75 +201,46 @@ void updatePlayerRotation() {
 	}
 }
 
+void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinCosAngleShift = 0.0f) {
+	// calculate the new x and z positions
+	GLfloat speedX = playerMovementSpeed * speedSign * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
+	GLfloat speedZ = playerMovementSpeed * speedSign * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
+	if (!isColliding(speedX, 0, 0)) {
+		playerX += speedX;
+	}
+	if (!isColliding(0, 0, speedZ)) {
+		playerZ += speedZ;
+	}
+}
+
 void updatePlayerMovement() {
-	bool moving = false;
+
+	bool moving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'] || specialKeyStates[GLUT_KEY_LEFT] || specialKeyStates[GLUT_KEY_RIGHT] || specialKeyStates[GLUT_KEY_UP] || specialKeyStates[GLUT_KEY_DOWN];
 	if (keyStates['w']) {
-		// calculate the new x and z positions
-		GLfloat speedX = playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
-		GLfloat speedZ = playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, 0)) {
-			playerX += speedX;
-		}
-		if (!isColliding(0, 0, speedZ)) {
-			playerZ += speedZ;
-		}
-		moving = true;
+		movePlayer(1.0f, -1.0); // calculate the new x and z positions
 	}
 	if (keyStates['s']) {
-		// calculate the new x and z positions
-		GLfloat speedX = -playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
-		GLfloat speedZ = -playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, 0)) {
-			playerX += speedX;
-		}
-		if (!isColliding(0, 0, speedZ)) {
-			playerZ += speedZ;
-		}
-		moving = true;
+		movePlayer(-1.0f, -1.0); // calculate the new x and z positions
 	}
 	if (keyStates['d']) {
-		// calculate the new x and z positions
-		GLfloat speedX = playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
-		GLfloat speedZ = playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, 0)) {
-			playerX += speedX;
-		}
-		if (!isColliding(0, 0, speedZ)) {
-			playerZ += speedZ;
-		}
-		moving = true;
+		movePlayer(1.0f, 1.0f, M_PI / 2); // calculate the new x and z positions
 	}
 	if (keyStates['a']) {
-		// calculate the new x and z positions
-		GLfloat speedX = -playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
-		GLfloat speedZ = -playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, 0)) {
-			playerX += speedX;
-		}
-		if (!isColliding(0, 0, speedZ)) {
-			playerZ += speedZ;
-		}
-		moving = true;
+		movePlayer(-1.0f, 1.0f, M_PI / 2); // calculate the new x and z positions
 	}
 
 	if (specialKeyStates[GLUT_KEY_LEFT]) {
 		playerDirectionRotationFacing += playerRotationSpeed;
-		moving = true;
 	}
 	if (specialKeyStates[GLUT_KEY_RIGHT]) {
 		playerDirectionRotationFacing -= playerRotationSpeed;
-		moving = true;
 	}
 	if (specialKeyStates[GLUT_KEY_UP] && playerDirectionRotationFacingVertical <= playerDirectionRotationFacingVerticalMax) {
 		playerDirectionRotationFacingVertical += playerRotationSpeed;
-		moving = true;
 	}
 	if (specialKeyStates[GLUT_KEY_DOWN] && playerDirectionRotationFacingVertical >= playerDirectionRotationFacingVerticalMin) {
 		playerDirectionRotationFacingVertical -= playerRotationSpeed;
-		moving = true;
 	}
-
-
 
 	// player direction rotation
 	rotatingForward = keyStates['w'];
