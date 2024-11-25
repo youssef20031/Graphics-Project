@@ -1,7 +1,4 @@
-#include "TextureBuilder.h"
-#include "Model_3DS.h"
-#include "GLTexture.h"
-#include <glut.h>
+#include <OpenGLMeshLoader.h>
 
 int WIDTH = 1280;
 int HEIGHT = 720;
@@ -15,23 +12,18 @@ GLdouble aspectRatio = (GLdouble)WIDTH / (GLdouble)HEIGHT;
 GLdouble zNear = 0.1;
 GLdouble zFar = 100;
 
-class Vector
+// Vector class definition (this should only be in the .cpp file)
+Vector::Vector() : x(0), y(0), z(0) {}
+
+Vector::Vector(GLdouble _x, GLdouble _y, GLdouble _z) : x(_x), y(_y), z(_z) {}
+
+void Vector::operator +=(float value)
 {
-public:
-	GLdouble x, y, z;
-	Vector() {}
-	Vector(GLdouble _x, GLdouble _y, GLdouble _z) : x(_x), y(_y), z(_z) {}
-	//================================================================================================//
-	// Operator Overloading; In C++ you can override the behavior of operators for you class objects. //
-	// Here we are overloading the += operator to add a given value to all vector coordinates.        //
-	//================================================================================================//
-	void operator +=(float value)
-	{
-		x += value;
-		y += value;
-		z += value;
-	}
-};
+	x += value;
+	y += value;
+	z += value;
+}
+
 
 Vector Eye(20, 5, 20);
 Vector At(0, 0, 0);
@@ -322,43 +314,4 @@ void LoadAssets()
 	// Loading texture files
 	tex_ground.Load("Textures/ground.bmp");
 	loadBMP(&tex, "Textures/blu-sky-3.bmp", true);
-}
-
-//=======================================================================
-// Main Function
-//=======================================================================
-void main(int argc, char** argv)
-{
-	glutInit(&argc, argv);
-
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-
-	glutInitWindowSize(WIDTH, HEIGHT);
-
-	glutInitWindowPosition(100, 150);
-
-	glutCreateWindow(title);
-
-	glutDisplayFunc(myDisplay);
-
-	glutKeyboardFunc(myKeyboard);
-
-	glutMotionFunc(myMotion);
-
-	glutMouseFunc(myMouse);
-
-	glutReshapeFunc(myReshape);
-
-	myInit();
-
-	LoadAssets();
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_NORMALIZE);
-	glEnable(GL_COLOR_MATERIAL);
-
-	glShadeModel(GL_SMOOTH);
-
-	glutMainLoop();
 }
