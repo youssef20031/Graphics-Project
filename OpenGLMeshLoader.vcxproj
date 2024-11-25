@@ -83,30 +83,30 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Common\CommonCPP\Camera.cpp" />
+    <ClCompile Include="Common\CommonCPP\Controls.cpp" />
+    <ClCompile Include="Common\CommonCPP\Engine.cpp" />
+    <ClCompile Include="Common\CommonCPP\Lighting.cpp" />
+    <ClCompile Include="Common\CommonCPP\Model_3DS.cpp" />
+    <ClCompile Include="Common\CommonCPP\Player.cpp" />
+    <ClCompile Include="Common\CommonCPP\TextureBuilder.cpp" />
+    <ClCompile Include="Common\CommonCPP\Vector3f.cpp" />
     <ClCompile Include="GLTexture.cpp" />
     <ClCompile Include="Level1\Level1CPP\Playground.cpp" />
-    <ClCompile Include="Lighting.cpp" />
-    <ClCompile Include="Model_3DS.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Controls.cpp" />
-    <ClCompile Include="TextureBuilder.cpp" />
-    <ClCompile Include="Vector3f.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Controls.h" />
-    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Common\CommonH\Camera.h" />
+    <ClInclude Include="Common\CommonH\Controls.h" />
+    <ClInclude Include="Common\CommonH\Engine.h" />
+    <ClInclude Include="Common\CommonH\Lighting.h" />
+    <ClInclude Include="Common\CommonH\Model_3DS.h" />
+    <ClInclude Include="Common\CommonH\Player.h" />
+    <ClInclude Include="Common\CommonH\TextureBuilder.h" />
+    <ClInclude Include="Common\CommonH\Vector3f.h" />
     <ClInclude Include="GLTexture.h" />
     <ClInclude Include="Level1\Level1H\Playground.h" />
-    <ClInclude Include="Lighting.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Model_3DS.h" />
     <ClInclude Include="OpenGLMeshLoader.h" />
-    <ClInclude Include="TextureBuilder.h" />
-    <ClInclude Include="Vector3f.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

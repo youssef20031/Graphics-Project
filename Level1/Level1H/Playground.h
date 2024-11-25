@@ -2,15 +2,15 @@
 #ifndef PLAYGROUND_H
 #define PLAYGROUND_H
 
-#include "Vector3f.h"
+#include "../../Common/CommonH/Vector3f.h"
 #include <math.h>
-#include "Camera.h"
+#include "../../Common/CommonH/Camera.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "Player.h"
-#include "Controls.h"
-#include "Engine.h"
-#include "Lighting.h"
+#include "../../Common/CommonH/Player.h"
+#include "../../Common/CommonH/Camera.h"
+#include "../../Common/CommonH/Engine.h"
+#include "../../Common/CommonH/Lighting.h"
 #include <glut.h>
 
 // Constants

@@ -1,4 +1,4 @@
-#include "Lighting.h"
+#include "../CommonH/Lighting.h"
 
 void setupLights() {
 	GLfloat ambient[] = { 0.7f, 0.7f, 0.7, 1.0f };

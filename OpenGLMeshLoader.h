@@ -2,8 +2,8 @@
 #ifndef OPENGL_MESH_LOADER_H
 #define OPENGL_MESH_LOADER_H
 
-#include "TextureBuilder.h" 
-#include "Model_3DS.h"  // class to view .3d models that we'll import
+#include "../../Common/CommonH/TextureBuilder.h" 
+#include "../../Common/CommonH/Model_3DS.h"  // class to view .3d models that we'll import
 #include "GLTexture.h" // class to load 
 #include <glut.h> // Include OpenGL and GLUT headers
 

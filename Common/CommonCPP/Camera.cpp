@@ -1,6 +1,6 @@
 
-#include "Camera.h"
-#include "Player.h"
+#include "../CommonH/Camera.h"
+#include "../CommonH/Player.h"
 #include "stdio.h"
 
 #ifndef M_PI

@@ -1,6 +1,6 @@
 
-#include "Controls.h"
-#include "Camera.h"
+#include "../CommonH/Controls.h"
+#include "../CommonH/Camera.h"
 #include <glut.h>
 
 #define GLUT_KEY_ESCAPE 27

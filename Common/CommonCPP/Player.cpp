@@ -1,5 +1,5 @@
-#include "Player.h"
-#include "Camera.h"
+#include "../CommonH/Player.h"
+#include "../CommonH/Camera.h"
 
 GLfloat playerX = 0.0f;
 GLfloat playerY = 0.2f;
