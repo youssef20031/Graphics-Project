@@ -1,4 +1,4 @@
-#include "TextureBuilder.h"
+#include "../CommonH/TextureBuilder.h"
 
 void loadPPM(GLuint* textureID, char* strFileName, int width, int height, int wrap) {
 	BYTE* data;
