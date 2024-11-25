@@ -207,8 +207,10 @@ void updatePlayerMovement() {
 		// calculate the new x and z positions
 		GLfloat speedX = playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, speedZ)) {
+		if (!isColliding(speedX, 0, 0)) {
 			playerX += speedX;
+		}
+		if (!isColliding(0, 0, speedZ)) {
 			playerZ += speedZ;
 		}
 		moving = true;
@@ -217,8 +219,10 @@ void updatePlayerMovement() {
 		// calculate the new x and z positions
 		GLfloat speedX = -playerMovementSpeed * cos(-playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = -playerMovementSpeed * sin(-playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, speedZ)) {
+		if (!isColliding(speedX, 0, 0)) {
 			playerX += speedX;
+		}
+		if (!isColliding(0, 0, speedZ)) {
 			playerZ += speedZ;
 		}
 		moving = true;
@@ -227,8 +231,10 @@ void updatePlayerMovement() {
 		// calculate the new x and z positions
 		GLfloat speedX = playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, speedZ)) {
+		if (!isColliding(speedX, 0, 0)) {
 			playerX += speedX;
+		}
+		if (!isColliding(0, 0, speedZ)) {
 			playerZ += speedZ;
 		}
 		moving = true;
@@ -237,8 +243,10 @@ void updatePlayerMovement() {
 		// calculate the new x and z positions
 		GLfloat speedX = -playerMovementSpeed * sin(playerDirectionRotationFacing * M_PI / 180.0f);
 		GLfloat speedZ = -playerMovementSpeed * cos(playerDirectionRotationFacing * M_PI / 180.0f);
-		if (!isColliding(speedX, 0, speedZ)) {
+		if (!isColliding(speedX, 0, 0)) {
 			playerX += speedX;
+		}
+		if (!isColliding(0, 0, speedZ)) {
 			playerZ += speedZ;
 		}
 		moving = true;
@@ -301,7 +309,16 @@ void updatePlayerVerticalMovement() {
 bool updateFalling() {
 	// calculate new falling speed
 	playerVerticalSpeed += fallAcceleration;
-
+	
+	// check if player is falling in void
+	if (playerY <= -20.0f) {
+		// return to spawnpoint maslan
+		playerX = 0.0f;
+		playerY = 0.11f;
+		playerZ = 0.0f;
+		playerVerticalSpeed = 0;
+	}
+	
 	// check if there's something under (collision)
 	if (isColliding(0, playerVerticalSpeed, 0)) {
 		playerVerticalSpeed = 0.0f; // set vertical speed to rest
