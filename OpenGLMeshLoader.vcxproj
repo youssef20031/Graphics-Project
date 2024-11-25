@@ -85,11 +85,11 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GLTexture.cpp" />
+    <ClCompile Include="Level1\Level1CPP\Playground.cpp" />
     <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="Model_3DS.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Playground.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Controls.cpp" />
     <ClCompile Include="TextureBuilder.cpp" />
@@ -100,9 +100,9 @@
     <ClInclude Include="Controls.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GLTexture.h" />
+    <ClInclude Include="Level1\Level1H\Playground.h" />
     <ClInclude Include="Lighting.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Playground.h" />
     <ClInclude Include="Model_3DS.h" />
     <ClInclude Include="OpenGLMeshLoader.h" />
     <ClInclude Include="TextureBuilder.h" />
