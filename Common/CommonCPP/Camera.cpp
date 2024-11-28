@@ -115,6 +115,11 @@ void displayCameraCoords() {
 	snprintf(playerYSpeed, sizeof(playerYSpeed), "Player Y Speed: (%.2f)", playerVerticalSpeed);
 	renderBitmapString(10, 360, GLUT_BITMAP_HELVETICA_18, playerYSpeed);
 
+	char playerCoords[100];
+	snprintf(playerCoords, sizeof(playerCoords), "Player Position: (%.2f, %.2f, %.2f)", playerX, playerY, playerZ);
+	renderBitmapString(10, 340, GLUT_BITMAP_HELVETICA_18, playerCoords);
+
+
 	glEnable(GL_LIGHTING);
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();

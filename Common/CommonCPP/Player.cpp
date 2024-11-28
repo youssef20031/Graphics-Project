@@ -7,7 +7,7 @@ GLfloat playerY = 0.2f;
 GLfloat playerZ = 3.5f;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
-GLfloat playerMovementSpeed = 0.05f;
+GLfloat playerMovementSpeed = 0.035f;
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
