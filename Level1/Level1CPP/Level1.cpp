@@ -11,8 +11,8 @@ void DisplayL1() {
 	glColor3f(0.2f, 0.7f, 0.8f);
 	for (int i = 0; i < numberOfObstacles; i++)
 	{
-		GLfloat* currentObstacle = obstacles[i];
-		drawCuboid(currentObstacle[0], currentObstacle[1], currentObstacle[2], currentObstacle[3], currentObstacle[4], currentObstacle[5]);
+		GLfloat* L1currentObstacle = L1obstacles[i];
+		drawCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2], L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
 	}
 	drawPlayer();
 	glFlush();

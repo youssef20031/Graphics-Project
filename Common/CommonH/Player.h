@@ -5,6 +5,7 @@
 #include "Controls.h"
 #include "Camera.h"
 #include "../../Level1/Level1H/PlaygroundObstacles.h"
+#include "../../Level1/Level1H/Level1Obstacles.h"
 #include <glut.h>
 
 #pragma once

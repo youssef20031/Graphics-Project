@@ -320,9 +320,9 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 	GLfloat centerX = playerX + deltaX;
 	GLfloat centerY = playerY + deltaY;
 	GLfloat centerZ = playerZ + deltaZ;
-	for (int i = 0; i < numberOfObstacles; i++)
+	for (int i = 0; i < L1numberOfObstacles; i++)
 	{
-		GLfloat* currentObstacle = obstacles[i];
+		GLfloat* currentObstacle = L1obstacles[i];
 		if (checkCollision(centerX, centerY, centerZ, currentObstacle[0], currentObstacle[1], currentObstacle[2], currentObstacle[3], currentObstacle[4], currentObstacle[5])) {
 			return true;
 		}
