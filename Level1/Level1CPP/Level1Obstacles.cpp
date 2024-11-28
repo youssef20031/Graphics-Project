@@ -6,6 +6,9 @@ extern GLfloat L1obstacles[L1numberOfObstacles][6];
 
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
+
+	// CAVE SECTION (STAGE 0)
+
    { 0.0f, 6.0f, 0.0f, 0.1f, 0.0f, 51.0f },  // cave ground
    { 0.0f, 0.1f, 0.0f, 3.0f, 0.0f, 45.0f },  // cave right wall
    { 5.9f, 6.0f, 0.0f, 3.0f, 0.0f, 51.0f },  // cave left wall
@@ -20,4 +23,11 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
    { 0.0f, -35.0f, 0.0f, 0.1f, 45.0f, 51.0f },  // cave ground 2
    { 0.0f, -15.0f, 3.0f, 3.1f, 45.0f, 51.0f }, // cave roof 2
    { -7.48, -8.41f, 0.1f, 0.6f, 49.9f, 46.14f }, // small platform to jump 
+
+
+   // AXE SECTION (STAGE 1)
+
+	{ -23.02, -23.35f, 0.1f, 0.2f, 50.97f, 45.09f }, // checkpoint platform
+
+
 };

@@ -2,12 +2,16 @@
 #include "../CommonH/Camera.h"
 #include <algorithm>
 
-GLfloat playerX = 3.07f;
-GLfloat playerY = 0.2f;
-GLfloat playerZ = 3.5f;
+GLfloat playerX = -21.5f;
+GLfloat playerY = 0.1f;
+GLfloat playerZ = 48.25;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 0.035f;
+
+
+// Player spawn point for level 1: (3.07,0.2,3.5)
+// Stage 1: (-21.5,0.1,48.25)
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
