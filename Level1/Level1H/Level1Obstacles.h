@@ -7,7 +7,7 @@
 
 
 // Define the number of obstacles
-const int L1numberOfObstacles = 7;
+const int L1numberOfObstacles = 100;
 
 // Declare the external obstacles array
  extern GLfloat L1obstacles[L1numberOfObstacles][6];

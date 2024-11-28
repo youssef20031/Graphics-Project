@@ -1,19 +1,19 @@
 #include "../CommonH/Player.h"
 #include "../CommonH/Camera.h"
 
-GLfloat playerX = 0.0f;
+GLfloat playerX = 3.07f;
 GLfloat playerY = 0.2f;
-GLfloat playerZ = 0.0f;
+GLfloat playerZ = 3.5f;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
-GLfloat playerMovementSpeed = 0.005f;
+GLfloat playerMovementSpeed = 0.06f;
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
 
 // player rotating animation
-GLfloat playerDirectionRotationFacing = 0.0f; // direction player facing
+GLfloat playerDirectionRotationFacing = 270.0f; // direction player facing
 GLfloat playerDirectionRotationFacingVertical = 0.0f; // direction player is facing up and down
 GLfloat playerDirectionRotationFacingVerticalMin = -30.0f;
 GLfloat playerDirectionRotationFacingVerticalMax = 30.0f; 
