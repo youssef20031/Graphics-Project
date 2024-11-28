@@ -1,6 +1,12 @@
+#include "../../OpenGLMeshLoader.h"
 #include "../Level1H/Level1.h"
 
+
 #include <cmath> 
+
+
+Axe axe;
+
 void DisplayL1() {
 	setupCamera();
 	//setupLights();
@@ -21,7 +27,15 @@ void DisplayL1() {
 		}
 		drawCuboid(L1currentObstacle[0],L1currentObstacle[1], L1currentObstacle[2], L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
 	}
+
+	
+
 	drawPlayer();
+
+	
+	model_axe.Draw();
+	
+
 	glFlush();
 	glutSwapBuffers();
 }

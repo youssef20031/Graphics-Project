@@ -35,6 +35,7 @@ int cameraZoom = 0;
 Model_3DS model_house;
 Model_3DS model_tree;
 Model_3DS model_axe;
+
 //model3ds wolf
 
 // Textures
@@ -191,6 +192,8 @@ void myDisplay(void)
 	glPopMatrix();
 
 
+	// The Axe
+
 	glPushMatrix();
 	glRotatef(90.f, 1, 0, 0);
 	model_axe.Draw();
@@ -317,15 +320,24 @@ void myReshape(int w, int h)
 void LoadAssets()
 {
 	// Loading Model files
-	model_house.Load("Models/house/house.3DS");
-	model_tree.Load("Models/tree/Tree1.3ds");
+	
+	// LEVEL 1
 
+
+
+	//Axe
 	model_axe.Load("Models/axe/untitled.3ds");
-	model_axe.scale = 0.1;
+	model_axe.scale = 0.5;
 
-	//model_axe.rot.y = 69;
+	
 
-	//model_axe.pos.y = 23;
+	model_axe.pos.x = -38.45;
+	model_axe.pos.y = 0.3;
+	model_axe.pos.z = 51.3;
+
+
+	model_axe.rot.x = 90; 
+	model_axe.rot.z = -90;
 
 	//wolf.load
 

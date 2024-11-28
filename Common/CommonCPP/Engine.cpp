@@ -126,6 +126,7 @@ void Level1Main(int argc, char** argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
+	LoadAssets();
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
@@ -145,7 +146,7 @@ void Level1Main(int argc, char** argv) {
 //=======================================================================
 
 void main(int argc, char** argv) {
-	realDeal(argc, argv);
+	//realDeal(argc, argv);
 	//playgroundMain(argc, argv);
-	//Level1Main(argc, argv);
+	Level1Main(argc, argv);
 }

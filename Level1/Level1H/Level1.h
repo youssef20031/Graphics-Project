@@ -11,6 +11,7 @@
 #include "../../Common/CommonH/Camera.h"
 #include "../../Common/CommonH/Engine.h"
 #include "../../Common/CommonH/Lighting.h"
+#include "Axe.h"
 #include <glut.h>
 
 // Constants

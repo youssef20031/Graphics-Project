@@ -289,11 +289,13 @@ bool updateFalling() {
 	playerVerticalSpeed += fallAcceleration;
 	
 	// check if player is falling in void
+
+
 	if (playerY <= -20.0f) {
 		// return to spawnpoint maslan
-		playerX = 3.07f;
-		playerY = 0.2f;
-		playerZ = 3.5f;
+		playerX = -21.5f;
+		playerY = 0.1f;
+		playerZ = 48.25f;
 		playerVerticalSpeed = 0;
 	}
 	
