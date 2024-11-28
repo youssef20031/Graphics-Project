@@ -1,5 +1,6 @@
 #include "../CommonH/Player.h"
 #include "../CommonH/Camera.h"
+#include <algorithm>
 
 GLfloat playerX = 3.07f;
 GLfloat playerY = 0.2f;
@@ -274,9 +275,9 @@ bool updateFalling() {
 	// check if player is falling in void
 	if (playerY <= -20.0f) {
 		// return to spawnpoint maslan
-		playerX = 0.0f;
-		playerY = 0.11f;
-		playerZ = 0.0f;
+		playerX = 3.07f;
+		playerY = 0.2f;
+		playerZ = 3.5f;
 		playerVerticalSpeed = 0;
 	}
 	
@@ -293,7 +294,10 @@ bool updateFalling() {
 	}
 }
 // checks if player's new center coords overlaps some obstacle's start and end coords
-bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat x2End, GLfloat y2Start, GLfloat y2End, GLfloat z2Start, GLfloat z2End) {
+bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat x2End, GLfloat y2Start, GLfloat y2End, GLfloat z2Start, GLfloat z2End) {	
+	if (x2Start > x2End) std::swap(x2Start, x2End);
+	if (y2Start > y2End) std::swap(y2Start, y2End);
+	if (z2Start > z2End) std::swap(z2Start, z2End);
 	GLfloat playerXStart = x1 - playerWidth / 2;
 	GLfloat playerXEnd = x1 + playerWidth / 2;
 	GLfloat playerYStart = y1;
@@ -314,6 +318,7 @@ bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat
 		(playerZStart <= z2End && z2End <= playerZEnd));
 	return xOverlapping && yOverlapping && zOverlapping;
 }
+
 // checks if player's new change in position would collide (overlap) any of the obstacles
 bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 	// calculate new coords
