@@ -145,7 +145,7 @@ void Level1Main(int argc, char** argv) {
 //=======================================================================
 
 void main(int argc, char** argv) {
-	//realDeal(argc, argv);
+	realDeal(argc, argv);
 	//playgroundMain(argc, argv);
-	Level1Main(argc, argv);
+	//Level1Main(argc, argv);
 }

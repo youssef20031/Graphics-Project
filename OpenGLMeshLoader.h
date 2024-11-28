@@ -17,6 +17,7 @@ extern char title[];
 extern int cameraZoom;
 extern Model_3DS model_house;
 extern Model_3DS model_tree;
+extern Model_3DS model_axe;
 extern GLTexture tex_ground;
 
 // Vector class declaration
