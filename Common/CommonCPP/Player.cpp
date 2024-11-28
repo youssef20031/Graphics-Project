@@ -8,6 +8,7 @@ GLfloat playerZ = 48.25;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 0.035f;
+Vector3f spawnPoint = (3.07,0.2,3.5);    // didn't use this yet
 
 
 // Player spawn point for level 1: (3.07,0.2,3.5)
