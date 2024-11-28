@@ -196,6 +196,16 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 	// calculate the new x and z positions
 	GLfloat speedX = playerMovementSpeed * speedSign * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
 	GLfloat speedZ = playerMovementSpeed * speedSign * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
+
+	
+	// normalizing the vector 3ashan to prevent speed boost while moving diagonally
+	GLfloat magnitude = sqrt(speedX * speedX + speedZ * speedZ);
+
+	if (magnitude > 0.0f && magnitude > playerMovementSpeed) {
+		speedX = speedX / magnitude * playerMovementSpeed;
+		speedZ = speedZ / magnitude * playerMovementSpeed;
+	}
+
 	if (!isColliding(speedX, 0, 0)) {
 		playerX += speedX;
 	}
@@ -203,6 +213,7 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 		playerZ += speedZ;
 	}
 }
+
 
 void updatePlayerMovement() {
 
