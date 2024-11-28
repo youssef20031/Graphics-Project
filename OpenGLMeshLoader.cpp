@@ -34,6 +34,7 @@ int cameraZoom = 0;
 // Model Variables
 Model_3DS model_house;
 Model_3DS model_tree;
+//model3ds wolf
 
 // Textures
 GLTexture tex_ground;
@@ -188,6 +189,7 @@ void myDisplay(void)
 	model_house.Draw();
 	glPopMatrix();
 
+	//wolf.draw
 
 	//sky box
 	glPushMatrix();
@@ -310,6 +312,7 @@ void LoadAssets()
 	// Loading Model files
 	model_house.Load("Models/house/house.3DS");
 	model_tree.Load("Models/tree/Tree1.3ds");
+	//wolf.load
 
 	// Loading texture files
 	tex_ground.Load("Textures/ground.bmp");

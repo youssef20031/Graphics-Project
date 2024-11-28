@@ -351,6 +351,17 @@ void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double z
 	glPopMatrix();
 }
 
+
+//// drawWolf {
+//
+//glTranslate  <- parameters of player
+//wolf.Draw()
+//
+//
+//}
+
+
+
 void drawPlayer() {
 	glPushMatrix();
 
