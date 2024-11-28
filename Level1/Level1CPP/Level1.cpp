@@ -12,6 +12,13 @@ void DisplayL1() {
 	for (int i = 0; i < L1numberOfObstacles; i++)
 	{
 		GLfloat* L1currentObstacle = L1obstacles[i];
+		
+		if (i == 13) { 
+			glColor3f(1.0f, 0.0f, 0.0f); // Red color for checkpoint
+		}
+		else {
+			glColor3f(0.2f, 0.7f, 0.8f); // Default color for other obstacles
+		}
 		drawCuboid(L1currentObstacle[0],L1currentObstacle[1], L1currentObstacle[2], L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
 	}
 	drawPlayer();

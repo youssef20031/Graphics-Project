@@ -27,7 +27,9 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
    // AXE SECTION (STAGE 1)
 
+	
 	{ -23.02, -23.35f, 0.1f, 0.2f, 50.97f, 45.09f }, // checkpoint platform
+	{ -34.8, -60.35f, 0.1f, 0.2f, 46.87f, 49.44f }, // Stage 1 ground
 
 
 };
