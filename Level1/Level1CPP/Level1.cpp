@@ -9,10 +9,10 @@ void DisplayL1() {
 	displayCameraCoords();
 	drawAxis();
 	glColor3f(0.2f, 0.7f, 0.8f);
-	for (int i = 0; i < numberOfObstacles; i++)
+	for (int i = 0; i < L1numberOfObstacles; i++)
 	{
 		GLfloat* L1currentObstacle = L1obstacles[i];
-		drawCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2], L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
+		drawCuboid(L1currentObstacle[0],L1currentObstacle[1], L1currentObstacle[2], L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
 	}
 	drawPlayer();
 	glFlush();
