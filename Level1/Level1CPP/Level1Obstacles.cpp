@@ -4,7 +4,9 @@
 extern GLfloat L1obstacles[L1numberOfObstacles][6];
 
 
-Model_3DS model_axe;
+//Model_3DS model_axe;
+
+Axe axe;
 
 
 // obstacles
@@ -40,7 +42,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 void LoadAssets()
 {
     // Loading Model files
-    model_axe.Load("Models/axe/untitled.3ds");
+   /* model_axe.Load("Models/axe/untitled.3ds");
     model_axe.scale = 0.5f;
 
 
@@ -49,7 +51,12 @@ void LoadAssets()
     model_axe.pos.z = 51.3;
 
     model_axe.rot.x = 90;
-    model_axe.rot.z = -90;
+    model_axe.rot.z = -90;*/
+
+    axe.Load();
+    axe.SetPosition(-38.45f, 0.3f, 51.3f);
+    axe.SetRotation(90.0f, 0.0f, -90.0f);
+
 
     
 }

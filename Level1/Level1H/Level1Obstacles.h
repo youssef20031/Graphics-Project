@@ -4,9 +4,10 @@
 
 
 #include "Common/CommonH/Model_3DS.h"
+#include "Axe.h"
 #include <glut.h>
 
-extern Model_3DS model_axe;
+//extern Model_3DS model_axe;
 
 
 // Define the number of obstacles
@@ -14,5 +15,9 @@ const int L1numberOfObstacles = 100;
 
 // Declare the external obstacles array
  extern GLfloat L1obstacles[L1numberOfObstacles][6];
+
+ // Axe model
+
+ extern Axe axe;
 
 #endif // PLAYGROUND_OBSTACLES_H

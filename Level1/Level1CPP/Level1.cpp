@@ -30,7 +30,7 @@ void DisplayL1() {
 	drawPlayer();
 
 	
-	model_axe.Draw();
+	axe.Draw();
 	
 
 	glFlush();
