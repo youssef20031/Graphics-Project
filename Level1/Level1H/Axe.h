@@ -13,6 +13,7 @@ public:
     float maxRotation;
     float minRotation;
     int rotationDirection;
+    float width, height;
 
    
     Axe();
@@ -28,8 +29,15 @@ public:
 
     void SetRotationLimits(float min, float max);
 
+    float GetWidth() const { return width; }
+    float GetHeight() const { return height; }
+    float GetPosX() const { return posX; }
+    float GetPosY() const { return posY; }
+    float GetPosZ() const { return posZ; }
+
 
     void Axe::SetScale(float s);
+    void SetDimensions(float w, float h);
 
 
 

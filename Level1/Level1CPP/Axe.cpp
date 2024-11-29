@@ -15,6 +15,9 @@ Axe::Axe() {
     maxRotation = 90.0f;  
     minRotation = -90.0f;  
     rotationDirection = 1;
+
+    width = 1.0f;
+    height = 1.0f;
 }
 
 
@@ -27,6 +30,11 @@ void Axe::SetPosition(float x, float y, float z) {
     posX = x;
     posY = y;
     posZ = z;
+}
+
+void Axe::SetDimensions(float w, float h) {
+    width = w;
+    height = h;
 }
 
 

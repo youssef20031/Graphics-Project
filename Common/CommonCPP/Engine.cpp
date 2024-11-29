@@ -15,6 +15,11 @@ void updateStates() {
 
 	updatePlayerRotation();
 
+
+	// Level 1
+
+	handleAxeCollision();
+
 	glutPostRedisplay();
 }
 

@@ -1,4 +1,5 @@
 #include "../Level1H/Level1Obstacles.h"
+#include <iostream>
 
 
 extern GLfloat L1obstacles[L1numberOfObstacles][6];
@@ -75,6 +76,15 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 
 };
+
+
+void handleAxeCollision() {
+    if (checkAxeCollision(axe, playerX, playerY, playerZ, playerWidth, playerHeight)) {
+        std::cout << "Collision Occured"<<std::endl;
+        
+       
+    }
+}
 
 void LoadAssetsL1()
 {

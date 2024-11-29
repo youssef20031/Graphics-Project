@@ -4,6 +4,8 @@
 
 #include <cmath> 
 
+
+
 void DisplayL1() {
 	setupCamera();
 	//setupLights();

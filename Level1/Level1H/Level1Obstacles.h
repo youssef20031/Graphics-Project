@@ -4,7 +4,10 @@
 
 
 #include "Common/CommonH/Model_3DS.h"
+#include "../../Common/CommonH/Collisions.h"
+#include "../../Common/CommonH/Player.h"
 #include "Axe.h"
+
 #include <glut.h>
 
 
@@ -20,6 +23,8 @@ const int L1numberOfObstacles = 100;
  extern Axe axe3;
  extern Axe axe4;
  extern Axe axe5;
+
+ void handleAxeCollision();
 
  void LoadAssetsL1();
 

@@ -1,5 +1,6 @@
 #include "../CommonH/Player.h"
 #include "../CommonH/Collisions.h"
+#include "../../Level1/Level1H/Axe.h"
 
 #include <algorithm>
 
@@ -44,4 +45,14 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 		}
 	}
 	return false;
+}
+
+
+/////////////////////////////////// AXE
+
+bool checkAxeCollision(Axe& axe, GLfloat playerX, GLfloat playerY, GLfloat playerZ, GLfloat playerWidth, GLfloat playerHeight) {
+	return checkCollision(playerX, playerY, playerZ,
+		axe.GetPosX() - axe.GetWidth() / 2.0f, axe.GetPosX() + axe.GetWidth() / 2.0f,
+		axe.GetPosY() - axe.GetHeight() / 2.0f, axe.GetPosY() + axe.GetHeight() / 2.0f,
+		axe.GetPosZ() - axe.GetWidth() / 2.0f, axe.GetPosZ() + axe.GetWidth() / 2.0f);
 }
