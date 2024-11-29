@@ -58,13 +58,15 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
     { -112.45, -113.7f, 2.9f, 3.4f, 43.9f, 44.8f }, // platform 8
     { -117.45, -118.7f, 3.7f, 4.1f, 42.8f, 43.7f }, // platform 9
 
-    { -122.45, -123.7f, 3.7f, 4.1f, 42.8f, 43.7f }, // special platform 1  i=28
-    { -127.45, -128.7f, 3.7f, 4.1f, 42.8f, 43.7f }, // special platform 2  i=29
+    { -122.45, -123.7f, 3.7f, 4.1f, 42.8f, 43.7f }, // platform 10
+    { -127.45, -128.7f, 3.7f, 4.1f, 42.8f, 43.7f }, // platform 11
     { -135.36, -150.35f, 4.1f, 4.2f, 42.87f, 47.44f }, // stage 2 exit ground
 
 
     // SQUID GAME SECTION (STAGE 3)
     { -141.78, -141.96, 4.2f, 4.3f, 47.54f, 42.92f }, // checkpoint platform stage 3
+    { -156.45, -157.7f, 3.7f, 4.1f, 42.8f, 43.7f },
+    { -156.45, -157.7f, 3.7f, 4.1f, 45.8f, 46.7f }, // i=33
 
 
 

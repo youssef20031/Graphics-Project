@@ -5,6 +5,7 @@
 #include <cmath> 
 
 
+float platformVisibilityTimer = 0.0f;
 
 void DisplayL1() {
 	setupCamera();
@@ -14,18 +15,30 @@ void DisplayL1() {
 	displayCameraCoords();
 	drawAxis();
 	glColor3f(0.2f, 0.7f, 0.8f);
-	for (int i = 0; i < L1numberOfObstacles; i++)
-	{
-		GLfloat* L1currentObstacle = L1obstacles[i];
-		
-		if (i == 13||i==16||i==31) { 
-			glColor3f(1.0f, 0.0f, 0.0f); // Red color for checkpoint
-		}
-		else {
-			glColor3f(0.2f, 0.7f, 0.8f); // Default color for other obstacles
-		}
-		drawCuboid(L1currentObstacle[0],L1currentObstacle[1], L1currentObstacle[2], L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
-	}
+    float elapsedTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;  
+
+    for (int i = 0; i < L1numberOfObstacles; i++) {
+        GLfloat* L1currentObstacle = L1obstacles[i];
+
+        //red checkpoint color
+        if (i == 13 || i == 16 || i == 31) {
+            glColor3f(1.0f, 0.0f, 0.0f); 
+        }
+        else {
+            glColor3f(0.2f, 0.7f, 0.8f); 
+        }
+
+        // the invisible platforms
+        if (i == 33) {
+            if (fmod(elapsedTime, 7.0f) < 5.0f) {
+                continue;
+            }
+        }
+
+        // Draw the obstacle
+        drawCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
+            L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
+    }
 
 	
 
