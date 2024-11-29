@@ -16,8 +16,11 @@ Axe::Axe() {
     minRotation = -90.0f;  
     rotationDirection = 1;
 
-    width = 1.0f;
-    height = 1.0f;
+    width = 7.0f;   // beytala3 le odam
+    height = 7.0f; // the width 
+    depth = 15.0f;  // the height
+
+    // confusing names ana 3aref lol
 }
 
 
@@ -73,5 +76,43 @@ void Axe::Draw() {
     glRotatef(rotZ, 0.0f, 0.0f, 1.0f); 
     glScalef(scale,scale,scale);
     model.Draw();
+
+
+    // AXE COLLISION BOUNDING BOX
+
+    glColor3f(1.0f, 0.0f, 0.0f); 
+    glBegin(GL_LINE_LOOP);
+    
+    glVertex3f(-width / 2, -height / 2, depth / 2);  
+    glVertex3f(width / 2, -height / 2, depth / 2);  
+    glVertex3f(width / 2, height / 2, depth / 2);    
+    glVertex3f(-width / 2, height / 2, depth / 2);   
+    glEnd();
+
+    glBegin(GL_LINE_LOOP);
+ 
+    glVertex3f(-width / 2, -height / 2, -depth / 2);
+    glVertex3f(width / 2, -height / 2, -depth / 2);
+    glVertex3f(width / 2, height / 2, -depth / 2);
+    glVertex3f(-width / 2, height / 2, -depth / 2);
+    glEnd();
+
+    glBegin(GL_LINES);
+ 
+    glVertex3f(-width / 2, -height / 2, depth / 2);
+    glVertex3f(-width / 2, -height / 2, -depth / 2);
+
+    glVertex3f(width / 2, -height / 2, depth / 2);
+    glVertex3f(width / 2, -height / 2, -depth / 2);
+
+    glVertex3f(width / 2, height / 2, depth / 2);
+    glVertex3f(width / 2, height / 2, -depth / 2);
+
+    glVertex3f(-width / 2, height / 2, depth / 2);
+    glVertex3f(-width / 2, height / 2, -depth / 2);
+    glEnd();
+
+    glColor3f(1.0f, 1.0f, 1.0f);
+
     glPopMatrix();
 }

@@ -13,7 +13,7 @@ public:
     float maxRotation;
     float minRotation;
     int rotationDirection;
-    float width, height;
+    float width, height,depth;
 
    
     Axe();
