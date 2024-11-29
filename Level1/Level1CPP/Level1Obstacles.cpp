@@ -42,6 +42,12 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
     // PLATFORMING SECTION (STAGE 2)
 
+    { -70.36, -80.35f, 0.1f, 0.2f, 52.87f, 42.44f }, // stage 2 ground
+    { -73.45, -73.5f, 0.2f, 0.3f, 53.25f, 42.2f }, // checkpoint platform stage 2
+    { -82.45, -84.7f, -2.0f, 0.3f, 50.25f, 51.2f }, // platform 1
+    { -86.45, -87.7f, -2.0f, 0.3f, 48.25f, 49.2f }, // platform 2
+    { -91.45, -92.7f, -2.0f, 0.3f, 46.25f, 47.2f }, // platform 3
+    { -91.45, -92.7f, -2.0f, 0.3f, 46.25f, 47.2f }, // platform 4
 
 
 

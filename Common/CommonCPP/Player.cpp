@@ -2,9 +2,9 @@
 #include "../CommonH/Camera.h"
 #include <algorithm>
 
-GLfloat playerX = -21.5f;
-GLfloat playerY = 0.1f;
-GLfloat playerZ = 48.25;
+GLfloat playerX = -71.59f;
+GLfloat playerY = 0.2f;
+GLfloat playerZ = 48.18;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 0.035f;
@@ -13,13 +13,14 @@ Vector3f spawnPoint = (3.07,0.2,3.5);    // didn't use this yet
 
 // Player spawn point for level 1: (3.07,0.2,3.5)
 // Stage 1: (-21.5,0.1,48.25)
+// Stage 2: (-71.59,0.2,48.18)
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
 
 // player rotating animation
-GLfloat playerDirectionRotationFacing = 270.0f; // direction player facing
+GLfloat playerDirectionRotationFacing = 180.0f; // direction player facing  (270 for starting the game, 180 for stage 2)
 GLfloat playerDirectionRotationFacingVertical = 0.0f; // direction player is facing up and down
 GLfloat playerDirectionRotationFacingVerticalMin = -30.0f;
 GLfloat playerDirectionRotationFacingVerticalMax = 30.0f; 

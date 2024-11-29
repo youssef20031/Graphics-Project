@@ -16,7 +16,7 @@ void DisplayL1() {
 	{
 		GLfloat* L1currentObstacle = L1obstacles[i];
 		
-		if (i == 13) { 
+		if (i == 13||i==16) { 
 			glColor3f(1.0f, 0.0f, 0.0f); // Red color for checkpoint
 		}
 		else {
