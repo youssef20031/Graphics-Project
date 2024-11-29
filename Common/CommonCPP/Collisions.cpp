@@ -52,11 +52,16 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 /////////////////////////////////// AXE
 
 bool checkAxeCollision(Axe& axe, GLfloat playerX, GLfloat playerY, GLfloat playerZ, GLfloat playerWidth, GLfloat playerHeight) {
+	GLfloat rotatedX = axe.GetPosX() * cos(axe.GetRotY()) - axe.GetPosZ() * sin(axe.GetRotY());
+	GLfloat rotatedZ = axe.GetPosX() * sin(axe.GetRotY()) + axe.GetPosZ() * cos(axe.GetRotY());
+	GLfloat rotatedY = axe.GetPosY(); 
+
 	return checkCollision(playerX, playerY, playerZ,
-		axe.GetPosX() - axe.GetWidth() / 2.0f, axe.GetPosX() + axe.GetWidth() / 2.0f,
-		axe.GetPosY() - axe.GetHeight() / 2.0f, axe.GetPosY() + axe.GetHeight() / 2.0f,
-		axe.GetPosZ() - axe.GetWidth() / 2.0f, axe.GetPosZ() + axe.GetWidth() / 2.0f);
+		rotatedX - axe.GetWidth() / 2.0f, rotatedX + axe.GetWidth() / 2.0f,
+		rotatedY - axe.GetHeight() / 2.0f, rotatedY + axe.GetHeight() / 2.0f,
+		rotatedZ - axe.GetWidth() / 2.0f, rotatedZ + axe.GetWidth() / 2.0f);
 }
+
 
 void handleAxeCollision() {
 	if (checkAxeCollision(axe, playerX, playerY, playerZ, playerWidth, playerHeight)) {

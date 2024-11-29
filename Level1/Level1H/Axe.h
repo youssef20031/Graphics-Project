@@ -34,6 +34,9 @@ public:
     float GetPosX() const { return posX; }
     float GetPosY() const { return posY; }
     float GetPosZ() const { return posZ; }
+    float GetRotX() const { return rotX; }
+    float GetRotY() const { return rotY; }
+    float GetRotZ() const { return rotZ; }
 
 
     void Axe::SetScale(float s);
