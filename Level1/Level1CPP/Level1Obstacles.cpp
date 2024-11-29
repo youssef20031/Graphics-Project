@@ -81,6 +81,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 void handleAxeCollision() {
     if (checkAxeCollision(axe, playerX, playerY, playerZ, playerWidth, playerHeight)) {
         std::cout << "Collision Occured"<<std::endl;
+        playerX = -2344;   // gets sent to brazil
         
        
     }
