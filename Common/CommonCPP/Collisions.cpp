@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-
+/////////////////////////// PLAYER
 
 bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat x2End, GLfloat y2Start, GLfloat y2End, GLfloat z2Start, GLfloat z2End) {
 	if (x2Start > x2End) std::swap(x2Start, x2End);
