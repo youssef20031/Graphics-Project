@@ -4,9 +4,6 @@
 
 #include <cmath> 
 
-
-Axe axe;
-
 void DisplayL1() {
 	setupCamera();
 	//setupLights();

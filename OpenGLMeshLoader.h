@@ -5,7 +5,6 @@
 #include "Common/CommonH/TextureBuilder.h" 
 #include "Common/CommonH/Model_3DS.h"  // class to view .3d models that we'll import
 #include "GLTexture.h" // class to load 
-#include "Level1/Level1H/Axe.h"
 #include <glut.h> // Include OpenGL and GLUT headers
 
 

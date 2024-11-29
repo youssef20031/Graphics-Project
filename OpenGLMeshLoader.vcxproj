@@ -92,7 +92,6 @@
     <ClCompile Include="Common\CommonCPP\TextureBuilder.cpp" />
     <ClCompile Include="Common\CommonCPP\Vector3f.cpp" />
     <ClCompile Include="GLTexture.cpp" />
-    <ClCompile Include="Level1\Level1CPP\Axe.cpp" />
     <ClCompile Include="Level1\Level1CPP\Level1.cpp" />
     <ClCompile Include="Level1\Level1CPP\Level1Obstacles.cpp" />
     <ClCompile Include="Level1\Level1CPP\Playground.cpp" />
@@ -109,7 +108,6 @@
     <ClInclude Include="Common\CommonH\TextureBuilder.h" />
     <ClInclude Include="Common\CommonH\Vector3f.h" />
     <ClInclude Include="GLTexture.h" />
-    <ClInclude Include="Level1\Level1H\Axe.h" />
     <ClInclude Include="Level1\Level1H\Level1.h" />
     <ClInclude Include="Level1\Level1H\Level1Obstacles.h" />
     <ClInclude Include="Level1\Level1H\Playground.h" />
