@@ -16,9 +16,9 @@ Axe::Axe() {
     minRotation = -90.0f;  
     rotationDirection = 1;
 
-    width = 7.0f;   // beytala3 le odam
-    height = 7.0f; // the width 
-    depth = 15.0f;  // the height
+    width = 1.0f;   // beytala3 le odam
+    height = 5.0f; // the width 
+    depth = 5.0f;  // the height
 
     // confusing names ana 3aref lol
 }
