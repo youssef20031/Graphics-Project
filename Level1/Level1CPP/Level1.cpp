@@ -30,7 +30,7 @@ void DisplayL1() {
 
         // the invisible platforms
 
-        if (i>=32&&i<=36) {
+        if (i>=32&&i<=35) {
             if (fmod(elapsedTime, 7.0f) < 4.0f) {
                 continue;
             }
