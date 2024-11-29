@@ -68,7 +68,13 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
    
     { -156.45, -176.7f, 3.7f, 4.1f, 44.8f, 45.7f }, // invisible platform 1 i=33
     { -177.45, -178.7f, 3.7f, 4.1f, 44.8f, 54.7f }, // invisible platform 2 i=34
-    { -177.45, -178.7f, 3.7f, 4.1f, 40.8f, 36.7f }, // invisible platform 3 i=35   one of the coins will be placed there
+    { -178.45, -186.7f, 3.7f, 4.1f, 55.8f, 56.7f }, // invisible platform 3 i=35  
+    { -177.45, -178.7f, 3.7f, 4.1f, 40.8f, 36.7f }, // invisible platform 3 i=36   one of the coins will be placed there
+    { -190.45, -191.7f, 3.7f, 4.1f, 55.8f, 56.7f }, // invisible platform 3 i=37  
+    
+
+
+    
 
 
 
