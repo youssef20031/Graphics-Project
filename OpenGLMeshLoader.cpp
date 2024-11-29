@@ -34,7 +34,7 @@ int cameraZoom = 0;
 // Model Variables
 Model_3DS model_house;
 Model_3DS model_tree;
-Model_3DS model_axe;
+//Model_3DS model_axe;
 
 //model3ds wolf
 
@@ -194,10 +194,10 @@ void myDisplay(void)
 
 	// The Axe
 
-	glPushMatrix();
+	/*glPushMatrix();
 	glRotatef(90.f, 1, 0, 0);
 	model_axe.Draw();
-	glPopMatrix();
+	glPopMatrix();*/
 
 	//wolf.draw
 
@@ -317,31 +317,31 @@ void myReshape(int w, int h)
 //=======================================================================
 // Assets Loading Function
 //=======================================================================
-void LoadAssets()
-{
-	// Loading Model files
-	
-	// LEVEL 1
-
-
-
-	//Axe
-	model_axe.Load("Models/axe/untitled.3ds");
-	model_axe.scale = 0.5;
-
-	
-
-	model_axe.pos.x = -38.45;
-	model_axe.pos.y = 0.3;
-	model_axe.pos.z = 51.3;
-
-
-	model_axe.rot.x = 90; 
-	model_axe.rot.z = -90;
-
-	//wolf.load
-
-	// Loading texture files
-	tex_ground.Load("Textures/ground.bmp");
-	loadBMP(&tex, "Textures/blu-sky-3.bmp", true);
-}
+//void LoadAssets()
+//{
+//	// Loading Model files
+//	
+//	// LEVEL 1
+//
+//
+//
+//	//Axe
+//	model_axe.Load("Models/axe/untitled.3ds");
+//	model_axe.scale = 0.5;
+//
+//	
+//
+//	model_axe.pos.x = -38.45;
+//	model_axe.pos.y = 0.3;
+//	model_axe.pos.z = 51.3;
+//
+//
+//	model_axe.rot.x = 90; 
+//	model_axe.rot.z = -90;
+//
+//	//wolf.load
+//
+//	// Loading texture files
+//	tex_ground.Load("Textures/ground.bmp");
+//	loadBMP(&tex, "Textures/blu-sky-3.bmp", true);
+//}
