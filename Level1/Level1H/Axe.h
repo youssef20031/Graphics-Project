@@ -19,6 +19,8 @@ public:
 
     void SetRotation(float x, float y, float z);
 
+    void Axe::SetScale(float s);
+
     void Draw();
 };
 

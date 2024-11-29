@@ -4,9 +4,8 @@
 extern GLfloat L1obstacles[L1numberOfObstacles][6];
 
 
-//Model_3DS model_axe;
-
 Axe axe;
+Axe axe2;
 
 
 // obstacles
@@ -39,23 +38,20 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 };
 
-void LoadAssets()
+void LoadAssetsL1()
 {
     // Loading Model files
-   /* model_axe.Load("Models/axe/untitled.3ds");
-    model_axe.scale = 0.5f;
 
-
-    model_axe.pos.x = -38.45;
-    model_axe.pos.y = 0.3;
-    model_axe.pos.z = 51.3;
-
-    model_axe.rot.x = 90;
-    model_axe.rot.z = -90;*/
+    // Remember in the Level1.cpp Display method to call their Draw function!
+    // and in Level1Obstacles.h
 
     axe.Load();
     axe.SetPosition(-38.45f, 0.3f, 51.3f);
     axe.SetRotation(90.0f, 0.0f, -90.0f);
+
+    axe2.Load();
+    axe2.SetPosition(-43.45f, 0.6f, 51.3f);
+    axe2.SetRotation(90.0f, 0.0f, -90.0f);
 
 
     

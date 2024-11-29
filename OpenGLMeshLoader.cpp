@@ -317,31 +317,14 @@ void myReshape(int w, int h)
 //=======================================================================
 // Assets Loading Function
 //=======================================================================
-//void LoadAssets()
-//{
-//	// Loading Model files
-//	
-//	// LEVEL 1
-//
-//
-//
-//	//Axe
-//	model_axe.Load("Models/axe/untitled.3ds");
-//	model_axe.scale = 0.5;
-//
-//	
-//
-//	model_axe.pos.x = -38.45;
-//	model_axe.pos.y = 0.3;
-//	model_axe.pos.z = 51.3;
-//
-//
-//	model_axe.rot.x = 90; 
-//	model_axe.rot.z = -90;
-//
-//	//wolf.load
-//
-//	// Loading texture files
-//	tex_ground.Load("Textures/ground.bmp");
-//	loadBMP(&tex, "Textures/blu-sky-3.bmp", true);
-//}
+void LoadAssets()
+{
+	// Loading Model files
+	
+	model_house.Load("Models/house/house.3DS");
+	model_tree.Load("Models/tree/Tree1.3ds");
+
+	// Loading texture files
+	tex_ground.Load("Textures/ground.bmp");
+	loadBMP(&tex, "Textures/blu-sky-3.bmp", true);
+}

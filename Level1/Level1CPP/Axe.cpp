@@ -9,7 +9,7 @@ Axe::Axe() {
     rotX = 0.0f;
     rotY = 0.0f;
     rotZ = 0.0f;
-    scale = 0.5f;  
+    scale = 0.3f;  
 }
 
 
@@ -31,12 +31,16 @@ void Axe::SetRotation(float x, float y, float z) {
     rotZ = z;
 }
 
+void Axe::SetScale(float s) {
+    scale = s;
+}
 
 void Axe::Draw() {
     glPushMatrix();
     glTranslatef(posX, posY, posZ); 
     glRotatef(rotX, 1.0f, 0.0f, 0.0f);  
     glRotatef(rotZ, 0.0f, 0.0f, 1.0f); 
+    glScalef(scale,scale,scale);
     model.Draw();
     glPopMatrix();
 }
