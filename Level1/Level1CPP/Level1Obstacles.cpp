@@ -68,28 +68,9 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 
 
-
-
-
-
-
-
-
 };
 
 
-void handleAxeCollision() {
-    if (checkAxeCollision(axe, playerX, playerY, playerZ, playerWidth, playerHeight)) {
-        std::cout << "Collision Occured"<<std::endl;
-
-       
-        playerX = -21.5;
-        playerY = 0.1;
-        playerZ = 48.25;
-        
-       
-    }
-}
 
 void LoadAssetsL1()
 {

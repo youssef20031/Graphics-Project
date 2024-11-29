@@ -14,4 +14,6 @@ bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1,
 
 bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
 
+void handleAxeCollision();
+
 bool checkAxeCollision(Axe& axe, GLfloat playerX, GLfloat playerY, GLfloat playerZ, GLfloat playerWidth, GLfloat playerHeight);

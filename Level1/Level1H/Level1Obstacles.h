@@ -24,7 +24,6 @@ const int L1numberOfObstacles = 100;
  extern Axe axe4;
  extern Axe axe5;
 
- void handleAxeCollision();
 
  void LoadAssetsL1();
 

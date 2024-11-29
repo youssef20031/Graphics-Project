@@ -3,6 +3,7 @@
 #include "../../Level1/Level1H/Axe.h"
 
 #include <algorithm>
+#include <iostream>
 
 /////////////////////////// PLAYER
 
@@ -55,4 +56,17 @@ bool checkAxeCollision(Axe& axe, GLfloat playerX, GLfloat playerY, GLfloat playe
 		axe.GetPosX() - axe.GetWidth() / 2.0f, axe.GetPosX() + axe.GetWidth() / 2.0f,
 		axe.GetPosY() - axe.GetHeight() / 2.0f, axe.GetPosY() + axe.GetHeight() / 2.0f,
 		axe.GetPosZ() - axe.GetWidth() / 2.0f, axe.GetPosZ() + axe.GetWidth() / 2.0f);
+}
+
+void handleAxeCollision() {
+	if (checkAxeCollision(axe, playerX, playerY, playerZ, playerWidth, playerHeight)) {
+		std::cout << "Collision Occured" << std::endl;
+
+
+		playerX = -21.5;
+		playerY = 0.1;
+		playerZ = 48.25;
+
+
+	}
 }
