@@ -29,11 +29,12 @@ void DisplayL1() {
         }
 
         // the invisible platforms
-        if (i == 33) {
-            if (fmod(elapsedTime, 7.0f) < 5.0f) {
+
+       /* if (i == 32||i==33||i==34||i==35) {
+            if (fmod(elapsedTime, 7.0f) < 4.0f) {
                 continue;
             }
-        }
+        }*/
 
         // Draw the obstacle
         drawCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],

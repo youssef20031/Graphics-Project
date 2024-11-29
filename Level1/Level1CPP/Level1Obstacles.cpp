@@ -65,8 +65,11 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
     // SQUID GAME SECTION (STAGE 3)
     { -141.78, -141.96, 4.2f, 4.3f, 47.54f, 42.92f }, // checkpoint platform stage 3
-    { -156.45, -157.7f, 3.7f, 4.1f, 42.8f, 43.7f },
-    { -156.45, -157.7f, 3.7f, 4.1f, 45.8f, 46.7f }, // i=33
+   
+    { -156.45, -176.7f, 3.7f, 4.1f, 44.8f, 45.7f }, // invisible platform 1 i=33
+    { -177.45, -178.7f, 3.7f, 4.1f, 44.8f, 54.7f }, // invisible platform 2 i=34
+    { -177.45, -178.7f, 3.7f, 4.1f, 40.8f, 36.7f }, // invisible platform 3 i=35   one of the coins will be placed there
+
 
 
 
