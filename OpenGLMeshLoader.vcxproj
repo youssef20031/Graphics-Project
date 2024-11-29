@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\CommonCPP\Camera.cpp" />
+    <ClCompile Include="Common\CommonCPP\Collisions.cpp" />
     <ClCompile Include="Common\CommonCPP\Controls.cpp" />
     <ClCompile Include="Common\CommonCPP\Engine.cpp" />
     <ClCompile Include="Common\CommonCPP\Lighting.cpp" />
@@ -101,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonH\Camera.h" />
+    <ClInclude Include="Common\CommonH\Collisions.h" />
     <ClInclude Include="Common\CommonH\Controls.h" />
     <ClInclude Include="Common\CommonH\Engine.h" />
     <ClInclude Include="Common\CommonH\Lighting.h" />

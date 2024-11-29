@@ -60,6 +60,9 @@
     <ClCompile Include="Level1\Level1CPP\Axe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\CommonCPP\Collisions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLTexture.h">
@@ -105,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Level1\Level1H\Axe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\CommonH\Collisions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
