@@ -9,6 +9,10 @@ public:
     float posX, posY, posZ; 
     float rotX, rotY, rotZ;  
     float scale;  
+    float rotationSpeed;
+    float maxRotation;
+    float minRotation;
+    int rotationDirection;
 
    
     Axe();
@@ -19,7 +23,16 @@ public:
 
     void SetRotation(float x, float y, float z);
 
+
+    void SetRotationSpeed(float speed);
+
+    void SetRotationLimits(float min, float max);
+
+
     void Axe::SetScale(float s);
+
+
+
 
     void Draw();
 };

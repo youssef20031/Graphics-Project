@@ -9,7 +9,12 @@ Axe::Axe() {
     rotX = 0.0f;
     rotY = 0.0f;
     rotZ = 0.0f;
-    scale = 0.4f;  
+    scale = 0.4f;
+
+    rotationSpeed = 0.5f;  
+    maxRotation = 90.0f;  
+    minRotation = -90.0f;  
+    rotationDirection = 1;
 }
 
 
@@ -35,10 +40,28 @@ void Axe::SetScale(float s) {
     scale = s;
 }
 
+void Axe::SetRotationSpeed(float speed) {
+    rotationSpeed = speed;
+}
+
+void Axe::SetRotationLimits(float min, float max) {
+    minRotation = min;
+    maxRotation = max;
+}
+
+
 void Axe::Draw() {
+
+    rotY += rotationSpeed * rotationDirection;
+    if (rotY >= maxRotation || rotY <= minRotation) {
+        rotationDirection *= -1;
+    }
     glPushMatrix();
     glTranslatef(posX, posY, posZ); 
-    glRotatef(rotX, 1.0f, 0.0f, 0.0f);  
+    glRotatef(rotX, 1.0f, 0.0f, 0.0f); 
+    /// Rotation animation
+    glRotatef(rotY, 1.0f, 0.0f, 0.0f);
+    ///
     glRotatef(rotZ, 0.0f, 0.0f, 1.0f); 
     glScalef(scale,scale,scale);
     model.Draw();

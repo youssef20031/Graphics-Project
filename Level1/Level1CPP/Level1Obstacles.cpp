@@ -51,22 +51,32 @@ void LoadAssetsL1()
     axe.Load();
     axe.SetPosition(-38.45f, 0.3f, 51.3f);
     axe.SetRotation(90.0f, 0.0f, -90.0f);
+    axe.SetRotationSpeed(0.5f);  
+    axe.SetRotationLimits(-90.0f, 90.0f);
 
     axe2.Load();
     axe2.SetPosition(-43.45f, 0.6f, 51.3f);
     axe2.SetRotation(90.0f, 0.0f, -90.0f);
+    axe2.SetRotationSpeed(0.75f);
+    axe2.SetRotationLimits(-90.0f, 90.0f);
 
     axe3.Load();
     axe3.SetPosition(-49.45f, 0.6f, 51.3f);
     axe3.SetRotation(90.0f, 0.0f, -90.0f);
+    axe3.SetRotationSpeed(0.6f);
+    axe3.SetRotationLimits(-90.0f, 90.0f);
 
     axe4.Load();
     axe4.SetPosition(-54.45f, 0.6f, 51.3f);
     axe4.SetRotation(90.0f, 0.0f, -90.0f);
+    axe4.SetRotationSpeed(0.68f);
+    axe4.SetRotationLimits(-90.0f, 90.0f);
 
     axe5.Load();
     axe5.SetPosition(-59.45f, 0.6f, 51.3f);
     axe5.SetRotation(90.0f, 0.0f, -90.0f);
+    axe5.SetRotationSpeed(0.8f);
+    axe5.SetRotationLimits(-90.0f, 90.0f);
 
 
     
