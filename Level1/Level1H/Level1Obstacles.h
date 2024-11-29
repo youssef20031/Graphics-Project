@@ -17,6 +17,9 @@ const int L1numberOfObstacles = 100;
  // Axe Obstacle
  extern Axe axe;
  extern Axe axe2;
+ extern Axe axe3;
+ extern Axe axe4;
+ extern Axe axe5;
 
  void LoadAssetsL1();
 

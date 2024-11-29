@@ -6,6 +6,9 @@ extern GLfloat L1obstacles[L1numberOfObstacles][6];
 
 Axe axe;
 Axe axe2;
+Axe axe3;
+Axe axe4;
+Axe axe5;
 
 
 // obstacles
@@ -33,7 +36,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 	
 	{ -23.02, -23.35f, 0.1f, 0.2f, 50.97f, 45.09f }, // checkpoint platform
-	{ -34.8, -60.35f, 0.1f, 0.2f, 46.87f, 49.44f }, // Stage 1 ground
+	{ -32.8, -60.35f, 0.1f, 0.2f, 46.87f, 49.44f }, // Stage 1 ground
 
 
 };
@@ -52,6 +55,18 @@ void LoadAssetsL1()
     axe2.Load();
     axe2.SetPosition(-43.45f, 0.6f, 51.3f);
     axe2.SetRotation(90.0f, 0.0f, -90.0f);
+
+    axe3.Load();
+    axe3.SetPosition(-49.45f, 0.6f, 51.3f);
+    axe3.SetRotation(90.0f, 0.0f, -90.0f);
+
+    axe4.Load();
+    axe4.SetPosition(-54.45f, 0.6f, 51.3f);
+    axe4.SetRotation(90.0f, 0.0f, -90.0f);
+
+    axe5.Load();
+    axe5.SetPosition(-59.45f, 0.6f, 51.3f);
+    axe5.SetRotation(90.0f, 0.0f, -90.0f);
 
 
     

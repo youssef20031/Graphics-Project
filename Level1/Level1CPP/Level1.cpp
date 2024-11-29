@@ -32,6 +32,9 @@ void DisplayL1() {
 	
 	axe.Draw();
 	axe2.Draw();
+	axe3.Draw();
+	axe4.Draw();
+	axe5.Draw();
 	
 
 	glFlush();

@@ -9,7 +9,7 @@ Axe::Axe() {
     rotX = 0.0f;
     rotY = 0.0f;
     rotZ = 0.0f;
-    scale = 0.3f;  
+    scale = 0.4f;  
 }
 
 
