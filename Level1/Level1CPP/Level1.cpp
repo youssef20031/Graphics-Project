@@ -12,16 +12,50 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
+void drawGradientSky() {
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_LIGHTING);
 
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0.0, 1.0, 0.0, 1.0); 
 
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
 
+    glShadeModel(GL_SMOOTH);
 
+    glBegin(GL_QUADS);
+    // Top: Bright orange
+    glColor3f(1.0f, 0.5f, 0.0f); 
+    glVertex2f(0.0f, 1.0f);      // Top-left
+    glVertex2f(1.0f, 1.0f);      // Top-right
+
+    // Bottom: Bright red
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex2f(1.0f, 0.0f);      // Bottom-right
+    glVertex2f(0.0f, 0.0f);      // Bottom-left
+    glEnd();
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
+}
 void DisplayL1() {
-    drawSkybox();
+ 
+    //drawSkybox();
 	setupCamera();
 	//setupLights();
 	glutFullScreen();
+    glClearColor(1.0f, 0.65f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    drawGradientSky();
 	displayCameraCoords();
 	drawAxis();
 	glColor3f(0.2f, 0.7f, 0.8f);
