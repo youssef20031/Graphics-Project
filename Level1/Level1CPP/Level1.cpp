@@ -4,8 +4,14 @@
 
 #include <cmath> 
 
+float M_PI = 3.14;
+
 
 float platformVisibilityTimer = 0.0f;
+
+GLfloat originalYStart[L1numberOfObstacles];
+GLfloat originalYEnd[L1numberOfObstacles];
+
 
 void DisplayL1() {
 	setupCamera();
@@ -34,6 +40,17 @@ void DisplayL1() {
             if (fmod(elapsedTime, 7.0f) < 4.0f) {
                 continue;
             }
+        }
+
+        // moving platform
+        if (i == 37) {
+            float movementRange = 4.0f;    
+            float movementSpeed = 2.0f;   
+
+            float verticalOffset = sin(elapsedTime * movementSpeed) * movementRange;
+
+            L1currentObstacle[2] = originalYStart[i] + verticalOffset+7; // Ystart
+            L1currentObstacle[3] = originalYEnd[i] + verticalOffset+6.5;   // Yend
         }
 
         // Draw the obstacle
