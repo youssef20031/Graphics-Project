@@ -80,39 +80,39 @@ void Axe::Draw() {
 
     // AXE COLLISION BOUNDING BOX
 
-    glColor3f(1.0f, 0.0f, 0.0f); 
-    glBegin(GL_LINE_LOOP);
-    
-    glVertex3f(-width / 2, -height / 2, depth / 2);  
-    glVertex3f(width / 2, -height / 2, depth / 2);  
-    glVertex3f(width / 2, height / 2, depth / 2);    
-    glVertex3f(-width / 2, height / 2, depth / 2);   
-    glEnd();
+    //glColor3f(1.0f, 0.0f, 0.0f); 
+    //glBegin(GL_LINE_LOOP);
+    //
+    //glVertex3f(-width / 2, -height / 2, depth / 2);  
+    //glVertex3f(width / 2, -height / 2, depth / 2);  
+    //glVertex3f(width / 2, height / 2, depth / 2);    
+    //glVertex3f(-width / 2, height / 2, depth / 2);   
+    //glEnd();
 
-    glBegin(GL_LINE_LOOP);
+    //glBegin(GL_LINE_LOOP);
  
-    glVertex3f(-width / 2, -height / 2, -depth / 2);
-    glVertex3f(width / 2, -height / 2, -depth / 2);
-    glVertex3f(width / 2, height / 2, -depth / 2);
-    glVertex3f(-width / 2, height / 2, -depth / 2);
-    glEnd();
+    //glVertex3f(-width / 2, -height / 2, -depth / 2);
+    //glVertex3f(width / 2, -height / 2, -depth / 2);
+    //glVertex3f(width / 2, height / 2, -depth / 2);
+    //glVertex3f(-width / 2, height / 2, -depth / 2);
+    //glEnd();
 
-    glBegin(GL_LINES);
+    //glBegin(GL_LINES);
  
-    glVertex3f(-width / 2, -height / 2, depth / 2);
-    glVertex3f(-width / 2, -height / 2, -depth / 2);
+    //glVertex3f(-width / 2, -height / 2, depth / 2);
+    //glVertex3f(-width / 2, -height / 2, -depth / 2);
 
-    glVertex3f(width / 2, -height / 2, depth / 2);
-    glVertex3f(width / 2, -height / 2, -depth / 2);
+    //glVertex3f(width / 2, -height / 2, depth / 2);
+    //glVertex3f(width / 2, -height / 2, -depth / 2);
 
-    glVertex3f(width / 2, height / 2, depth / 2);
-    glVertex3f(width / 2, height / 2, -depth / 2);
+    //glVertex3f(width / 2, height / 2, depth / 2);
+    //glVertex3f(width / 2, height / 2, -depth / 2);
 
-    glVertex3f(-width / 2, height / 2, depth / 2);
-    glVertex3f(-width / 2, height / 2, -depth / 2);
-    glEnd();
+    //glVertex3f(-width / 2, height / 2, depth / 2);
+    //glVertex3f(-width / 2, height / 2, -depth / 2);
+    //glEnd();
 
-    glColor3f(1.0f, 1.0f, 1.0f);
+    //glColor3f(1.0f, 1.0f, 1.0f);
 
     glPopMatrix();
 }
