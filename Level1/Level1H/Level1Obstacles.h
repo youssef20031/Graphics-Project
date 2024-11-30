@@ -24,7 +24,9 @@ const int L1numberOfObstacles = 100;
  extern Axe axe4;
  extern Axe axe5;
 
+ extern GLTexture rocktex;
 
+ void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();
 
 #endif // PLAYGROUND_OBSTACLES_H

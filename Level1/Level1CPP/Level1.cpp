@@ -64,7 +64,7 @@ void DisplayL1() {
         }
 
         // Draw the obstacle
-        drawCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
+        drawTexturedCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
             L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
     }
 

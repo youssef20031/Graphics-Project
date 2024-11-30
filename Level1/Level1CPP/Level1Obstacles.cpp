@@ -11,6 +11,8 @@ Axe axe3;
 Axe axe4;
 Axe axe5;
 
+GLTexture rocktex;
+
 
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
@@ -101,6 +103,81 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 };
 
+void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
+    glDisable(GL_LIGHTING);
+
+    glColor3f(0.6, 0.6, 0.6);
+
+    glEnable(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, rocktex.texture[0]);
+
+    glPushMatrix();
+
+    double centerX = (xStart + xEnd) / 2.0;
+    double centerY = (yStart + yEnd) / 2.0;
+    double centerZ = (zStart + zEnd) / 2.0;
+
+    double scaleX = fabs(xEnd - xStart);
+    double scaleY = fabs(yEnd - yStart);
+    double scaleZ = fabs(zEnd - zStart);
+
+    glTranslated(centerX, centerY, centerZ);
+    glScaled(scaleX, scaleY, scaleZ);
+
+    glBegin(GL_QUADS);
+
+    // Front face (zEnd)
+    glNormal3f(0, 0, 1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Back face (zStart)
+    glNormal3f(0, 0, -1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Left face (xStart)
+    glNormal3f(-1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(1, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(1, 1); glVertex3f(-0.5, 0.5, 0.5);
+    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Right face (xEnd)
+    glNormal3f(1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, 1); glVertex3f(0.5, 0.5, -0.5);
+
+    // Top face (yEnd)
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, 0.5, -0.5);
+    glTexCoord2f(1, 0); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Bottom face (yStart)
+    glNormal3f(0, -1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(1, 1); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(0, 1); glVertex3f(-0.5, -0.5, 0.5);
+
+    glEnd();
+
+    glPopMatrix();
+
+    glEnable(GL_LIGHTING);
+
+    glColor3f(1, 1, 1);
+}
+
 
 
 void LoadAssetsL1()
@@ -139,6 +216,8 @@ void LoadAssetsL1()
     axe5.SetRotation(90.0f, 0.0f, -90.0f);
     axe5.SetRotationSpeed(0.8f);
     axe5.SetRotationLimits(-90.0f, 90.0f);
+
+    rocktex.Load("Textures/rockwall.bmp");
 
 
     
