@@ -112,6 +112,9 @@ void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, 
 
     glBindTexture(GL_TEXTURE_2D, rocktex.texture[0]);
 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
     glPushMatrix();
 
     double centerX = (xStart + xEnd) / 2.0;
@@ -127,47 +130,51 @@ void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, 
 
     glBegin(GL_QUADS);
 
+    double textureScaleX = scaleX*1.3;     //can be masalan 1.5,1.2,1.8  -- experiment with values
+    double textureScaleY = scaleY*1.7;
+    double textureScaleZ = scaleZ*1.2; 
+
     // Front face (zEnd)
     glNormal3f(0, 0, 1);
     glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, 0.5);
-    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, 0.5);
-    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, 0.5);
-    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, 0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
 
     // Back face (zStart)
     glNormal3f(0, 0, -1);
     glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
-    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, -0.5);
-    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, -0.5);
-    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
 
     // Left face (xStart)
     glNormal3f(-1, 0, 0);
     glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
-    glTexCoord2f(1, 0); glVertex3f(-0.5, -0.5, 0.5);
-    glTexCoord2f(1, 1); glVertex3f(-0.5, 0.5, 0.5);
-    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
 
     // Right face (xEnd)
     glNormal3f(1, 0, 0);
     glTexCoord2f(0, 0); glVertex3f(0.5, -0.5, -0.5);
-    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, 0.5);
-    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, 0.5);
-    glTexCoord2f(0, 1); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
 
     // Top face (yEnd)
     glNormal3f(0, 1, 0);
     glTexCoord2f(0, 0); glVertex3f(-0.5, 0.5, -0.5);
-    glTexCoord2f(1, 0); glVertex3f(0.5, 0.5, -0.5);
-    glTexCoord2f(1, 1); glVertex3f(0.5, 0.5, 0.5);
-    glTexCoord2f(0, 1); glVertex3f(-0.5, 0.5, 0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, 0.5, 0.5);
 
     // Bottom face (yStart)
     glNormal3f(0, -1, 0);
     glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
-    glTexCoord2f(1, 0); glVertex3f(0.5, -0.5, -0.5);
-    glTexCoord2f(1, 1); glVertex3f(0.5, -0.5, 0.5);
-    glTexCoord2f(0, 1); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, -0.5, 0.5);
 
     glEnd();
 
@@ -217,7 +224,7 @@ void LoadAssetsL1()
     axe5.SetRotationSpeed(0.8f);
     axe5.SetRotationLimits(-90.0f, 90.0f);
 
-    rocktex.Load("Textures/rockwall.bmp");
+    rocktex.Load("Textures/rockwall3.bmp");
 
 
     
