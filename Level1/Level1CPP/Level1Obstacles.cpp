@@ -19,6 +19,10 @@ Cpflag flag2;
 Cpflag flag3;
 
 Collectible coin1;
+Collectible coin2;
+Collectible coin3;
+Collectible coin4;
+Collectible coin5;
 
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
@@ -311,8 +315,19 @@ void LoadAssetsL1()
     // collectibles
 
     coin1.Load();
-    coin1.SetPosition(-145.32,5.4,46.34);
+    coin1.SetPosition(-178.21,4.3,37.28);
 
+    coin2.Load();
+    coin2.SetPosition(-92.07,0.4,46.73);
+
+    coin3.Load();
+    coin3.SetPosition(4.64, 0.2, 17.19);
+
+    coin4.Load();
+    coin4.SetPosition(-45.97, 0.3, 48.12);
+
+    coin5.Load();
+    coin5.SetPosition(-192.63, 4.2, 56.22);
     
    
 

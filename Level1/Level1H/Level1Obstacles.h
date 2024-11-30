@@ -34,7 +34,10 @@ extern GLTexture rocktex;
 extern GLuint texL1;
 
 extern Collectible coin1;
-
+extern Collectible coin2;
+extern Collectible coin3;
+extern Collectible coin4;
+extern Collectible coin5;
 
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
