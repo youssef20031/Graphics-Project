@@ -127,6 +127,11 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
     { -79.81f, -79.0, 0.2f, 1.2f, 51.7f, 52.5f },
 
+
+    // Dragon Platform i=49
+
+    { -60.69f, -97.32, -11.1f, -50.5f, 50.41f, 80.45f },
+
     
 
 
