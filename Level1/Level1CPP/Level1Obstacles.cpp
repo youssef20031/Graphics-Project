@@ -73,27 +73,23 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
     { -190.45, -195.7f, 3.7f, 4.1f, 55.8f, 56.7f }, // normal platform
     { -198.45, -199.7f, 3.7f, 4.1f, 55.8f, 56.7f }, // moving platform (upwards) i=37
     { -201.45, -202.7f, 9.5f, 9.9f, 55.8f, 56.7f }, // platform
-    { -204.45, -205.7f, 9.5f, 9.9f, 55.8f, 56.7f }, // moving platform (horizontal) i=39
+    { -204.450, -205.7f, 9.5f, 9.9f, 55.8f, 56.7f }, // moving platform (horizontal) i=39
     
 
 
     // VICTORY PLATFORM
      
 
-{ -230.7f, -220.45f, 9.5f, 9.7f, 45.8f, 70.7f }, // Ground
+{ -240.7f, -230.45f, 9.5f, 9.7f, 45.8f, 70.7f },  // Ground
 
+{ -240.9f, -240.5f, 9.5f, 16.5f, 45.9f, 70.8f },  // Back Wall
 
-{ -230.9f, -230.5f, 9.5f, 16.5f, 45.9f, 70.8f }, // Back Wall
+{ -240.7f, -230.45f, 9.5f, 16.5f, 45.8f, 46.0f },  // Right Wall
 
+{ -240.7f, -230.45f, 9.5f, 16.5f, 70.6f, 70.8f },  // Left Wall
 
-{ -230.7f, -220.45f, 9.5f, 16.5f, 45.8f, 46.0f },  // Right Wall
+{ -240.7f, -230.45f, 16.5f, 16.7f, 45.8f, 70.7f },  // Roof
 
-
-{ -230.7f, -220.45f, 9.5f, 16.5f, 70.6f, 70.8f },  // Left Wall
-
-
-{ -230.7f, -220.45f, 16.5f, 16.7f, 45.8f, 70.7f }, // Roof
-    
 
     
 

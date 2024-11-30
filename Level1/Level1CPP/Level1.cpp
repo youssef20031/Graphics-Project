@@ -59,8 +59,8 @@ void DisplayL1() {
             float movementSpeed = 1.5f; 
             float horizontalOffset = sin(elapsedTime * movementSpeed) * movementRange;
 
-            L1currentObstacle[0] = -205.0f + horizontalOffset; 
-            L1currentObstacle[1] = -204.0f + horizontalOffset; 
+            L1currentObstacle[0] = -215.0f + horizontalOffset; 
+            L1currentObstacle[1] = -216.0f + horizontalOffset; 
         }
 
         // Draw the obstacle
