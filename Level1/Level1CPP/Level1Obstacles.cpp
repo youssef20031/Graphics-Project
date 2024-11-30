@@ -15,6 +15,7 @@ GLTexture rocktex;
 GLuint texL1;
 
 Cpflag flag1;
+Cpflag flag2;
 
 
 // obstacles
@@ -94,6 +95,18 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 { -240.7f, -230.45f, 9.5f, 16.5f, 70.6f, 70.8f },  // Left Wall
 
 { -240.7f, -230.45f, 16.5f, 16.7f, 45.8f, 70.7f },  // Roof
+
+
+
+
+    // Checkpoint Model Collisions
+   
+    
+    // Stage 3 checkpoint i=45
+    { -144.63f, -144.85f, 4.2f, 8.2f, 43.4f, 43.8f },
+    
+    // Stage 2 checkpoint i=46
+    { -76.34f, -76.54, 0.2f, 4.2f, 45.56f, 45.0f }, 
 
 
     
@@ -275,10 +288,15 @@ void LoadAssetsL1()
     wolfplayermodel.scale = 0.4;
 
 
-    //checkpoint flag
+    //checkpoint flags
   
     flag1.Load();
     flag1.SetPosition(-144.63f, 6.2f, 43.75f);
+    
+    flag2.Load();
+    flag2.SetPosition(-76.34,2.2f, 45.56f);
+
+    
    
 
 

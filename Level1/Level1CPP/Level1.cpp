@@ -68,6 +68,7 @@ void DisplayL1() {
         }
 
         // Draw the obstacle
+        if (i!=45&&i!=46)   // invisible collisions for the checkpoints 
         drawTexturedCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
             L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
     }
@@ -89,6 +90,7 @@ void DisplayL1() {
     
 
     flag1.Draw();
+    flag2.Draw();
 
 	
 
