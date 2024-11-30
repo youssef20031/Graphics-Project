@@ -42,7 +42,7 @@ void DisplayL1() {
             }
         }
 
-        // moving platform
+        // moving platform (vertical)
         if (i == 37) {
             float movementRange = 4.0f;    
             float movementSpeed = 2.0f;   
@@ -51,6 +51,16 @@ void DisplayL1() {
 
             L1currentObstacle[2] = originalYStart[i] + verticalOffset+7; // Ystart
             L1currentObstacle[3] = originalYEnd[i] + verticalOffset+6.5;   // Yend
+        }
+
+        // Moving platform (horizontal)
+        if (i == 39) {
+            float movementRange = 12.0f; 
+            float movementSpeed = 1.5f; 
+            float horizontalOffset = sin(elapsedTime * movementSpeed) * movementRange;
+
+            L1currentObstacle[0] = -205.0f + horizontalOffset; 
+            L1currentObstacle[1] = -204.0f + horizontalOffset; 
         }
 
         // Draw the obstacle
