@@ -353,6 +353,10 @@ void LoadAssetsL1()
 
     //dragon
     dragon.Load("Models/dragon/Drachen_1.0_3ds.3ds");
+    dragon.pos.x = -90.51;
+    dragon.pos.y = 0.2;
+    dragon.pos.z = 70.12;
+    dragon.rot.y = 110;
 
     
     
