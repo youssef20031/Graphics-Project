@@ -89,6 +89,7 @@
     <ClCompile Include="Common\CommonCPP\Controls.cpp" />
     <ClCompile Include="Common\CommonCPP\Cpflag.cpp" />
     <ClCompile Include="Common\CommonCPP\Engine.cpp" />
+    <ClCompile Include="Common\CommonCPP\Goal.cpp" />
     <ClCompile Include="Common\CommonCPP\Lighting.cpp" />
     <ClCompile Include="Common\CommonCPP\Model_3DS.cpp" />
     <ClCompile Include="Common\CommonCPP\Player.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="Common\CommonH\Controls.h" />
     <ClInclude Include="Common\CommonH\Cpflag.h" />
     <ClInclude Include="Common\CommonH\Engine.h" />
+    <ClInclude Include="Common\CommonH\Goal.h" />
     <ClInclude Include="Common\CommonH\Lighting.h" />
     <ClInclude Include="Common\CommonH\Model_3DS.h" />
     <ClInclude Include="Common\CommonH\Player.h" />

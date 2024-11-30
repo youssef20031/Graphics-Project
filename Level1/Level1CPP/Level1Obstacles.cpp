@@ -24,6 +24,8 @@ Collectible coin3;
 Collectible coin4;
 Collectible coin5;
 
+Goal goal;
+
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
@@ -328,6 +330,11 @@ void LoadAssetsL1()
 
     coin5.Load();
     coin5.SetPosition(-192.63, 4.2, 56.22);
+
+
+    // goal
+    goal.Load();
+    goal.SetPosition(-237.2,11.7,56.96);
     
    
 

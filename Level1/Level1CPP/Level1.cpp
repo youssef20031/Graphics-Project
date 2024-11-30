@@ -94,7 +94,7 @@ void DisplayL1() {
         // Moving platform (horizontal)
         if (i == 39) {
             float movementRange = 12.0f; 
-            float movementSpeed = 1.5f; 
+            float movementSpeed = 0.5f; 
             float horizontalOffset = sin(elapsedTime * movementSpeed) * movementRange;
 
             L1currentObstacle[0] = -215.0f + horizontalOffset; 
@@ -133,6 +133,10 @@ void DisplayL1() {
     coin4.Draw();
     coin5.Draw();
 
+
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    goal.Draw();
+    glPopAttrib();
 	
 
 	glFlush();

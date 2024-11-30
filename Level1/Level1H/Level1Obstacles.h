@@ -9,6 +9,7 @@
 #include "Axe.h"
 #include "../../Common/CommonH/Cpflag.h"
 #include "../../Common/CommonH/Collectible.h"
+#include "../../Common/CommonH/Goal.h"
 #include <glut.h>
 
 
@@ -38,6 +39,8 @@ extern Collectible coin2;
 extern Collectible coin3;
 extern Collectible coin4;
 extern Collectible coin5;
+
+extern Goal goal;
 
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
