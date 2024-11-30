@@ -78,7 +78,22 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 
     // VICTORY PLATFORM
-    { -240.45, -250.7f, 9.5f, 9.9f, 45.8f, 70.7f }, // victory platform ground
+     
+
+{ -230.7f, -220.45f, 9.5f, 9.7f, 45.8f, 70.7f }, // Ground
+
+
+{ -230.9f, -230.5f, 9.5f, 16.5f, 45.9f, 70.8f }, // Back Wall
+
+
+{ -230.7f, -220.45f, 9.5f, 16.5f, 45.8f, 46.0f },  // Right Wall
+
+
+{ -230.7f, -220.45f, 9.5f, 16.5f, 70.6f, 70.8f },  // Left Wall
+
+
+{ -230.7f, -220.45f, 16.5f, 16.7f, 45.8f, 70.7f }, // Roof
+    
 
     
 
