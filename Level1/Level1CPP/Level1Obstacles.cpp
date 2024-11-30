@@ -16,6 +16,7 @@ GLuint texL1;
 
 Cpflag flag1;
 Cpflag flag2;
+Cpflag flag3;
 
 
 // obstacles
@@ -107,6 +108,9 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
     
     // Stage 2 checkpoint i=46
     { -76.34f, -76.54, 0.2f, 4.2f, 45.56f, 45.0f }, 
+
+    // Stage 1 checkpoint i=47
+    { -27.05f, -27.25, 0.2f, 4.2f, 46.34f, 45.8f },
 
 
     
@@ -295,6 +299,9 @@ void LoadAssetsL1()
     
     flag2.Load();
     flag2.SetPosition(-76.34,2.2f, 45.56f);
+
+    flag3.Load();
+    flag3.SetPosition(-27.05, 2.2f, 46.34f);
 
     
    

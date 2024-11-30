@@ -26,6 +26,7 @@ const int L1numberOfObstacles = 100;
 
 extern Cpflag flag1;
 extern Cpflag flag2;
+extern Cpflag flag3;
 
 extern GLTexture rocktex;
 
