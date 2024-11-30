@@ -334,7 +334,7 @@ void LoadAssetsL1()
 
     // goal
     goal.Load();
-    goal.SetPosition(-237.2,11.7,56.96);
+    goal.SetPosition(-237.2,10.5,56.96);
     
    
 

@@ -1,6 +1,7 @@
 #include "../CommonH/Goal.h"
 
 #include <glut.h>
+#include <cmath>
 
 Goal::Goal() {
     posX = 0.0f;
@@ -44,17 +45,26 @@ void Goal::SetScale(float s) {
 
 
 void Goal::Draw() {
-
-
-
     glPushMatrix();
-    rotY -= rotationSpeed * rotationDirection;
 
-    glTranslatef(posX, posY, posZ);
+    rotY += rotationSpeed * rotationDirection; 
+
+    float radius = 1.0f;
+    float angleInRadians = rotY * (3.14159265f / 180.0f); 
+
+    float offsetX = radius * cos(angleInRadians);
+    float offsetZ = radius * sin(angleInRadians);
+
+    glTranslatef(posX + offsetX, posY, posZ + offsetZ);
+
+    float facingAngle = rotY + 90.0f; 
+    glRotatef(facingAngle, 0.0f, 1.0f, 0.0f);
+
     glScalef(scale, scale, scale);
-    glRotatef(rotX, 1.0f, 0.0f, 0.0f);
-    glRotatef(rotY, 0.0f, 1.0f, 0.0f);
-    glRotatef(rotZ, 0.0f, 0.0f, 1.0f);
+
     model.Draw();
+
     glPopMatrix();
 }
+
+
