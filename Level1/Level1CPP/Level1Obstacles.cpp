@@ -36,7 +36,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
    // AXE SECTION (STAGE 1)
 
 	
-	{ -23.02, -23.35f, 0.1f, 0.2f, 50.97f, 45.09f }, // checkpoint platform
+	{ -23.02, -23.35f, 0.1f, 0.2f, 50.97f, 45.09f }, // checkpoint platform   i=13
 	{ -32.8, -70.35f, 0.1f, 0.2f, 46.87f, 49.44f }, // Stage 1 ground
     //.. incomplete (handle collision of axe with player by setting player back to spawn/checkpoint)
 
@@ -44,7 +44,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
     // PLATFORMING SECTION (STAGE 2)
 
     { -70.36, -80.35f, 0.1f, 0.2f, 52.87f, 42.44f }, // stage 2 ground
-    { -73.45, -73.5f, 0.2f, 0.3f, 53.25f, 42.2f }, // checkpoint platform stage 2
+    { -73.45, -73.5f, 0.2f, 0.3f, 53.25f, 42.2f }, // checkpoint platform stage 2   i=16
     { -82.45, -84.7f, -2.0f, 0.3f, 50.25f, 51.2f }, // platform 1
     { -86.45, -87.7f, -2.0f, 0.3f, 48.25f, 49.2f }, // platform 2
     { -91.45, -92.7f, -2.0f, 0.3f, 46.25f, 47.2f }, // platform 3
@@ -64,7 +64,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 
     // INVISIBLE PLATFORM SECTION (STAGE 3)
-    { -141.78, -141.96, 4.2f, 4.3f, 47.54f, 42.92f }, // checkpoint platform stage 3
+    { -141.78, -141.96, 4.2f, 4.3f, 47.54f, 42.92f }, // checkpoint platform stage 3   i=31
    
     { -156.45, -176.7f, 3.7f, 4.1f, 44.8f, 45.7f }, // invisible platform 1 i=32
     { -177.45, -178.7f, 3.7f, 4.1f, 44.8f, 54.7f }, // invisible platform 2 i=33
@@ -72,6 +72,14 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
     { -177.45, -178.7f, 3.7f, 4.1f, 40.8f, 36.7f }, // invisible platform 3 i=35   one of the coins will be placed there
     { -190.45, -195.7f, 3.7f, 4.1f, 55.8f, 56.7f }, // normal platform
     { -198.45, -199.7f, 3.7f, 4.1f, 55.8f, 56.7f }, // moving platform (upwards) i=37
+    { -201.45, -202.7f, 9.5f, 9.9f, 55.8f, 56.7f }, // platform
+    { -204.45, -205.7f, 9.5f, 9.9f, 55.8f, 56.7f }, // moving platform (horizontal) i=39
+    
+
+
+    // VICTORY PLATFORM
+    { -240.45, -250.7f, 9.5f, 9.9f, 45.8f, 70.7f }, // victory platform ground
+
     
 
 
