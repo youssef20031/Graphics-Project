@@ -7,6 +7,7 @@
 #include "../../Common/CommonH/Collisions.h"
 #include "../../Common/CommonH/Player.h"
 #include "Axe.h"
+#include "../../Common/CommonH/Cpflag.h"
 #include <glut.h>
 
 
@@ -23,11 +24,13 @@ const int L1numberOfObstacles = 100;
  extern Axe axe4;
  extern Axe axe5;
 
- extern GLTexture rocktex;
+extern Cpflag flag1;
+
+extern GLTexture rocktex;
 
 extern GLuint texL1;
 
-extern Model_3DS cpflag;
+
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();

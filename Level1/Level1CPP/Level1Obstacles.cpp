@@ -14,7 +14,7 @@ Axe axe5;
 GLTexture rocktex;
 GLuint texL1;
 
-Model_3DS cpflag;
+Cpflag flag1;
 
 
 // obstacles
@@ -231,7 +231,7 @@ void LoadAssetsL1()
 
     glPopMatrix();
 
-    ///
+    
 
     // Axes
 
@@ -272,18 +272,15 @@ void LoadAssetsL1()
     // Player model
 
     wolfplayermodel.Load("Models/wolf/balto.3ds");
-  
-    //wolfplayermodel.rot.y = 90;
     wolfplayermodel.scale = 0.4;
 
 
     //checkpoint flag
-    cpflag.Load("Models/flag/flag^shtock_spktr.3ds");
-    cpflag.pos.x = -144.63;
-    cpflag.pos.y = 6.2;
-    cpflag.pos.z = 43.75;
-    cpflag.scale = 0.005;
-    cpflag.rot.y = 180;
+  
+    flag1.Load();
+    flag1.SetPosition(-144.63f, 6.2f, 43.75f);
+   
+
 
     drawSkybox();
 
