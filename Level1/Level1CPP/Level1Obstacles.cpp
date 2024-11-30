@@ -187,6 +187,23 @@ void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, 
 }
 
 
+void drawSkybox() {
+    glPushMatrix();
+
+    glTranslatef(playerX, playerY, playerZ);
+
+    glRotatef(90, 1, 0, 1);
+
+    glBindTexture(GL_TEXTURE_2D, texL1);
+
+    GLUquadricObj* qobj = gluNewQuadric();
+    gluQuadricTexture(qobj, GL_TRUE);
+    gluQuadricNormals(qobj, GL_SMOOTH);
+    gluSphere(qobj, 100.0, 32, 16);
+    gluDeleteQuadric(qobj);
+
+    glPopMatrix();
+}
 
 void LoadAssetsL1()
 {
@@ -206,7 +223,7 @@ void LoadAssetsL1()
     glBindTexture(GL_TEXTURE_2D, texL1);
     gluQuadricTexture(qobj, true);
     gluQuadricNormals(qobj, GL_SMOOTH);
-    gluSphere(qobj, 100, 100, 100);
+    gluSphere(qobj, 100, 32, 16);
     gluDeleteQuadric(qobj);
 
 
@@ -256,6 +273,8 @@ void LoadAssetsL1()
   
     //wolfplayermodel.rot.y = 90;
     wolfplayermodel.scale = 0.4;
+
+    drawSkybox();
 
    
 

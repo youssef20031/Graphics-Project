@@ -29,5 +29,6 @@ extern GLuint texL1;
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();
+ void drawSkybox();
 
 #endif // PLAYGROUND_OBSTACLES_H

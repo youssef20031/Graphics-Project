@@ -3,6 +3,7 @@
 #include "../CommonH/Collisions.h"
 #include <algorithm>
 
+
 GLfloat playerX = -138.84f;
 GLfloat playerY = 4.2f;
 GLfloat playerZ = 45.34;
