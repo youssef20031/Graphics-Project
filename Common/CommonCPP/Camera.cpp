@@ -175,8 +175,8 @@ void setFirstPersonCamera() {
 	GLfloat centerOffsetY = sin(anglePitchRadians) * 2.0f;  // 2.0f is the distance from the player
 	GLfloat centerOffsetZ = -cos(anglePitchRadians) * sin(angleYawRadians) * 2.0f;  // 2.0f is the distance from the player
 
-	GLfloat eyeOffsetX = cos(angleYawRadians) * 0.2f;  // 0.2f is the distance from the player
-	GLfloat eyeOffsetZ = -(sin(angleYawRadians) * 0.2f);  // 0.2f is the distance from the player
+	GLfloat eyeOffsetX = cos(angleYawRadians) * 0.5f;  // 0.2f is the distance from the player
+	GLfloat eyeOffsetZ = -(sin(angleYawRadians) * 0.5f);  // 0.2f is the distance from the player
 
 	// Adjust the up vector to match the pitch direction
 	GLfloat upX = -sin(anglePitchRadians) * cos(angleYawRadians);  // Up vector X-component
