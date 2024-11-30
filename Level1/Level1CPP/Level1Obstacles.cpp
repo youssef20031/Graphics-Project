@@ -12,6 +12,7 @@ Axe axe4;
 Axe axe5;
 
 GLTexture rocktex;
+GLuint texL1;
 
 
 // obstacles
@@ -194,6 +195,27 @@ void LoadAssetsL1()
     // Remember in the Level1.cpp Display method to call their Draw function!
     // and in Level1Obstacles.h
 
+
+    // sky box
+    glPushMatrix();
+
+    GLUquadricObj* qobj;
+    qobj = gluNewQuadric();
+    glTranslated(50, 0, 0);
+    glRotated(90, 1, 0, 1);
+    glBindTexture(GL_TEXTURE_2D, texL1);
+    gluQuadricTexture(qobj, true);
+    gluQuadricNormals(qobj, GL_SMOOTH);
+    gluSphere(qobj, 100, 100, 100);
+    gluDeleteQuadric(qobj);
+
+
+    glPopMatrix();
+
+    ///
+
+    // Axes
+
     axe.Load();
     axe.SetPosition(-38.45f, 0.3f, 51.3f);
     axe.SetRotation(90.0f, 0.0f, -90.0f);
@@ -224,7 +246,11 @@ void LoadAssetsL1()
     axe5.SetRotationSpeed(0.8f);
     axe5.SetRotationLimits(-90.0f, 90.0f);
 
+    // Textures
+
     rocktex.Load("Textures/rockwall3.bmp");
+
+    // Player model
 
     wolfplayermodel.Load("Models/wolf/balto.3ds");
   

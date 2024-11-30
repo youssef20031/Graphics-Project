@@ -7,7 +7,6 @@
 #include "../../Common/CommonH/Collisions.h"
 #include "../../Common/CommonH/Player.h"
 #include "Axe.h"
-
 #include <glut.h>
 
 
@@ -25,6 +24,8 @@ const int L1numberOfObstacles = 100;
  extern Axe axe5;
 
  extern GLTexture rocktex;
+
+extern GLuint texL1;
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();

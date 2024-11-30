@@ -83,6 +83,9 @@ void DisplayL1() {
 	axe5.Draw();
 
     wolfplayermodel.Draw();
+
+    //loadBMP(&texL1, "Textures/blu-sky-3.bmp", true);
+
 	
 
 	glFlush();
