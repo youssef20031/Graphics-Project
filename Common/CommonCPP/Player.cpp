@@ -4,9 +4,9 @@
 #include <algorithm>
 
 
-GLfloat playerX = -138.84f;
-GLfloat playerY = 4.2f;
-GLfloat playerZ = 45.34;
+GLfloat playerX = -231.6f;
+GLfloat playerY = 12.56f;
+GLfloat playerZ = 58.2f;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 0.035f;
