@@ -134,11 +134,17 @@ void DisplayL1() {
     coin5.Draw();
 
 
+
+    // this is because sometimes the model for some reason messes with the skybox
     glPushAttrib(GL_ALL_ATTRIB_BITS);
     goal.Draw();
     glPopAttrib();
 
     barrel.Draw();
+
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    dragon.Draw();
+    glPopAttrib();
 	
 
 	glFlush();

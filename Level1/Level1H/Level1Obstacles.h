@@ -44,6 +44,8 @@ extern Goal goal;
 
 extern Model_3DS barrel;
 
+extern Model_3DS dragon;
+
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();

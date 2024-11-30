@@ -28,6 +28,8 @@ Goal goal;
 
 Model_3DS barrel;
 
+Model_3DS dragon;
+
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
@@ -348,6 +350,10 @@ void LoadAssetsL1()
     barrel.pos.y = 0.2;
     barrel.pos.z = 51.88;
     barrel.scale = 1;
+
+    //dragon
+    dragon.Load("Models/dragon/Drachen_1.0_3ds.3ds");
+
     
     
    
