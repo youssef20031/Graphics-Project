@@ -12,6 +12,9 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
+//Model_3DS wolfplayermodel;
+
+
 
 void DisplayL1() {
 	setupCamera();
@@ -78,6 +81,8 @@ void DisplayL1() {
 	axe3.Draw();
 	axe4.Draw();
 	axe5.Draw();
+
+    wolfplayermodel.Draw();
 	
 
 	glFlush();

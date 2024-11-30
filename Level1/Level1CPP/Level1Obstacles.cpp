@@ -226,6 +226,14 @@ void LoadAssetsL1()
 
     rocktex.Load("Textures/rockwall3.bmp");
 
+    wolfplayermodel.Load("Models/wolf/balto.3ds");
+  
+    //wolfplayermodel.rot.y = 90;
+    wolfplayermodel.scale = 0.4;
+
+   
+
+
 
     
 }

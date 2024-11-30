@@ -11,6 +11,7 @@ GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 0.035f;
 Vector3f spawnPoint = (3.07,0.2,3.5);    // didn't use this yet
 
+Model_3DS wolfplayermodel;
 
 // Player spawn point for level 1: (3.07,0.2,3.5)
 // Stage 1: (-21.5,0.1,48.25)
@@ -339,7 +340,7 @@ void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double z
 //// drawWolf {
 //
 //glTranslate  <- parameters of player
-//wolf.Draw()
+//wolfplayermodel.Draw()
 //
 //
 //}
@@ -349,29 +350,19 @@ void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double z
 void drawPlayer() {
 	glPushMatrix();
 
-	// Translate to the player's position in the world
 	glTranslatef(playerX, playerY, playerZ);
 
-	// rotate player's head independently of his body
-	glPushMatrix();
-	glTranslatef(0, playerHeight * 7 / 8, 0);
-	glRotatef(playerDirectionRotationFacing, 0.0, 1.0, 0.0);
-	glRotatef(playerDirectionRotationFacingVertical, 0.0, 0.0, 1.0);
-	glColor3f(0.94f, 0.80f, 0.72f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * -1 / 8, playerHeight * 1 / 8, -playerWidth / 2, playerWidth / 2);
-	glPopMatrix();
+	glRotatef(playerDirectionRotationBody, 0.0f, 1.0f, 0.0f);
 
-	// rotate whole player body except for his head (camera bardo)
-	glRotatef(playerDirectionRotationBody, 0.0, 1.0, 0.0);
+	glScalef(wolfplayermodel.scale, wolfplayermodel.scale, wolfplayermodel.scale);
+	
 
-	glPushMatrix();
-	glColor3f(1.0f, 0.0f, 0.0f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
-	glColor3f(1.0f, 0.843f, 0.0f);
-	drawCuboid(playerWidth / 2, playerWidth / 2 + 0.001f, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
-	glPopMatrix();
+	
+	 glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+
+	wolfplayermodel.Draw();
+
 	glPopMatrix();
 }
-
 
 

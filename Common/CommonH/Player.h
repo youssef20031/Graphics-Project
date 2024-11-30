@@ -10,6 +10,8 @@
 
 #pragma once
 
+extern Model_3DS wolfplayermodel;
+
 // Player properties
 extern GLfloat playerX;
 extern GLfloat playerY;
