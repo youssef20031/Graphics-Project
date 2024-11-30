@@ -42,6 +42,8 @@ extern Collectible coin5;
 
 extern Goal goal;
 
+extern Model_3DS barrel;
+
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();

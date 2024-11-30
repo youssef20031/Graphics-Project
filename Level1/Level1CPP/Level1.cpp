@@ -102,7 +102,7 @@ void DisplayL1() {
         }
 
         // Draw the obstacle
-        if (!(i>=45&&i<=47))   // invisible collisions for the checkpoints 
+        if (!(i>=45&&i<=48))   // invisible collisions for the checkpoints and other models
         drawTexturedCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
             L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
     }
@@ -137,6 +137,8 @@ void DisplayL1() {
     glPushAttrib(GL_ALL_ATTRIB_BITS);
     goal.Draw();
     glPopAttrib();
+
+    barrel.Draw();
 	
 
 	glFlush();

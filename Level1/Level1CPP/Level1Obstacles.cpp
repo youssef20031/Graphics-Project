@@ -26,6 +26,8 @@ Collectible coin5;
 
 Goal goal;
 
+Model_3DS barrel;
+
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
@@ -119,6 +121,9 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
     // Stage 1 checkpoint i=47
     { -27.05f, -27.25, 0.2f, 4.2f, 46.34f, 45.8f },
 
+    // Barrel Model Collision  i=48
+
+    { -79.81f, -79.0, 0.2f, 1.2f, 51.7f, 52.5f },
 
     
 
@@ -335,6 +340,15 @@ void LoadAssetsL1()
     // goal
     goal.Load();
     goal.SetPosition(-237.2,10.5,56.96);
+
+
+    // barrel
+    barrel.Load("Models/barrel/ton3_low.3ds");
+    barrel.pos.x = -79.51;
+    barrel.pos.y = 0.2;
+    barrel.pos.z = 51.88;
+    barrel.scale = 1;
+    
     
    
 

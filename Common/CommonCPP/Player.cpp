@@ -4,9 +4,9 @@
 #include <algorithm>
 
 
-GLfloat playerX = -231.6f;
-GLfloat playerY = 12.56f;
-GLfloat playerZ = 58.2f;
+GLfloat playerX = 3.07;
+GLfloat playerY = 0.2f;
+GLfloat playerZ = 3.5f;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 0.035f;
@@ -18,6 +18,7 @@ Model_3DS wolfplayermodel;
 // Stage 1: (-21.5,0.1,48.25)
 // Stage 2: (-71.59,0.2,48.18)
 // Stage 3: (-138.84,4.2,45.34)
+// Win Platform: (-231.6,12.56,58.2)
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
