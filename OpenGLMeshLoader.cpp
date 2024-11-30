@@ -325,6 +325,6 @@ void LoadAssets()
 	model_tree.Load("Models/tree/Tree1.3ds");
 
 	// Loading texture files
-	tex_ground.Load("Textures/ground.bmp");
+	tex_ground.Load("Textures/rockwall.bmp");
 	loadBMP(&tex, "Textures/blu-sky-3.bmp", true);
 }
