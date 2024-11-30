@@ -28,6 +28,8 @@ extern Cpflag flag1;
 extern Cpflag flag2;
 extern Cpflag flag3;
 
+extern Model_3DS coin;
+
 extern GLTexture rocktex;
 
 extern GLuint texL1;

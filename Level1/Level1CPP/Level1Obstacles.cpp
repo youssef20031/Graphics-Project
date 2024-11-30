@@ -19,6 +19,8 @@ Cpflag flag2;
 Cpflag flag3;
 
 
+Model_3DS coin;
+
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
@@ -290,6 +292,8 @@ void LoadAssetsL1()
 
     wolfplayermodel.Load("Models/wolf/balto.3ds");
     wolfplayermodel.scale = 0.4;
+
+    coin.Load("Models/coin/coin.3ds");
 
 
     //checkpoint flags

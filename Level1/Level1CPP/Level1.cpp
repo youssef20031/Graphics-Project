@@ -92,6 +92,10 @@ void DisplayL1() {
     flag1.Draw();
     flag2.Draw();
     flag3.Draw();
+    coin.Draw();
+    coin.pos.x = -145.32;
+    coin.pos.y = 5.4;
+    coin.pos.z = 45.34;
 
 	
 
