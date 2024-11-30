@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\CommonCPP\Camera.cpp" />
+    <ClCompile Include="Common\CommonCPP\Collectible.cpp" />
     <ClCompile Include="Common\CommonCPP\Collisions.cpp" />
     <ClCompile Include="Common\CommonCPP\Controls.cpp" />
     <ClCompile Include="Common\CommonCPP\Cpflag.cpp" />
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonH\Camera.h" />
+    <ClInclude Include="Common\CommonH\Collectible.h" />
     <ClInclude Include="Common\CommonH\Collisions.h" />
     <ClInclude Include="Common\CommonH\Controls.h" />
     <ClInclude Include="Common\CommonH\Cpflag.h" />

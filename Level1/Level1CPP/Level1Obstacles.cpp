@@ -18,8 +18,7 @@ Cpflag flag1;
 Cpflag flag2;
 Cpflag flag3;
 
-
-Model_3DS coin;
+Collectible coin1;
 
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
@@ -293,8 +292,6 @@ void LoadAssetsL1()
     wolfplayermodel.Load("Models/wolf/balto.3ds");
     wolfplayermodel.scale = 0.4;
 
-    coin.Load("Models/coin/coin.3ds");
-
 
     //checkpoint flags
   
@@ -307,11 +304,20 @@ void LoadAssetsL1()
     flag3.Load();
     flag3.SetPosition(-27.05, 2.2f, 46.34f);
 
+  
+
+
+
+    // collectibles
+
+    coin1.Load();
+    coin1.SetPosition(-145.32,5.4,46.34);
+
     
    
 
 
-    drawSkybox();
+    //drawSkybox();
 
 
 

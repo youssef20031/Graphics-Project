@@ -16,11 +16,11 @@ Axe::Axe() {
     minRotation = -90.0f;  
     rotationDirection = 1;
 
-    width = 1.0f;   // beytala3 le odam
-    height = 5.0f; // the width 
-    depth = 5.0f;  // the height
+    width = 1.0f;   
+    height = 5.0f;
+    depth = 5.0f;  
 
-    // confusing names ana 3aref lol
+   
 }
 
 
