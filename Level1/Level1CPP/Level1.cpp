@@ -85,7 +85,7 @@ void DisplayL1() {
 
     wolfplayermodel.Draw();
 
-    loadBMP(&texL1, "Textures/blu-sky-3.bmp", true);
+    //loadBMP(&texL1, "Textures/blu-sky-3.bmp", true);
 
 	
 
