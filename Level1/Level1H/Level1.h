@@ -18,7 +18,10 @@
 #define GLUT_KEY_ESCAPE 27
 #define DEG2RAD(a) (a * 0.0174532925)
 
-//extern Model_3DS wolfplayermodel;
+
+extern enum GameStatus;
+
+
 
 // Lighting setup functions
 void setupLights();

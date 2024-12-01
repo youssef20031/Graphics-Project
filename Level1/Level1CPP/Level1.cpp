@@ -12,6 +12,28 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
+enum GameStatus {PLAYING,WIN,LOSE};
+
+void drawHUD() {
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, 640, 0, 480);
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    glDisable(GL_LIGHTING);
+    glColor3f(0.0f, 0.0f, 0.0f);
+
+    renderBitmapString(350.0f, 400.0f, GLUT_BITMAP_HELVETICA_18, "Hello there!");
+
+    glEnable(GL_LIGHTING);
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
+}
+
 void drawGradientSky() {
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_LIGHTING);
@@ -198,6 +220,8 @@ void DisplayL1() {
             showCheckpointMessage = false;
         }
     }
+
+    drawHUD();
 	
 
 	glFlush();
