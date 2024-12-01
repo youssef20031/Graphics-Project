@@ -61,6 +61,42 @@ void drawGameOverScreen() {
     glutSwapBuffers();
 }
 
+void drawGameWinScreen() {
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, 640, 0, 480);
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    glDisable(GL_LIGHTING);
+    glColor3f(0.0f, 0.0f, 1.0f);
+
+    renderBitmapString(270.0f, 300.0f, GLUT_BITMAP_TIMES_ROMAN_24, "You win level 1!");
+
+    char scorePos[100];
+    snprintf(scorePos, sizeof(scorePos), "Score: %i", scoreL1);
+    renderBitmapString(290.0f, 280.0f, GLUT_BITMAP_HELVETICA_18, scorePos);
+
+    renderBitmapString(275.0f, 250.0f, GLUT_BITMAP_HELVETICA_18, "Loading Level 2...");
+
+    glEnable(GL_LIGHTING);
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+
+    glMatrixMode(GL_MODELVIEW);
+    glFlush();
+    glutSwapBuffers();
+    glPopAttrib();
+}
+
 
 void drawHUD() {
     glMatrixMode(GL_PROJECTION);
@@ -153,6 +189,10 @@ void DisplayL1() {
 
     if (gameStatus == LOSE) {
         drawGameOverScreen();
+        return;
+    }
+    if (gameStatus == WIN) {
+        drawGameWinScreen();
         return;
     }
  
