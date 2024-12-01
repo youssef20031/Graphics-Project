@@ -49,6 +49,32 @@ void drawGradientSky() {
 }
 
 
+void renderCheckpointMessage(const char* message) {
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0.0, 800.0, 0.0, 600.0);
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_LIGHTING);
+
+    glColor3f(1.0f, 1.0f, 1.0f);
+    renderBitmapString(400.0f, 300.0f, GLUT_BITMAP_HELVETICA_18, message);
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+}
+
+
 void DisplayL1() {
  
     //drawSkybox();
@@ -112,33 +138,17 @@ void DisplayL1() {
         if (!(i>=45&&i<=48)&&i!=50)   // invisible collisions for the checkpoints and other models
         drawTexturedCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
             L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
-
+        
         if (showCheckpointMessage) {
             float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
             if (currentTime - checkpointMessageStartTime < 4.0f) {
-                // Render text on screen to show checkpoint reached
-                glMatrixMode(GL_PROJECTION);
-                glPushMatrix();
-                glLoadIdentity();
-                gluOrtho2D(0.0, 800.0, 0.0, 600.0); // Based on Window Size
-                glMatrixMode(GL_MODELVIEW);
-                glPushMatrix();
-                glLoadIdentity();
-                glDisable(GL_DEPTH_TEST);
-                glDisable(GL_LIGHTING);
-                glColor3f(1.0f, 1.0f, 1.0f);
-                renderBitmapString(400.0f, 300.0f, GLUT_BITMAP_HELVETICA_18, "Checkpoint 1 Reached");
-                glEnable(GL_DEPTH_TEST);
-                glEnable(GL_LIGHTING);
-                glPopMatrix();
-                glMatrixMode(GL_PROJECTION);
-                glPopMatrix();
-                glMatrixMode(GL_MODELVIEW);
+                renderCheckpointMessage("Checkpoint Reached!");
             }
             else {
-                showCheckpointMessage = false; 
+                showCheckpointMessage = false;
             }
         }
+
     }
 
 	

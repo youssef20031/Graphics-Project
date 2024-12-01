@@ -50,7 +50,7 @@ GLfloat playerVerticalJumpInitialSpeed = 0.05f;
 GLfloat fallAcceleration = -0.05f; // e3tebro gravity
 
 void updateCheckpoint() {
-	if (playerX>=-27.24&&playerX<=-26.54&&playerZ>=45.15&&playerZ<=51.03) {
+	if ((playerX>=-27.24&&playerX<=-26.54&&playerZ>=45.15&&playerZ<=51.03)&&whichCp==0) {
 		spawnPoint.x = -21.5;
 		spawnPoint.y = 0.1;
 		spawnPoint.z = 48.25;
@@ -58,7 +58,23 @@ void updateCheckpoint() {
 		showCheckpointMessage = true;
 		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 		
+		
 	}
+
+	if ((playerX >= -74.37 && playerX <= -74.1 && playerZ >= 42.53 && playerZ <= 52.81) && whichCp == 1) {
+		spawnPoint.x = -71.59;
+		spawnPoint.y = 0.2;
+		spawnPoint.z = 48.18;
+		whichCp = 2;
+		showCheckpointMessage = true;
+		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+
+		
+		
+
+	}
+
+	
 
 
 }
