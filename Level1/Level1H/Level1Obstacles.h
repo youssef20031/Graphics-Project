@@ -26,6 +26,9 @@ const int L1numberOfObstacles = 100;
  extern Axe axe4;
  extern Axe axe5;
 
+ extern Axe* axes[5];
+
+
 extern Cpflag flag1;
 extern Cpflag flag2;
 extern Cpflag flag3;

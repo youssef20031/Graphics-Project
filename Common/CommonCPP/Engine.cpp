@@ -27,14 +27,17 @@ void updateStates() {
 
 
 	// Level 1
-
-	handleAxeCollision();
-
 	updateCheckpoint();
 
 	updateWinLevel1();
 
 	updateDeltaTime();
+
+	for (int i = 0; i < 5; i++) {
+		if (axes[i] != nullptr) {
+			handleAxeCollision(*axes[i]);
+		}
+	}
 
 	for (int i = 0; i < 5; i++) {
 		if (coins[i] != nullptr) { 

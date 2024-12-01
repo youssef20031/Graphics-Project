@@ -5,6 +5,10 @@
 #include <algorithm>
 #include <iostream>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 /////////////////////////// PLAYER
 
 bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat x2End, GLfloat y2Start, GLfloat y2End, GLfloat z2Start, GLfloat z2End) {
@@ -74,24 +78,32 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 
 /////////////////////////////////// AXE
 
-bool checkAxeCollision(Axe& axe, GLfloat playerX, GLfloat playerY, GLfloat playerZ, GLfloat playerWidth, GLfloat playerHeight) {
-	GLfloat rotatedX = axe.GetPosX() * cos(axe.GetRotY()) - axe.GetPosZ() * sin(axe.GetRotY());
-	GLfloat rotatedZ = axe.GetPosX() * sin(axe.GetRotY()) + axe.GetPosZ() * cos(axe.GetRotY());
-	GLfloat rotatedY = axe.GetPosY(); 
+bool checkAxeCollision(Axe& axe) {
+	GLfloat halfLength = axe.GetLength() / 2;
+	GLfloat lengthStart = halfLength + 1.0f;
+	GLfloat lengthEnd = halfLength - 1.0f;
+	GLfloat thetaStart = axe.GetRotY();
+	GLfloat thetaEnd = axe.GetRotY() - 20.0;
+	GLfloat x = axe.GetPosX();
+	GLfloat y = axe.GetPosY();
+	GLfloat z = axe.GetPosZ();
+	GLfloat offsetYStart = lengthStart * cos(thetaStart * M_PI / 180);
+	GLfloat offsetZStart = lengthStart * sin(thetaStart * M_PI / 180);
+	GLfloat offsetYEnd = lengthEnd * cos(thetaEnd * M_PI / 180);
+	GLfloat offsetZEnd = lengthEnd * sin(thetaEnd * M_PI / 180);
 
 	return checkCollision(playerX, playerY, playerZ,
-		rotatedX - axe.GetWidth() / 2.0f, rotatedX + axe.GetWidth() / 2.0f,
-		rotatedY - axe.GetHeight() / 2.0f, rotatedY + axe.GetHeight() / 2.0f,
-		rotatedZ - axe.GetWidth() / 2.0f, rotatedZ + axe.GetWidth() / 2.0f);
+		x - 0.3, x + 0.3,
+		y + offsetYStart, y + offsetYEnd,
+		z + offsetZStart, z + offsetZEnd);
 }
 
 
-void handleAxeCollision() {
-	if (checkAxeCollision(axe, playerX, playerY, playerZ, playerWidth, playerHeight)) {
-		std::cout << "Collision Occured" << std::endl;
-
+void handleAxeCollision(Axe& axe) {
+	std::cout << "Collision Occured" << std::endl;
+	if (checkAxeCollision(axe)) {
 		playerX = -21.5;
-		playerY = 0.1+0.2;
+		playerY = 0.1 + 0.2;
 		playerZ = 48.25;
 	}
 }

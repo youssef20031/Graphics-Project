@@ -11,6 +11,15 @@ Axe axe3;
 Axe axe4;
 Axe axe5;
 
+Axe* axes[5] = {
+    &axe,
+    &axe2,
+    &axe3,
+    &axe4,
+    &axe5
+};
+
+
 GLTexture rocktex;
 GLTexture lavatex;
 GLuint texL1;

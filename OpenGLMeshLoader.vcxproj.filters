@@ -63,9 +63,11 @@
     <ClCompile Include="Common\CommonCPP\Collisions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\CommonCPP\Collectible.cpp" />
     <ClCompile Include="Common\CommonCPP\Cpflag.cpp" />
     <ClCompile Include="Common\CommonCPP\Goal.cpp" />
+    <ClCompile Include="Common\CommonCPP\Collectible.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLTexture.h">
