@@ -42,6 +42,7 @@ void displayCameraCoords();
 void updateCameraMovement();
 void setFirstPersonCamera();
 void setThirdPersonCamera();
+void renderBitmapString(float x, float y, void* font, const char* string);
 
 
 // Camera instance declaration

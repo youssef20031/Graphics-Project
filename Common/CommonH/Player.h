@@ -43,10 +43,10 @@ extern GLfloat fallAcceleration; // e3tebro gravity
 
 //checkpoint
 extern Vector3f spawnPoint;
+extern bool showCheckpointMessage;
+extern float checkpointMessageStartTime;
 
-extern bool atCp1;
-extern bool atCp2;
-extern bool atCp3;
+extern int whichCp;
 
 // Function declarations
 void updatePlayerRotation();    // Updates player's body rotation for animation

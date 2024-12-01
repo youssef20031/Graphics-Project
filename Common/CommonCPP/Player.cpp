@@ -6,9 +6,9 @@
 
 
 Vector3f spawnPoint(3.07, 0.2, 3.5);
-bool atCp1;
-bool atCp2;
-bool atCp3;
+int whichCp = 0;
+bool showCheckpointMessage = false;
+float checkpointMessageStartTime = 0.0f;
 
 GLfloat playerX = spawnPoint.x;
 GLfloat playerY = spawnPoint.y;
@@ -54,6 +54,9 @@ void updateCheckpoint() {
 		spawnPoint.x = -21.5;
 		spawnPoint.y = 0.1;
 		spawnPoint.z = 48.25;
+		whichCp = 1;
+		showCheckpointMessage = true;
+		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 		
 	}
 
