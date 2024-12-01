@@ -50,6 +50,7 @@ void drawGradientSky() {
 
 
 void renderCheckpointMessage(const char* message) {
+    glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_TRANSFORM_BIT);
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
@@ -63,7 +64,7 @@ void renderCheckpointMessage(const char* message) {
     glDisable(GL_LIGHTING);
 
     glColor3f(1.0f, 1.0f, 1.0f);  
-    renderBitmapString(400.0f, 300.0f, GLUT_BITMAP_HELVETICA_18, message);  
+    renderBitmapString(350.0f, 550.0f, GLUT_BITMAP_HELVETICA_18, message);  
 
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
@@ -72,6 +73,7 @@ void renderCheckpointMessage(const char* message) {
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
+    glPopAttrib();
 }
 
 
