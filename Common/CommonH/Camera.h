@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "Vector3f.h"
 #include "Controls.h"
+#include "Engine.h"
 #include "Player.h"
 #include <glut.h>
 

@@ -5,7 +5,10 @@
 #include "../../Level1/Level1H/Level1.h"
 
 float lastFrameTime = 0.0f;
-float deltaTime = 0.0f;
+float deltaTime = 0.016f;
+
+
+// Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
 
 void updateDeltaTime() {
 	float currentFrameTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
