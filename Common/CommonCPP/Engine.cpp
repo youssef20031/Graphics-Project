@@ -4,7 +4,14 @@
 #include "../../Level1/Level1H/Level1Obstacles.h"
 #include "../../Level1/Level1H/Level1.h"
 
+float lastFrameTime = 0.0f;
+float deltaTime = 0.0f;
 
+void updateDeltaTime() {
+	float currentFrameTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+	deltaTime = currentFrameTime - lastFrameTime;
+	lastFrameTime = currentFrameTime;
+}
 
 void updateStates() {
 	updateCameraMovement(); // update key presses
@@ -22,6 +29,8 @@ void updateStates() {
 
 	updateCheckpoint();
 	printf("Spawn point: X: %.2f, Y: %.2f, Z: %.2f\n", spawnPoint.x, spawnPoint.y, spawnPoint.z);
+
+	updateDeltaTime();
 
 
 	glutPostRedisplay();

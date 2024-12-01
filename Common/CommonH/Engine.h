@@ -32,3 +32,7 @@ void Special(int key, int x, int y);
 void SpecialUp(int key, int x, int y);
 void updateStates();
 void drawAxis();
+
+extern float lastFrameTime;
+extern float deltaTime;
+void updateDeltaTime();

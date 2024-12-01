@@ -15,7 +15,7 @@ GLfloat playerY = spawnPoint.y;
 GLfloat playerZ = spawnPoint.z;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
-GLfloat playerMovementSpeed = 0.035f;
+GLfloat playerMovementSpeed = 5.0f;
  
 
 Model_3DS wolfplayermodel;
@@ -223,8 +223,8 @@ void updatePlayerRotation() {
 
 void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinCosAngleShift = 0.0f) {
 	// calculate the new x and z positions
-	GLfloat speedX = playerMovementSpeed * speedSign * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
-	GLfloat speedZ = playerMovementSpeed * speedSign * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
+	GLfloat speedX = playerMovementSpeed * speedSign * deltaTime * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
+	GLfloat speedZ = playerMovementSpeed * speedSign * deltaTime * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
 
 	
 	// normalizing the vector 3ashan to prevent speed boost while moving diagonally
@@ -310,7 +310,7 @@ void updatePlayerVerticalMovement() {
 // returns true if player is falling
 bool updateFalling() {
 	// calculate new falling speed
-	playerVerticalSpeed += fallAcceleration;
+	playerVerticalSpeed += fallAcceleration * deltaTime;
 	
 	// check if player is falling in void
 
