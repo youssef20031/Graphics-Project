@@ -11,6 +11,10 @@ bool specialKeyStates[256] = { false }; // Tracks the state of special keys
 
 
 void Keyboard(unsigned char key, int x, int y) {
+
+	if(key== GLUT_KEY_ESCAPE)
+		exit(EXIT_SUCCESS);
+
 	if (gameStatus != LOSE) {
 		switch (key) {
 			// player movement
@@ -66,8 +70,6 @@ void Keyboard(unsigned char key, int x, int y) {
 			keyStates['o'] = true;
 			break;
 
-		case GLUT_KEY_ESCAPE:
-			exit(EXIT_SUCCESS);
 		}
 
 		glutPostRedisplay();
