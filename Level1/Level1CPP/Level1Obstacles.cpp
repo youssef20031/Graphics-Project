@@ -456,12 +456,6 @@ void LoadAssetsL1()
     coins[4]->Load();
     coins[4]->SetPosition(-192.63f, 4.2f, 56.22f);
 
-   /* coins[0] = coin1;
-    coins[1] = coin2;
-    coins[2] = coin3;
-    coins[3] = coin4;
-    coins[4] = coin5;*/
-
 
     // goal
     goal.Load();
