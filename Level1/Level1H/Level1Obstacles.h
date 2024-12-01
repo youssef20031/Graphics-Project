@@ -43,8 +43,7 @@ extern Collectible coin3;
 extern Collectible coin4;
 extern Collectible coin5;
 
-extern int numberOfCoins;
-extern Collectible coins[];
+extern Collectible coins[5];
 
 
 extern Goal goal;

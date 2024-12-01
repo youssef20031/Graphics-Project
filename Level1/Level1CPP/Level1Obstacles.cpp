@@ -25,6 +25,8 @@ Collectible coin3;
 Collectible coin4;
 Collectible coin5;
 
+Collectible coins[5];
+
 Goal goal;
 
 Model_3DS barrel;
@@ -439,8 +441,11 @@ void LoadAssetsL1()
     coin5.Load();
     coin5.SetPosition(-192.63, 4.2, 56.22);
 
-    int numberOfCoins = 5;
-    Collectible coins[] = { coin1,coin2,coin3,coin4,coin5 };
+    coins[0] = coin1;
+    coins[1] = coin2;
+    coins[2] = coin3;
+    coins[3] = coin4;
+    coins[4] = coin5;
 
 
     // goal
