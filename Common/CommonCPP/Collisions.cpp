@@ -42,6 +42,24 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 	{
 		GLfloat* currentObstacle = L1obstacles[i];
 		if (checkCollision(centerX, centerY, centerZ, currentObstacle[0], currentObstacle[1], currentObstacle[2], currentObstacle[3], currentObstacle[4], currentObstacle[5])) {
+			GLfloat high = currentObstacle[2];
+			GLfloat low = currentObstacle[3];
+			if (high < low) {
+				high = low;
+				low = currentObstacle[2];
+			}
+			// player on top of object and platform is moving
+			if (playerY != high && deltaY != 0 && (playerY + playerHeight) >= low) {
+				playerY = high + 0.001f;
+				// update camera as well
+				if (viewMode == FIRST_PERSON) {
+					setFirstPersonCamera();
+				}
+				if (viewMode == THIRD_PERSON) {
+					setThirdPersonCamera();
+				}
+				isPlayerJumping = false;
+			}
 			return true;
 		}
 	}

@@ -5,7 +5,9 @@
 
 
 
-Vector3f spawnPoint(3.07, 0.2, 3.5);
+//Vector3f spawnPoint(3.07, 0.2, 3.5);
+//Vector3f spawnPoint(-138.84, 4.2, 45.34);
+Vector3f spawnPoint(-192.00, 5.3, 56.19);
 int whichCp = 0;
 bool showCheckpointMessage = false;
 float checkpointMessageStartTime = 0.0f;
@@ -342,7 +344,6 @@ bool updateFalling() {
 	// check if there's something under (collision)
 	if (isColliding(0, playerVerticalSpeed, 0)) {
 		playerVerticalSpeed = 0.0f; // set vertical speed to rest
-		isPlayerJumping = false;
 		return false;
 	}
 	else {
