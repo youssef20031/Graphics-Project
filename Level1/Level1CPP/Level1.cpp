@@ -140,6 +140,9 @@ void DisplayL1() {
     coin5.Draw();
 
     torch.Draw();
+    torch2.Draw();
+    torch3.Draw();
+    torch4.Draw();
 
 
 

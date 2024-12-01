@@ -32,6 +32,9 @@ Model_3DS barrel;
 Model_3DS dragon;
 
 Model_3DS torch;
+Model_3DS torch2;
+Model_3DS torch3;
+Model_3DS torch4;
 
 
 // obstacles
@@ -455,17 +458,39 @@ void LoadAssetsL1()
     dragon.pos.z = 70.12;
     dragon.rot.y = 110;
 
+    //torches
+
     torch.Load("models/torch/candle.3ds");
     torch.scale = 0.03;
     torch.pos.x = 0.22;
     torch.pos.y = 1.5;
     torch.pos.z = 15.12;
 
-    //0.22,1,15.12
+    torch2.Load("models/torch/candle.3ds");
+    torch2.scale = 0.03;
+    torch2.pos.x = 5.8;
+    torch2.pos.y = 1.5;
+    torch2.pos.z = 26.18;
+    torch2.rot.y = 180;
+
+    torch3.Load("models/torch/candle.3ds");
+    torch3.scale = 0.03;
+    torch3.pos.x = 0.23;
+    torch3.pos.y = 1.5;
+    torch3.pos.z = 35.9;
+
+    torch4.Load("models/torch/candle.3ds");
+    torch4.scale = 0.03;
+    torch4.pos.x = 0.54;
+    torch4.pos.y = 1.5;
+    torch4.pos.z = 49.88;
+    torch4.rot.y = 90;
+
+
 
     
     
-   
+    
 
 
     //drawSkybox();

@@ -48,6 +48,9 @@ extern Model_3DS barrel;
 extern Model_3DS dragon;
 
 extern Model_3DS torch;
+extern Model_3DS torch2;
+extern Model_3DS torch3;
+extern Model_3DS torch4;
 
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
