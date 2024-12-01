@@ -48,18 +48,23 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 				high = low;
 				low = currentObstacle[2];
 			}
-			// player on top of object and platform is moving
-			if (playerY != high && deltaY != 0 && (playerY + playerHeight) >= low) {
-				playerY = high + 0.001f;
-				// update camera as well
-				if (viewMode == FIRST_PERSON) {
-					setFirstPersonCamera();
+			if (deltaY != 0) {
+				// make player move with the horizontally moving platform
+				handleMovingPlatformHorizontal();
+				// player on top of object and platform is moving
+				if (playerY != high && (playerY + playerHeight) >= low) {
+					playerY = high + 0.001f;
+					// update camera as well
+					if (viewMode == FIRST_PERSON) {
+						setFirstPersonCamera();
+					}
+					if (viewMode == THIRD_PERSON) {
+						setThirdPersonCamera();
+					}
+					isPlayerJumping = false;
 				}
-				if (viewMode == THIRD_PERSON) {
-					setThirdPersonCamera();
-				}
-				isPlayerJumping = false;
 			}
+
 			return true;
 		}
 	}
@@ -85,11 +90,18 @@ void handleAxeCollision() {
 	if (checkAxeCollision(axe, playerX, playerY, playerZ, playerWidth, playerHeight)) {
 		std::cout << "Collision Occured" << std::endl;
 
-
 		playerX = -21.5;
 		playerY = 0.1;
 		playerZ = 48.25;
+	}
+}
 
 
+// Horizontal Moving Platform
+void handleMovingPlatformHorizontal() {
+	// makes the player move with the moving platform
+	if (-228 < playerX && playerX < -203) { //men x=-203 le7ad x=-227
+		GLfloat obstacleCenterX = (L1obstacles[39][0] + L1obstacles[39][1]) / 2;
+		playerX = obstacleCenterX;
 	}
 }
