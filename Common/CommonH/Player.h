@@ -41,6 +41,13 @@ extern GLfloat playerVerticalSpeed;
 extern GLfloat playerVerticalJumpInitialSpeed;
 extern GLfloat fallAcceleration; // e3tebro gravity
 
+//checkpoint
+extern Vector3f spawnPoint;
+
+extern bool atCp1;
+extern bool atCp2;
+extern bool atCp3;
+
 // Function declarations
 void updatePlayerRotation();    // Updates player's body rotation for animation
 void updatePlayerMovement();    // Handles player movement logic
@@ -48,3 +55,4 @@ void updatePlayerVerticalMovement();
 bool updateFalling();
 void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd); // Draw a cuboid
 void drawPlayer();              // Renders the player in the scene
+void updateCheckpoint();

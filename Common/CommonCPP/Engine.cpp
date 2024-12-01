@@ -20,6 +20,10 @@ void updateStates() {
 
 	handleAxeCollision();
 
+	updateCheckpoint();
+	printf("Spawn point: X: %.2f, Y: %.2f, Z: %.2f\n", spawnPoint.x, spawnPoint.y, spawnPoint.z);
+
+
 	glutPostRedisplay();
 }
 

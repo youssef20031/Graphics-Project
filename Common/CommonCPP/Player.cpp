@@ -4,13 +4,19 @@
 #include <algorithm>
 
 
-GLfloat playerX = 3.07;
-GLfloat playerY = 0.2f;
-GLfloat playerZ = 3.5f;
+
+Vector3f spawnPoint(3.07, 0.2, 3.5);
+bool atCp1;
+bool atCp2;
+bool atCp3;
+
+GLfloat playerX = spawnPoint.x;
+GLfloat playerY = spawnPoint.y;
+GLfloat playerZ = spawnPoint.z;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 0.035f;
-Vector3f spawnPoint = (3.07,0.2,3.5);    // didn't use this yet
+ 
 
 Model_3DS wolfplayermodel;
 
@@ -25,7 +31,7 @@ Model_3DS wolfplayermodel;
 #endif
 
 // player rotating animation
-GLfloat playerDirectionRotationFacing = 180.0f; // direction player facing  (270 for starting the game, 180 for stage 2 and 3)
+GLfloat playerDirectionRotationFacing = 270.0f; // direction player facing  (270 for starting the game, 180 for stage 2 and 3)
 GLfloat playerDirectionRotationFacingVertical = 0.0f; // direction player is facing up and down
 GLfloat playerDirectionRotationFacingVerticalMin = -30.0f;
 GLfloat playerDirectionRotationFacingVerticalMax = 30.0f; 
@@ -43,7 +49,16 @@ GLfloat playerVerticalSpeed = 0.0f;
 GLfloat playerVerticalJumpInitialSpeed = 0.012f;
 GLfloat fallAcceleration = -0.00008f; // e3tebro gravity
 
+void updateCheckpoint() {
+	if (playerX>=-27.24&&playerX<=-26.54&&playerZ>=45.15&&playerZ<=51.03) {
+		spawnPoint.x = -21.5;
+		spawnPoint.y = 0.1;
+		spawnPoint.z = 48.25;
+		
+	}
 
+
+}
 void updatePlayerRotation() {
 	// 8 cases
 	if (rotatingForward && rotatingRight) {
@@ -299,9 +314,9 @@ bool updateFalling() {
 
 	if (playerY <= -20.0f) {
 		// return to spawnpoint maslan
-		playerX = -21.5f;
-		playerY = 0.1f;
-		playerZ = 48.25f;
+		playerX = spawnPoint.x;
+		playerY = spawnPoint.y;
+		playerZ = spawnPoint.z;
 		playerVerticalSpeed = 0;
 	}
 	
