@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "Vector3f.h"
 #include "Controls.h"
+#include "Engine.h"
 #include "Player.h"
 #include <glut.h>
 
@@ -42,6 +43,7 @@ void displayCameraCoords();
 void updateCameraMovement();
 void setFirstPersonCamera();
 void setThirdPersonCamera();
+void renderBitmapString(float x, float y, void* font, const char* string);
 
 
 // Camera instance declaration

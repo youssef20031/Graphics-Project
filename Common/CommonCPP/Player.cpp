@@ -1,19 +1,41 @@
 #include "../CommonH/Player.h"
 #include "../CommonH/Camera.h"
+#include "../CommonH/Collisions.h"
+#include <algorithm>
 
-GLfloat playerX = 0.0f;
-GLfloat playerY = 0.2f;
-GLfloat playerZ = 0.0f;
+
+
+Vector3f spawnPoint(3.07, 0.2, 3.5);
+//Vector3f spawnPoint(-138.84, 4.2, 45.34);
+//Vector3f spawnPoint(-192.00, 5.3, 56.19);
+//Vector3f spawnPoint(-138.84, 4.2, 45.34);
+
+int whichCp = 0;
+bool showCheckpointMessage = false;
+float checkpointMessageStartTime = 0.0f;
+
+GLfloat playerX = spawnPoint.x;
+GLfloat playerY = spawnPoint.y;
+GLfloat playerZ = spawnPoint.z;
 GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
-GLfloat playerMovementSpeed = 0.005f;
+GLfloat playerMovementSpeed = 5.0f;
+ 
+
+Model_3DS wolfplayermodel;
+
+// Player spawn point for level 1: (3.07,0.2,3.5)
+// Stage 1: (-21.5,0.1,48.25)
+// Stage 2: (-71.59,0.2,48.18)
+// Stage 3: (-138.84,4.2,45.34)
+// Win Platform: (-231.6,12.56,58.2)
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
 
 // player rotating animation
-GLfloat playerDirectionRotationFacing = 0.0f; // direction player facing
+GLfloat playerDirectionRotationFacing = 270.0f; // direction player facing  (270 for starting the game, 180 for stage 2 and 3)
 GLfloat playerDirectionRotationFacingVertical = 0.0f; // direction player is facing up and down
 GLfloat playerDirectionRotationFacingVerticalMin = -30.0f;
 GLfloat playerDirectionRotationFacingVerticalMax = 30.0f; 
@@ -28,9 +50,57 @@ bool rotatingBack = false;
 // player jump stuff
 bool isPlayerJumping = false;
 GLfloat playerVerticalSpeed = 0.0f;
-GLfloat playerVerticalJumpInitialSpeed = 0.012f;
-GLfloat fallAcceleration = -0.00008f; // e3tebro gravity
+GLfloat playerVerticalJumpInitialSpeed = 0.03f;
+GLfloat fallAcceleration = -0.05f; // e3tebro gravity
 
+void updateCheckpoint() {
+	if ((playerX>=-27.24&&playerX<=-26.54&&playerZ>=45.15&&playerZ<=51.03)&&whichCp==0) {
+		spawnPoint.x = -21.5;
+		spawnPoint.y = 0.1+0.2;
+		spawnPoint.z = 48.25;
+		whichCp = 1;
+		showCheckpointMessage = true;
+		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+		
+		
+	}
+
+	if ((playerX >= -74.37 && playerX <= -74.1 && playerZ >= 42.53 && playerZ <= 52.81) && whichCp == 1) {
+		spawnPoint.x = -71.59;
+		spawnPoint.y = 0.2+0.2;
+		spawnPoint.z = 48.18;
+		whichCp = 2;
+		showCheckpointMessage = true;
+		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+
+		
+		
+
+	}
+
+	if ((playerX >= -139.43 && playerX <= -139.32 && playerZ >= 43.0 && playerZ <= 47.0) && whichCp == 2) {
+		spawnPoint.x = -138.84;
+		spawnPoint.y = 4.2 + 0.2;
+		spawnPoint.z = 45.34;
+		whichCp = 3;
+		showCheckpointMessage = true;
+		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+
+
+
+	}
+
+	
+
+
+}
+
+void updateWinLevel1() {
+	if (playerX>=-235.38&&playerX<=-235.15&&playerZ>=55.28&&playerZ<=59.28) {
+
+		gameStatus = WIN;
+	}
+}
 
 void updatePlayerRotation() {
 	// 8 cases
@@ -193,8 +263,18 @@ void updatePlayerRotation() {
 
 void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinCosAngleShift = 0.0f) {
 	// calculate the new x and z positions
-	GLfloat speedX = playerMovementSpeed * speedSign * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
-	GLfloat speedZ = playerMovementSpeed * speedSign * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
+	GLfloat speedX = playerMovementSpeed * speedSign * deltaTime * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
+	GLfloat speedZ = playerMovementSpeed * speedSign * deltaTime * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
+
+	
+	// normalizing the vector 3ashan to prevent speed boost while moving diagonally
+	GLfloat magnitude = sqrt(speedX * speedX + speedZ * speedZ);
+
+	if (magnitude > 0.0f && magnitude > playerMovementSpeed) {
+		speedX = speedX / magnitude * playerMovementSpeed;
+		speedZ = speedZ / magnitude * playerMovementSpeed;
+	}
+
 	if (!isColliding(speedX, 0, 0)) {
 		playerX += speedX;
 	}
@@ -202,6 +282,7 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 		playerZ += speedZ;
 	}
 }
+
 
 void updatePlayerMovement() {
 
@@ -269,21 +350,22 @@ void updatePlayerVerticalMovement() {
 // returns true if player is falling
 bool updateFalling() {
 	// calculate new falling speed
-	playerVerticalSpeed += fallAcceleration;
+	playerVerticalSpeed += fallAcceleration * deltaTime;
 	
 	// check if player is falling in void
+
+
 	if (playerY <= -20.0f) {
 		// return to spawnpoint maslan
-		playerX = 0.0f;
-		playerY = 0.11f;
-		playerZ = 0.0f;
+		playerX = spawnPoint.x;
+		playerY = spawnPoint.y;
+		playerZ = spawnPoint.z;
 		playerVerticalSpeed = 0;
 	}
 	
 	// check if there's something under (collision)
 	if (isColliding(0, playerVerticalSpeed, 0)) {
 		playerVerticalSpeed = 0.0f; // set vertical speed to rest
-		isPlayerJumping = false;
 		return false;
 	}
 	else {
@@ -292,44 +374,6 @@ bool updateFalling() {
 		return true;
 	}
 }
-// checks if player's new center coords overlaps some obstacle's start and end coords
-bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat x2End, GLfloat y2Start, GLfloat y2End, GLfloat z2Start, GLfloat z2End) {
-	GLfloat playerXStart = x1 - playerWidth / 2;
-	GLfloat playerXEnd = x1 + playerWidth / 2;
-	GLfloat playerYStart = y1;
-	GLfloat playerYEnd = y1 + playerHeight;
-	GLfloat playerZStart = z1 - playerWidth / 2;
-	GLfloat playerZEnd = z1 + playerWidth / 2;
-	bool xOverlapping = ((x2Start <= playerXStart && playerXStart <= x2End) ||
-		(x2Start <= playerXEnd && playerXEnd <= x2End) ||
-		(playerXStart <= x2Start && x2Start <= playerXEnd) ||
-		(playerXStart <= x2End && x2End <= playerXEnd));
-	bool yOverlapping = ((y2Start <= playerYStart && playerYStart <= y2End) ||
-		(y2Start <= playerYEnd && playerYEnd <= y2End) ||
-		(playerYStart <= y2Start && y2Start <= playerYEnd) ||
-		(playerYStart <= y2End && y2End <= playerYEnd));
-	bool zOverlapping = ((z2Start <= playerZStart && playerZStart <= z2End) ||
-		(z2Start <= playerZEnd && playerZEnd <= z2End) ||
-		(playerZStart <= z2Start && z2Start <= playerZEnd) ||
-		(playerZStart <= z2End && z2End <= playerZEnd));
-	return xOverlapping && yOverlapping && zOverlapping;
-}
-// checks if player's new change in position would collide (overlap) any of the obstacles
-bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
-	// calculate new coords
-	GLfloat centerX = playerX + deltaX;
-	GLfloat centerY = playerY + deltaY;
-	GLfloat centerZ = playerZ + deltaZ;
-	for (int i = 0; i < numberOfObstacles; i++)
-	{
-		GLfloat* currentObstacle = obstacles[i];
-		if (checkCollision(centerX, centerY, centerZ, currentObstacle[0], currentObstacle[1], currentObstacle[2], currentObstacle[3], currentObstacle[4], currentObstacle[5])) {
-			return true;
-		}
-	}
-	return false;
-}
-
 
 void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
 	glPushMatrix();
@@ -351,32 +395,23 @@ void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double z
 	glPopMatrix();
 }
 
+
 void drawPlayer() {
 	glPushMatrix();
 
-	// Translate to the player's position in the world
 	glTranslatef(playerX, playerY, playerZ);
 
-	// rotate player's head independently of his body
-	glPushMatrix();
-	glTranslatef(0, playerHeight * 7 / 8, 0);
-	glRotatef(playerDirectionRotationFacing, 0.0, 1.0, 0.0);
-	glRotatef(playerDirectionRotationFacingVertical, 0.0, 0.0, 1.0);
-	glColor3f(0.94f, 0.80f, 0.72f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, playerHeight * -1 / 8, playerHeight * 1 / 8, -playerWidth / 2, playerWidth / 2);
-	glPopMatrix();
+	glRotatef(playerDirectionRotationBody, 0.0f, 1.0f, 0.0f);
 
-	// rotate whole player body except for his head (camera bardo)
-	glRotatef(playerDirectionRotationBody, 0.0, 1.0, 0.0);
+	glScalef(wolfplayermodel.scale, wolfplayermodel.scale, wolfplayermodel.scale);
+	
 
-	glPushMatrix();
-	glColor3f(1.0f, 0.0f, 0.0f);
-	drawCuboid(-playerWidth / 2, playerWidth / 2, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
-	glColor3f(1.0f, 0.843f, 0.0f);
-	drawCuboid(playerWidth / 2, playerWidth / 2 + 0.001f, 0.0f, playerHeight * 3 / 4, -playerWidth / 2, playerWidth / 2);
-	glPopMatrix();
+	
+	 glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+
+	wolfplayermodel.Draw();
+
 	glPopMatrix();
 }
-
 
 

@@ -8,6 +8,8 @@
 #include <glut.h> // Include OpenGL and GLUT headers
 
 
+//Axe axe1;
+
 // Variable declarations
 extern int WIDTH;
 extern int HEIGHT;
@@ -17,6 +19,7 @@ extern char title[];
 extern int cameraZoom;
 extern Model_3DS model_house;
 extern Model_3DS model_tree;
+//extern Model_3DS model_axe;
 extern GLTexture tex_ground;
 
 // Vector class declaration
@@ -38,6 +41,6 @@ void myKeyboard(unsigned char button, int x, int y);
 void myMotion(int x, int y);
 void myMouse(int button, int state, int x, int y);
 void myReshape(int w, int h);
-void LoadAssets();
+//void LoadAssets();
 
 #endif // OPENGL_MESH_LOADER_H

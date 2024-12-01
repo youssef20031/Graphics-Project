@@ -2,6 +2,7 @@
 #pragma once
 
 #include <glut.h>
+#include "../../Level1/Level1H/Level1.h"
 
 // Constants
 #define WIDTH 800  
@@ -32,3 +33,7 @@ void Special(int key, int x, int y);
 void SpecialUp(int key, int x, int y);
 void updateStates();
 void drawAxis();
+
+extern float lastFrameTime;
+extern float deltaTime;
+void updateDeltaTime();

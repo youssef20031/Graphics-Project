@@ -34,6 +34,9 @@ int cameraZoom = 0;
 // Model Variables
 Model_3DS model_house;
 Model_3DS model_tree;
+//Model_3DS model_axe;
+
+//model3ds wolf
 
 // Textures
 GLTexture tex_ground;
@@ -189,6 +192,15 @@ void myDisplay(void)
 	glPopMatrix();
 
 
+	// The Axe
+
+	/*glPushMatrix();
+	glRotatef(90.f, 1, 0, 0);
+	model_axe.Draw();
+	glPopMatrix();*/
+
+	//wolf.draw
+
 	//sky box
 	glPushMatrix();
 
@@ -308,10 +320,11 @@ void myReshape(int w, int h)
 void LoadAssets()
 {
 	// Loading Model files
+	
 	model_house.Load("Models/house/house.3DS");
 	model_tree.Load("Models/tree/Tree1.3ds");
 
 	// Loading texture files
-	tex_ground.Load("Textures/ground.bmp");
+	tex_ground.Load("Textures/rockwall.bmp");
 	loadBMP(&tex, "Textures/blu-sky-3.bmp", true);
 }

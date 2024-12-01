@@ -5,9 +5,13 @@
 #include "Controls.h"
 #include "Camera.h"
 #include "../../Level1/Level1H/PlaygroundObstacles.h"
+#include "../../Level1/Level1H/Level1Obstacles.h"
+#include "../../Common/CommonH/Engine.h"
 #include <glut.h>
 
 #pragma once
+
+extern Model_3DS wolfplayermodel;
 
 // Player properties
 extern GLfloat playerX;
@@ -38,12 +42,19 @@ extern GLfloat playerVerticalSpeed;
 extern GLfloat playerVerticalJumpInitialSpeed;
 extern GLfloat fallAcceleration; // e3tebro gravity
 
+//checkpoint
+extern Vector3f spawnPoint;
+extern bool showCheckpointMessage;
+extern float checkpointMessageStartTime;
+
+extern int whichCp;
+
 // Function declarations
 void updatePlayerRotation();    // Updates player's body rotation for animation
 void updatePlayerMovement();    // Handles player movement logic
 void updatePlayerVerticalMovement();
 bool updateFalling();
-bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2Start, GLfloat x2End, GLfloat y2Start, GLfloat y2End, GLfloat z2Start, GLfloat z2End);
-bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
 void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd); // Draw a cuboid
 void drawPlayer();              // Renders the player in the scene
+void updateCheckpoint();
+void updateWinLevel1();
