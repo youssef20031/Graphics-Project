@@ -47,7 +47,7 @@ bool rotatingBack = false;
 bool isPlayerJumping = false;
 GLfloat playerVerticalSpeed = 0.0f;
 GLfloat playerVerticalJumpInitialSpeed = 0.05f;
-GLfloat fallAcceleration = -0.008f; // e3tebro gravity
+GLfloat fallAcceleration = -0.05f; // e3tebro gravity
 
 void updateCheckpoint() {
 	if (playerX>=-27.24&&playerX<=-26.54&&playerZ>=45.15&&playerZ<=51.03) {
