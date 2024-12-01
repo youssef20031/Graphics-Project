@@ -283,7 +283,7 @@ void DisplayL1() {
     flag3.Draw();
     
     
-   
+    
     coin1.Draw(); 
     coin2.Draw();
     coin3.Draw();

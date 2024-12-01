@@ -1,6 +1,8 @@
 #include "../CommonH/Collectible.h"
 
+#include "iostream"
 #include <glut.h>
+
 
 Collectible::Collectible() {
     posX = 0.0f;
@@ -46,8 +48,9 @@ void Collectible::SetScale(float s) {
 
 void Collectible::Draw() {
 
-    if (isCollected)
+    if (isCollected) {
         return;
+    }
 
     glPushMatrix();
     rotY -= rotationSpeed * rotationDirection;

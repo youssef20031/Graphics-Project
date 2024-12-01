@@ -25,7 +25,13 @@ Collectible coin3;
 Collectible coin4;
 Collectible coin5;
 
-Collectible coins[5];
+Collectible* coins[5] = {
+    &coin1,
+    &coin2,
+    &coin3,
+    &coin4,
+    &coin5
+};
 
 Goal goal;
 
@@ -426,26 +432,26 @@ void LoadAssetsL1()
     // collectibles
 
 
-    coin1.Load();
-    coin1.SetPosition(-178.21,4.3,37.28);
+    coins[0]->Load();
+    coins[0]->SetPosition(-178.21f, 4.3f, 37.28f);
 
-    coin2.Load();
-    coin2.SetPosition(-92.07,0.4,46.73);
+    coins[1]->Load();
+    coins[1]->SetPosition(-92.07f, 0.4f, 46.73f);
 
-    coin3.Load();
-    coin3.SetPosition(4.64, 0.2, 17.19);
+    coins[2]->Load();
+    coins[2]->SetPosition(4.64f, 0.2f, 17.19f);
 
-    coin4.Load();
-    coin4.SetPosition(-45.97, 0.3, 48.12);
+    coins[3]->Load();
+    coins[3]->SetPosition(-45.97f, 0.3f, 48.12f);
 
-    coin5.Load();
-    coin5.SetPosition(-192.63, 4.2, 56.22);
+    coins[4]->Load();
+    coins[4]->SetPosition(-192.63f, 4.2f, 56.22f);
 
-    coins[0] = coin1;
+   /* coins[0] = coin1;
     coins[1] = coin2;
     coins[2] = coin3;
     coins[3] = coin4;
-    coins[4] = coin5;
+    coins[4] = coin5;*/
 
 
     // goal
