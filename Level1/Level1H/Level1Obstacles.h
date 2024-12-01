@@ -31,6 +31,7 @@ extern Cpflag flag2;
 extern Cpflag flag3;
 
 extern GLTexture rocktex;
+extern GLTexture lavatex;
 
 extern GLuint texL1;
 
@@ -48,6 +49,7 @@ extern Model_3DS dragon;
 
 
  void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
+ void drawLavaCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();
  void drawSkybox();
 

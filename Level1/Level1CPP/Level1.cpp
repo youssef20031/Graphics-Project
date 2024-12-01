@@ -47,6 +47,7 @@ void drawGradientSky() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
 }
+
 void DisplayL1() {
  
     //drawSkybox();
@@ -101,8 +102,13 @@ void DisplayL1() {
             L1currentObstacle[1] = -216.0f + horizontalOffset; 
         }
 
+        if (i == 50) {
+            drawLavaCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
+                L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
+       }
+
         // Draw the obstacle
-        if (!(i>=45&&i<=48))   // invisible collisions for the checkpoints and other models
+        if (!(i>=45&&i<=48)&&i!=50)   // invisible collisions for the checkpoints and other models
         drawTexturedCuboid(L1currentObstacle[0], L1currentObstacle[1], L1currentObstacle[2],
             L1currentObstacle[3], L1currentObstacle[4], L1currentObstacle[5]);
     }

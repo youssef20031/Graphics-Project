@@ -12,6 +12,7 @@ Axe axe4;
 Axe axe5;
 
 GLTexture rocktex;
+GLTexture lavatex;
 GLuint texL1;
 
 Cpflag flag1;
@@ -132,6 +133,10 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
     { -60.69f, -97.32, -11.1f, -50.5f, 50.41f, 80.45f },
 
+
+    // lava floor i=50
+   {-300,80,-21,-23,100,-100}
+
     
 
 
@@ -172,6 +177,89 @@ void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, 
     double textureScaleX = scaleX*1.3;     //can be masalan 1.5,1.2,1.8  -- experiment with values
     double textureScaleY = scaleY*1.7;
     double textureScaleZ = scaleZ*1.2; 
+
+    // Front face (zEnd)
+    glNormal3f(0, 0, 1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Back face (zStart)
+    glNormal3f(0, 0, -1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Left face (xStart)
+    glNormal3f(-1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Right face (xEnd)
+    glNormal3f(1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
+
+    // Top face (yEnd)
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Bottom face (yStart)
+    glNormal3f(0, -1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, -0.5, 0.5);
+
+    glEnd();
+
+    glPopMatrix();
+
+    glEnable(GL_LIGHTING);
+
+    glColor3f(1, 1, 1);
+}
+
+
+void drawLavaCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
+    glDisable(GL_LIGHTING);
+
+    glColor3f(0.6, 0.6, 0.6);
+
+    glEnable(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, lavatex.texture[0]);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glPushMatrix();
+
+    double centerX = (xStart + xEnd) / 2.0;
+    double centerY = (yStart + yEnd) / 2.0;
+    double centerZ = (zStart + zEnd) / 2.0;
+
+    double scaleX = fabs(xEnd - xStart);
+    double scaleY = fabs(yEnd - yStart);
+    double scaleZ = fabs(zEnd - zStart);
+
+    glTranslated(centerX, centerY, centerZ);
+    glScaled(scaleX, scaleY, scaleZ);
+
+    glBegin(GL_QUADS);
+
+    double textureScaleX = scaleX * 1.3;     //can be masalan 1.5,1.2,1.8  -- experiment with values
+    double textureScaleY = scaleY * 1.7;
+    double textureScaleZ = scaleZ * 1.2;
 
     // Front face (zEnd)
     glNormal3f(0, 0, 1);
@@ -304,6 +392,7 @@ void LoadAssetsL1()
     // Textures
 
     rocktex.Load("Textures/rockwall3.bmp");
+    lavatex.Load("Textures/lava.bmp");
 
     // Player model
 
