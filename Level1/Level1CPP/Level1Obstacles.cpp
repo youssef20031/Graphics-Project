@@ -423,6 +423,7 @@ void LoadAssetsL1()
 
     // collectibles
 
+
     coin1.Load();
     coin1.SetPosition(-178.21,4.3,37.28);
 

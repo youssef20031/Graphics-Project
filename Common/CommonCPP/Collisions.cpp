@@ -105,3 +105,20 @@ void handleMovingPlatformHorizontal() {
 		playerX = obstacleCenterX;
 	}
 }
+
+
+//// Collectible Collision
+void handleCoinCollision(Collectible& coin) {
+	float tolerance = 0.5f;
+
+	if (!coin.IsCollected() &&
+		fabs(playerX - coin.GetPosX()) <= tolerance &&
+		fabs(playerY - coin.GetPosY()) <= tolerance &&
+		fabs(playerZ - coin.GetPosZ()) <= tolerance) {
+
+		coin.Collect();
+
+		scoreL1 += 50;
+
+	}
+}

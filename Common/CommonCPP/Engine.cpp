@@ -36,6 +36,9 @@ void updateStates() {
 
 	updateDeltaTime();
 
+	for (int i = 0; i < numberOfCoins; i++) {
+		handleCoinCollision(coins[i]);
+	}
 
 	glutPostRedisplay();
 }

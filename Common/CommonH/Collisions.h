@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "../../Level1/Level1H/Axe.h"
-
+#include "../CommonH/Collectible.h"
 #include <glut.h>
 
 
@@ -19,3 +19,5 @@ void handleAxeCollision();
 bool checkAxeCollision(Axe& axe, GLfloat playerX, GLfloat playerY, GLfloat playerZ, GLfloat playerWidth, GLfloat playerHeight);
 
 void handleMovingPlatformHorizontal();
+
+void handleCoinCollision(Collectible& coin);

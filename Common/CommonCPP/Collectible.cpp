@@ -10,6 +10,7 @@ Collectible::Collectible() {
     rotY = 0.0f;
     rotZ = 0.0f;
     scale = 0.3f;
+    isCollected = false;
 
     rotationSpeed = 0.5f;
     maxRotation = 90.0f;
@@ -45,7 +46,8 @@ void Collectible::SetScale(float s) {
 
 void Collectible::Draw() {
 
-
+    if (isCollected)
+        return;
 
     glPushMatrix();
     rotY -= rotationSpeed * rotationDirection;

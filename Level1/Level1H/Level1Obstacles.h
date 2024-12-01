@@ -35,6 +35,8 @@ extern GLTexture lavatex;
 
 extern GLuint texL1;
 
+
+
 extern Collectible coin1;
 extern Collectible coin2;
 extern Collectible coin3;

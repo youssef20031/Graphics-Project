@@ -63,6 +63,9 @@
     <ClCompile Include="Common\CommonCPP\Collisions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\CommonCPP\Collectible.cpp" />
+    <ClCompile Include="Common\CommonCPP\Cpflag.cpp" />
+    <ClCompile Include="Common\CommonCPP\Goal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLTexture.h">
@@ -111,6 +114,11 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\CommonH\Collisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\CommonH\Cpflag.h" />
+    <ClInclude Include="Common\CommonH\Goal.h" />
+    <ClInclude Include="Common\CommonH\Collectible.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

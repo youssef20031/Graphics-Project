@@ -13,6 +13,7 @@ public:
     float maxRotation;
     float minRotation;
     int rotationDirection;
+    bool isCollected;
 
     Collectible();
 
@@ -30,6 +31,8 @@ public:
     float GetRotX() const { return rotX; }
     float GetRotY() const { return rotY; }
     float GetRotZ() const { return rotZ; }
+    bool IsCollected() const { return isCollected; }
+    void Collect() { isCollected = true; }
 
 
     void Collectible::SetScale(float s);
