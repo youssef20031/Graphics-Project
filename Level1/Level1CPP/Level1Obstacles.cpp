@@ -31,6 +31,9 @@ Model_3DS barrel;
 
 Model_3DS dragon;
 
+Model_3DS torch;
+
+
 // obstacles
 GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
@@ -451,6 +454,14 @@ void LoadAssetsL1()
     dragon.pos.y = 0.2;
     dragon.pos.z = 70.12;
     dragon.rot.y = 110;
+
+    torch.Load("models/torch/candle.3ds");
+    torch.scale = 0.03;
+    torch.pos.x = 0.22;
+    torch.pos.y = 1.5;
+    torch.pos.z = 15.12;
+
+    //0.22,1,15.12
 
     
     

@@ -139,6 +139,8 @@ void DisplayL1() {
     coin4.Draw();
     coin5.Draw();
 
+    torch.Draw();
+
 
 
     // this is because sometimes the model for some reason messes with the skybox
