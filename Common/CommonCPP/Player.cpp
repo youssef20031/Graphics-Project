@@ -5,9 +5,11 @@
 
 
 
-//Vector3f spawnPoint(3.07, 0.2, 3.5);
+Vector3f spawnPoint(3.07, 0.2, 3.5);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
-Vector3f spawnPoint(-192.00, 5.3, 56.19);
+//Vector3f spawnPoint(-192.00, 5.3, 56.19);
+//Vector3f spawnPoint(-138.84, 4.2, 45.34);
+
 int whichCp = 0;
 bool showCheckpointMessage = false;
 float checkpointMessageStartTime = 0.0f;
@@ -54,7 +56,7 @@ GLfloat fallAcceleration = -0.05f; // e3tebro gravity
 void updateCheckpoint() {
 	if ((playerX>=-27.24&&playerX<=-26.54&&playerZ>=45.15&&playerZ<=51.03)&&whichCp==0) {
 		spawnPoint.x = -21.5;
-		spawnPoint.y = 0.1;
+		spawnPoint.y = 0.1+0.2;
 		spawnPoint.z = 48.25;
 		whichCp = 1;
 		showCheckpointMessage = true;
@@ -65,7 +67,7 @@ void updateCheckpoint() {
 
 	if ((playerX >= -74.37 && playerX <= -74.1 && playerZ >= 42.53 && playerZ <= 52.81) && whichCp == 1) {
 		spawnPoint.x = -71.59;
-		spawnPoint.y = 0.2;
+		spawnPoint.y = 0.2+0.2;
 		spawnPoint.z = 48.18;
 		whichCp = 2;
 		showCheckpointMessage = true;
@@ -73,6 +75,18 @@ void updateCheckpoint() {
 
 		
 		
+
+	}
+
+	if ((playerX >= -139.43 && playerX <= -139.32 && playerZ >= 43.0 && playerZ <= 47.0) && whichCp == 2) {
+		spawnPoint.x = -138.84;
+		spawnPoint.y = 4.2 + 0.2;
+		spawnPoint.z = 45.34;
+		whichCp = 3;
+		showCheckpointMessage = true;
+		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+
+
 
 	}
 
