@@ -36,7 +36,7 @@ void updateStates() {
 
 	updateDeltaTime();
 
-	for (int i = 0; i < L1numberOfObstacles; i++) {
+	for (int i = 0; i < 5; i++) {
 		handleCoinCollision(coins[i]);
 	}
 
