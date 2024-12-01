@@ -15,7 +15,7 @@ void Keyboard(unsigned char key, int x, int y) {
 	if(key== GLUT_KEY_ESCAPE)
 		exit(EXIT_SUCCESS);
 
-	if (gameStatus != LOSE) {
+	if (gameStatus == PLAYING) {
 		switch (key) {
 			// player movement
 		case 'w':

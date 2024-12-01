@@ -32,6 +32,8 @@ void updateStates() {
 
 	updateCheckpoint();
 
+	updateWinLevel1();
+
 	updateDeltaTime();
 
 

@@ -57,3 +57,4 @@ bool updateFalling();
 void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd); // Draw a cuboid
 void drawPlayer();              // Renders the player in the scene
 void updateCheckpoint();
+void updateWinLevel1();

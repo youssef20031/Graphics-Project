@@ -14,7 +14,7 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
-int timerL1=900;
+int timerL1=200;
 int scoreL1=0;
 
 
