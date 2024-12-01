@@ -12,6 +12,9 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
+int timerL1=200;
+int scoreL1=0;
+
 enum GameStatus {PLAYING,WIN,LOSE};
 
 void drawHUD() {
@@ -23,9 +26,18 @@ void drawHUD() {
     glPushMatrix();
     glLoadIdentity();
     glDisable(GL_LIGHTING);
-    glColor3f(0.0f, 0.0f, 0.0f);
+    glColor3f(1.0f, 1.0f, 1.0f);
 
-    renderBitmapString(350.0f, 400.0f, GLUT_BITMAP_HELVETICA_18, "Hello there!");
+
+   // render the timer
+    char timerPos[100];
+    snprintf(timerPos, sizeof(timerPos), "Time Left: %i", timerL1);
+    renderBitmapString(550.0f, 450.0f, GLUT_BITMAP_HELVETICA_18, timerPos);
+
+    // render the score
+    char scorePos[100];
+    snprintf(scorePos, sizeof(scorePos), "Score: %i", scoreL1);
+    renderBitmapString(550.0f, 430.0f, GLUT_BITMAP_HELVETICA_18, scorePos);
 
     glEnable(GL_LIGHTING);
     glMatrixMode(GL_PROJECTION);

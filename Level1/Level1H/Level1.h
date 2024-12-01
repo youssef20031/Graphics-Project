@@ -20,6 +20,8 @@
 
 
 extern enum GameStatus;
+extern int timerL1;
+extern int scoreL1;
 
 
 
