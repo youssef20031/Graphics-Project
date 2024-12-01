@@ -31,7 +31,6 @@ void updateStates() {
 	handleAxeCollision();
 
 	updateCheckpoint();
-	printf("Spawn point: X: %.2f, Y: %.2f, Z: %.2f\n", spawnPoint.x, spawnPoint.y, spawnPoint.z);
 
 	updateDeltaTime();
 
@@ -137,7 +136,7 @@ void Level1Main(int argc, char** argv) {
 	glutInitWindowPosition(50, 50);
 
 	glutIdleFunc(updateStates);
-	
+	glutTimerFunc(1000, updateTimer, 0);
 	glutCreateWindow("Level 1");
 	glutDisplayFunc(DisplayL1);
 	glutKeyboardFunc(Keyboard);

@@ -1,6 +1,7 @@
 
 #include "../CommonH/Controls.h"
 #include "../CommonH/Camera.h"
+#include "../../Level1/Level1H/Level1.h"
 #include <glut.h>
 
 #define GLUT_KEY_ESCAPE 27
@@ -10,65 +11,67 @@ bool specialKeyStates[256] = { false }; // Tracks the state of special keys
 
 
 void Keyboard(unsigned char key, int x, int y) {
-	switch (key) {
-		// player movement
-	case 'w':
-		keyStates['w'] = true;
-		break;
-	case 's':
-		keyStates['s'] = true;
-		break;
-	case 'a':
-		keyStates['a'] = true;
-		break;
-	case 'd':
-		keyStates['d'] = true;
-		break;
-	case ' ':
-		keyStates[' '] = true;
-		break;
+	if (gameStatus != LOSE) {
+		switch (key) {
+			// player movement
+		case 'w':
+			keyStates['w'] = true;
+			break;
+		case 's':
+			keyStates['s'] = true;
+			break;
+		case 'a':
+			keyStates['a'] = true;
+			break;
+		case 'd':
+			keyStates['d'] = true;
+			break;
+		case ' ':
+			keyStates[' '] = true;
+			break;
 
-		// camera states
-	case '1':
-		printf("First Person View Active\n");
-		viewMode = FIRST_PERSON;
-		setFirstPersonCamera();
-		break;
-	case '2':
-		printf("Third Person View Active\n");
-		viewMode = THIRD_PERSON;
-		setThirdPersonCamera();
-		break;
-	case '3':
-		printf("Free View Active\n");
-		viewMode = FREE;
-		break;
+			// camera states
+		case '1':
+			printf("First Person View Active\n");
+			viewMode = FIRST_PERSON;
+			setFirstPersonCamera();
+			break;
+		case '2':
+			printf("Third Person View Active\n");
+			viewMode = THIRD_PERSON;
+			setThirdPersonCamera();
+			break;
+		case '3':
+			printf("Free View Active\n");
+			viewMode = FREE;
+			break;
 
-		// camera movement
-	case 'i':
-		keyStates['i'] = true;
-		break;
-	case 'k':
-		keyStates['k'] = true;
-		break;
-	case 'j':
-		keyStates['j'] = true;
-		break;
-	case 'l':
-		keyStates['l'] = true;
-		break;
-	case 'u':
-		keyStates['u'] = true;
-		break;
-	case 'o':
-		keyStates['o'] = true;
-		break;
+			// camera movement
+		case 'i':
+			keyStates['i'] = true;
+			break;
+		case 'k':
+			keyStates['k'] = true;
+			break;
+		case 'j':
+			keyStates['j'] = true;
+			break;
+		case 'l':
+			keyStates['l'] = true;
+			break;
+		case 'u':
+			keyStates['u'] = true;
+			break;
+		case 'o':
+			keyStates['o'] = true;
+			break;
 
-	case GLUT_KEY_ESCAPE:
-		exit(EXIT_SUCCESS);
+		case GLUT_KEY_ESCAPE:
+			exit(EXIT_SUCCESS);
+		}
+
+		glutPostRedisplay();
 	}
-
-	glutPostRedisplay();
 }
 void KeyboardUp(unsigned char key, int x, int y) {
 	switch (key) {

@@ -6,16 +6,61 @@
 
 float M_PI = 3.14;
 
+GameStatus gameStatus = PLAYING;
+
 
 float platformVisibilityTimer = 0.0f;
 
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
-int timerL1=200;
+int timerL1=10;
 int scoreL1=0;
 
-enum GameStatus {PLAYING,WIN,LOSE};
+
+
+void updateTimer(int value){
+    if (timerL1 > 0) {
+        timerL1--;
+        glutTimerFunc(1000, updateTimer, 0);
+    }
+    else {
+        gameStatus = LOSE;
+    }
+
+   
+}
+
+void drawGameOverScreen() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, 640, 0, 480);
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    glDisable(GL_LIGHTING);
+    glColor3f(1.0f, 0.0f, 0.0f);
+
+    renderBitmapString(270.0f, 300.0f, GLUT_BITMAP_TIMES_ROMAN_24, "Game Over");
+
+    renderBitmapString(260.0f, 250.0f, GLUT_BITMAP_HELVETICA_18, "You ran out of time!");
+
+    glEnable(GL_LIGHTING);
+
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+
+    glMatrixMode(GL_MODELVIEW);
+    glFlush();
+    glutSwapBuffers();
+}
+
 
 void drawHUD() {
     glMatrixMode(GL_PROJECTION);
@@ -105,6 +150,11 @@ void renderCheckpointMessage(const char* message) {
 
 
 void DisplayL1() {
+
+    if (gameStatus == LOSE) {
+        drawGameOverScreen();
+        return;
+    }
  
     //drawSkybox();
 	setupCamera();

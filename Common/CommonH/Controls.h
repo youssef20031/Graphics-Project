@@ -1,5 +1,6 @@
 #pragma once
 
+
 // Track the state of normal keys
 extern bool keyStates[256];
 

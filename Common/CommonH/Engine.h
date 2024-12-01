@@ -2,6 +2,7 @@
 #pragma once
 
 #include <glut.h>
+#include "../../Level1/Level1H/Level1.h"
 
 // Constants
 #define WIDTH 800  
