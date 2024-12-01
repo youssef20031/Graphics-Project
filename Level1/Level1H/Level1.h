@@ -24,8 +24,6 @@ extern GameStatus gameStatus;
 extern int timerL1;
 extern int scoreL1;
 
-extern int numberOfCoins;
-extern Collectible coins[];
 
 
 // Lighting setup functions

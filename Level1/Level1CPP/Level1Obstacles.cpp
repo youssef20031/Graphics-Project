@@ -439,6 +439,9 @@ void LoadAssetsL1()
     coin5.Load();
     coin5.SetPosition(-192.63, 4.2, 56.22);
 
+    int numberOfCoins = 5;
+    Collectible coins[] = { coin1,coin2,coin3,coin4,coin5 };
+
 
     // goal
     goal.Load();

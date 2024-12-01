@@ -289,8 +289,7 @@ void DisplayL1() {
     coin5.Draw();
 
 
-    int numberOfCoins = 5;
-    Collectible coins[] = { coin1,coin2,coin3,coin4,coin5 };
+    
 
     torch.Draw();
     torch2.Draw();

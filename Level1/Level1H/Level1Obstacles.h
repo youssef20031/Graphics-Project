@@ -43,6 +43,10 @@ extern Collectible coin3;
 extern Collectible coin4;
 extern Collectible coin5;
 
+extern int numberOfCoins;
+extern Collectible coins[];
+
+
 extern Goal goal;
 
 extern Model_3DS barrel;
