@@ -72,30 +72,23 @@ void drawGradientSky() {
 
 
 void renderCheckpointMessage(const char* message) {
-    glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_CURRENT_BIT | GL_TRANSFORM_BIT);
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    gluOrtho2D(0.0, 800.0, 0.0, 600.0);  
-
+    gluOrtho2D(0, 640, 0, 480);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-
-    glDisable(GL_DEPTH_TEST);
     glDisable(GL_LIGHTING);
+    glColor3f(1.0f, 1.0f, 1.0f);
 
-    glColor3f(1.0f, 1.0f, 1.0f);  
-    renderBitmapString(350.0f, 550.0f, GLUT_BITMAP_HELVETICA_18, message);  
+    renderBitmapString(260.0f, 450.0f, GLUT_BITMAP_HELVETICA_18, message);
 
     glEnable(GL_LIGHTING);
-    glEnable(GL_DEPTH_TEST);
-
-    glPopMatrix();
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
-    glPopAttrib();
+    glPopMatrix();
 }
 
 
@@ -213,7 +206,7 @@ void DisplayL1() {
 
     if (showCheckpointMessage) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-        if (currentTime - checkpointMessageStartTime < 0.8f) {
+        if (currentTime - checkpointMessageStartTime < 3.0f) {
             renderCheckpointMessage("Checkpoint Reached!");
         }
         else {

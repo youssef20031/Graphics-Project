@@ -91,7 +91,7 @@ void handleAxeCollision() {
 		std::cout << "Collision Occured" << std::endl;
 
 		playerX = -21.5;
-		playerY = 0.1;
+		playerY = 0.1+0.2;
 		playerZ = 48.25;
 	}
 }
