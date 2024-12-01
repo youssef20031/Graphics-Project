@@ -102,9 +102,9 @@ bool checkAxeCollision(Axe& axe) {
 void handleAxeCollision(Axe& axe) {
 	std::cout << "Collision Occured" << std::endl;
 	if (checkAxeCollision(axe)) {
-		playerX = -21.5;
-		playerY = 0.1 + 0.2;
-		playerZ = 48.25;
+		playerX = spawnPoint.x;
+		playerY = spawnPoint.y;
+		playerZ = spawnPoint.z;
 	}
 }
 
