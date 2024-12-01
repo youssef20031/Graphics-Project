@@ -102,7 +102,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
     { -122.45, -123.7f, 3.7f, 4.1f, 42.8f, 43.7f }, // platform 10
     { -127.45, -128.7f, 3.7f, 4.1f, 42.8f, 43.7f }, // platform 11
-    { -135.36, -150.35f, 4.1f, 4.2f, 42.87f, 47.44f }, // stage 2 exit ground
+    { -133.36, -150.35f, 4.1f, 4.2f, 42.87f, 47.44f }, // stage 2 exit ground
 
 
     // INVISIBLE PLATFORM SECTION (STAGE 3)
