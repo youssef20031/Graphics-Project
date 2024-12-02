@@ -17,6 +17,11 @@ Goal::Goal() {
     minRotation = -90.0f;
     rotationDirection = 1;
 
+    minScale = 0.2f;   
+    maxScale = 0.4f;    
+    scaleSpeed = 0.002f; 
+    scalingDirection = 1;
+
 }
 
 
@@ -47,21 +52,22 @@ void Goal::SetScale(float s) {
 void Goal::Draw() {
     glPushMatrix();
 
-    rotY += rotationSpeed * rotationDirection; 
+    model.rot.y = 90;
+    scale += scaleSpeed * scalingDirection;
 
-    float radius = 1.0f;
-    float angleInRadians = rotY * (3.14159265f / 180.0f); 
+    if (scale >= maxScale) {
+        scale = maxScale;
+        scalingDirection = -1; 
+    }
+    else if (scale <= minScale) {
+        scale = minScale;
+        scalingDirection = 1;  
+    }
 
-    float offsetX = radius * cos(angleInRadians);
-    float offsetZ = radius * sin(angleInRadians);
-
-    glTranslatef(posX + offsetX, posY, posZ + offsetZ);
-
-    float facingAngle = rotY + 90.0f; 
-    glRotatef(facingAngle, 0.0f, 1.0f, 0.0f);
-
+    glTranslatef(posX, posY, posZ);
     glScalef(scale, scale, scale);
 
+    
     model.Draw();
 
     glPopMatrix();

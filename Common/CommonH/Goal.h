@@ -14,6 +14,11 @@ public:
     float minRotation;
     int rotationDirection;
 
+    float minScale;
+    float maxScale;
+    float scaleSpeed;
+    int scalingDirection;
+
     Goal();
 
     void Load();
