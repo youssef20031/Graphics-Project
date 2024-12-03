@@ -104,7 +104,10 @@ void handleAxeCollision(Axe& axe) {
 	if (checkAxeCollision(axe)) {
 		playerX = spawnPoint.x;
 		playerY = spawnPoint.y;
-		playerZ = spawnPoint.z;
+		playerZ = spawnPoint.z; 
+
+	
+		PlaySound(TEXT("music/axe.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	}
 }
 

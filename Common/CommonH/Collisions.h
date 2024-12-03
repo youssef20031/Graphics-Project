@@ -6,6 +6,9 @@
 #include "../CommonH/Collectible.h"
 #include <glut.h>
 
+#include <windows.h>
+#include <mmsystem.h>
+
 
 bool checkCollision(GLfloat x1, GLfloat y1, GLfloat z1,
     GLfloat x2Start, GLfloat x2End,
