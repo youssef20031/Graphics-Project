@@ -145,6 +145,12 @@ void playBackgroundMusic() {
 	mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
 }
 
+
+void stopBackgroundMusic() {
+	mciSendString(TEXT("stop bgm"), NULL, 0, NULL);
+	mciSendString(TEXT("close bgm"), NULL, 0, NULL);
+}
+
 void Level1Main(int argc, char** argv) {
 	playBackgroundMusic();
 	glutInit(&argc, argv);

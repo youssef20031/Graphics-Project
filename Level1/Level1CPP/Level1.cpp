@@ -19,6 +19,8 @@ int scoreL1=0;
 
 bool roarSound = false;
 bool checkPointSound = false;
+bool winL1Sound = false;
+bool loseL1Sound = false;
 
 
 
@@ -200,10 +202,20 @@ void DisplayL1() {
 
     if (gameStatus == LOSE) {
         drawGameOverScreen();
+        stopBackgroundMusic();
+        if (!loseL1Sound) {
+            PlaySound(TEXT("music/loseL1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            loseL1Sound = true;
+        }
         return;
     }
     if (gameStatus == WIN) {
         drawGameWinScreen();
+        stopBackgroundMusic();
+        if (!winL1Sound) {
+            PlaySound(TEXT("music/winL1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            winL1Sound = true;
+        }
         return;
     }
  

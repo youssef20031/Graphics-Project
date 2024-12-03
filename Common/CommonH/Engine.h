@@ -40,3 +40,5 @@ void drawAxis();
 extern float lastFrameTime;
 extern float deltaTime;
 void updateDeltaTime();
+
+void stopBackgroundMusic();
