@@ -40,7 +40,7 @@ void drawAxis();
 
 extern float lastFrameTime;
 extern float deltaTime;
-extern bool level;
+extern int level;
 
 void level2Transition(int value);
 

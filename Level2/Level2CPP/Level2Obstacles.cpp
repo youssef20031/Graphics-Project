@@ -38,11 +38,13 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
     // CAVE SECTION (STAGE 0)
 
-   { 0.0f, 6.0f, 0.0f, 0.1f, 0.0f, 51.0f },  // cave ground
-   { 0.0f, 6.0f, 3.0f, 3.1f, 0.0f, 51.0f },  // cave roof
-   { 0.0f, 0.1f, 0.0f, 3.0f, 0.0f, 45.0f },  // cave right wall
-   { 5.9f, 6.0f, 0.0f, 3.0f, 0.0f, 51.0f },  // cave left wall
-   { 0.0f, 6.0f, 0.0f, 3.0f, 0.0f, 0.1f },   // cave back wall
+   { -5.0f, 35.0f, 0.0f, 0.1f, -10.0f, 10.0f },  // cave ground
+   { -5.0f, 35.0f, 3.0f, 3.1f, -10.0f, 10.0f },  // cave roof
+   { -5.0f, -5.1f, 0.0f, 3.0f, -10.0f, 10.0f },   // cave back wall
+   { -5.0f, 35.0f, 0.0f, 3.0f, -10.0f, -10.1f },   // cave left wall
+   { -5.0f, 35.0f, 0.0f, 3.0f, 10.0f, 10.1f },   // cave right wall
+   { 35.0f, 35.1f, 0.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
+   { 35.0f, 35.1f, 0.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
    //{ 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
    //{ 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
    //{ 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3

@@ -9,7 +9,7 @@
 
 float lastFrameTime = 0.0f;
 float deltaTime = 0.016f;
-bool level = 1;
+int level = 1;
 
 
 // Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
@@ -158,11 +158,17 @@ void stopBackgroundMusic() {
 void level2Transition(int value) {
 	level = 2;
 	gameStatus = PLAYING;
-	glutDisplayFunc(DisplayL2);
-	Vector3f spawnPoint(0, 0.2, 0);
+	spawnPoint.x = 0;
+	spawnPoint.y = 0.5;
+	spawnPoint.z = 0;
+	//printf("%i %i %i", spawnPoint.x, spawnPoint.y, spawnPoint.z);
 	playerX = spawnPoint.x;
 	playerY = spawnPoint.y;
 	playerZ = spawnPoint.z;
+	playerDirectionRotationFacing = 0;
+	playerVerticalSpeed = 0.0f;
+	isPlayerJumping = false;
+	glutDisplayFunc(DisplayL2);
 }
 
 void Level1Main(int argc, char** argv) {
