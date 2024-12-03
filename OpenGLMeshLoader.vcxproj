@@ -101,6 +101,8 @@
     <ClCompile Include="Level1\Level1CPP\Level1Obstacles.cpp" />
     <ClCompile Include="Level1\Level1CPP\Playground.cpp" />
     <ClCompile Include="Level1\Level1CPP\PlaygroundObstacles.cpp" />
+    <ClCompile Include="Level2\Level2CPP\Level2.cpp" />
+    <ClCompile Include="Level2\Level2CPP\Level2Obstacles.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +124,8 @@
     <ClInclude Include="Level1\Level1H\Level1Obstacles.h" />
     <ClInclude Include="Level1\Level1H\Playground.h" />
     <ClInclude Include="Level1\Level1H\PlaygroundObstacles.h" />
+    <ClInclude Include="Level2\Level2H\Level2.h" />
+    <ClInclude Include="Level2\Level2H\Level2Obstacles.h" />
     <ClInclude Include="OpenGLMeshLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

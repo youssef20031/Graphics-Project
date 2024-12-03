@@ -4,9 +4,13 @@
 #include "../../Level1/Level1H/Level1Obstacles.h"
 #include "../../Level1/Level1H/Level1.h"
 
+#include "../../Level2/Level2H/Level2Obstacles.h"
+#include "../../Level2/Level2H/Level2.h"
+
 float lastFrameTime = 0.0f;
 float deltaTime = 0.016f;
 float currentTime = 0.0f;
+int level = 1;
 
 // Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
 
@@ -154,6 +158,22 @@ void stopBackgroundMusic() {
 	mciSendString(TEXT("close bgm"), NULL, 0, NULL);
 }
 
+void level2Transition(int value) {
+	level = 2;
+	gameStatus = PLAYING;
+	spawnPoint.x = 0;
+	spawnPoint.y = 0.5;
+	spawnPoint.z = 0;
+	//printf("%i %i %i", spawnPoint.x, spawnPoint.y, spawnPoint.z);
+	playerX = spawnPoint.x;
+	playerY = spawnPoint.y;
+	playerZ = spawnPoint.z;
+	playerDirectionRotationFacing = 0;
+	playerVerticalSpeed = 0.0f;
+	isPlayerJumping = false;
+	glutDisplayFunc(DisplayL2);
+}
+
 void Level1Main(int argc, char** argv) {
 	playBackgroundMusic();
 	glutInit(&argc, argv);
@@ -174,6 +194,8 @@ void Level1Main(int argc, char** argv) {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
 	LoadAssetsL1();
+	LoadAssetsL2();
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
@@ -182,6 +204,7 @@ void Level1Main(int argc, char** argv) {
 
 	glShadeModel(GL_SMOOTH);
 
+	level2Transition(0); // go to level 2 directly
 	glutMainLoop();
 }
 

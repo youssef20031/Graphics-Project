@@ -4,11 +4,11 @@
 #include <algorithm>
 
 
-
 Vector3f spawnPoint(3.07, 0.2, 3.5);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
 //Vector3f spawnPoint(-192.00, 5.3, 56.19);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
+//Vector3f spawnPoint(-233, 11, 56);
 
 int whichCp = 0;
 bool showCheckpointMessage = false;
@@ -21,6 +21,10 @@ GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 5.0f;
  
+GLfloat slidingSpeedX = 0;
+GLfloat slidingSpeedZ = 0;
+bool isMoving = false;
+bool isSliding = false;
 
 Model_3DS wolfplayermodel;
 
@@ -54,44 +58,48 @@ GLfloat playerVerticalJumpInitialSpeed = 0.03f;
 GLfloat fallAcceleration = -0.05f; // e3tebro gravity
 
 void updateCheckpoint() {
-	if ((playerX>=-27.24&&playerX<=-26.54&&playerZ>=45.15&&playerZ<=51.03)&&whichCp==0) {
-		spawnPoint.x = -21.5;
-		spawnPoint.y = 0.1+0.2;
-		spawnPoint.z = 48.25;
-		whichCp = 1;
-		showCheckpointMessage = true;
-		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-		
+	if (level == 1) { // level 1
+		if ((playerX >= -27.24 && playerX <= -26.54 && playerZ >= 45.15 && playerZ <= 51.03) && whichCp == 0) {
+			spawnPoint.x = -21.5;
+			spawnPoint.y = 0.1 + 0.2;
+			spawnPoint.z = 48.25;
+			whichCp = 1;
+			showCheckpointMessage = true;
+			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+
+
+		}
+
+		if ((playerX >= -74.37 && playerX <= -74.1 && playerZ >= 42.53 && playerZ <= 52.81) && whichCp == 1) {
+			checkPointSound = false;
+			spawnPoint.x = -71.59;
+			spawnPoint.y = 0.2 + 0.2;
+			spawnPoint.z = 48.18;
+			whichCp = 2;
+			showCheckpointMessage = true;
+			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+			checkPointSound = false;
+
+
+
+		}
+
+		if ((playerX >= -139.43 && playerX <= -139.32 && playerZ >= 43.0 && playerZ <= 47.0) && whichCp == 2) {
+			checkPointSound = false;
+			spawnPoint.x = -138.84;
+			spawnPoint.y = 4.2 + 0.2;
+			spawnPoint.z = 45.34;
+			whichCp = 3;
+			showCheckpointMessage = true;
+			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+
+
+
+		}
+	}
+	else { // level 2
 		
 	}
-
-	if ((playerX >= -74.37 && playerX <= -74.1 && playerZ >= 42.53 && playerZ <= 52.81) && whichCp == 1) {
-		checkPointSound = false;
-		spawnPoint.x = -71.59;
-		spawnPoint.y = 0.2+0.2;
-		spawnPoint.z = 48.18;
-		whichCp = 2;
-		showCheckpointMessage = true;
-		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-		checkPointSound = false;
-		
-		
-
-	}
-
-	if ((playerX >= -139.43 && playerX <= -139.32 && playerZ >= 43.0 && playerZ <= 47.0) && whichCp == 2) {
-		checkPointSound = false;
-		spawnPoint.x = -138.84;
-		spawnPoint.y = 4.2 + 0.2;
-		spawnPoint.z = 45.34;
-		whichCp = 3;
-		showCheckpointMessage = true;
-		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-
-
-
-	}
-
 	
 
 
@@ -265,10 +273,17 @@ void updatePlayerRotation() {
 
 void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinCosAngleShift = 0.0f) {
 	// calculate the new x and z positions
-	GLfloat speedX = playerMovementSpeed * speedSign * deltaTime * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
-	GLfloat speedZ = playerMovementSpeed * speedSign * deltaTime * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
+	GLfloat originalSpeedX = playerMovementSpeed * speedSign * deltaTime * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
+	GLfloat originalSpeedZ = playerMovementSpeed * speedSign * deltaTime * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
 
-	
+	GLfloat speedX = originalSpeedX;
+	GLfloat speedZ = originalSpeedZ;
+
+	if (speedX == 0 && speedZ == 0) {
+		speedX = slidingSpeedX;
+		speedZ = slidingSpeedZ;
+	}
+
 	// normalizing the vector 3ashan to prevent speed boost while moving diagonally
 	GLfloat magnitude = sqrt(speedX * speedX + speedZ * speedZ);
 
@@ -276,6 +291,20 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 		speedX = speedX / magnitude * playerMovementSpeed;
 		speedZ = speedZ / magnitude * playerMovementSpeed;
 	}
+
+
+	if (isMoving && isSliding) {
+		slidingSpeedX = originalSpeedX;
+		slidingSpeedZ = originalSpeedZ;
+	}
+
+	// Apply sliding decay (exponential decay example)
+	slidingSpeedX *= 0.98f;  // Adjust factor for faster/slower decay
+	slidingSpeedZ *= 0.98f;
+
+	// Clamp very small values to zero
+	if (fabs(slidingSpeedX) < 0.0001f) slidingSpeedX = 0.0f;
+	if (fabs(slidingSpeedZ) < 0.0001f) slidingSpeedZ = 0.0f;
 
 	if (!isColliding(speedX, 0, 0)) {
 		playerX += speedX;
@@ -289,6 +318,7 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 void updatePlayerMovement() {
 
 	bool moving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'] || specialKeyStates[GLUT_KEY_LEFT] || specialKeyStates[GLUT_KEY_RIGHT] || specialKeyStates[GLUT_KEY_UP] || specialKeyStates[GLUT_KEY_DOWN];
+	isMoving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'];
 	if (keyStates['w']) {
 		movePlayer(1.0f, -1.0); // calculate the new x and z positions
 	}
@@ -300,6 +330,10 @@ void updatePlayerMovement() {
 	}
 	if (keyStates['a']) {
 		movePlayer(-1.0f, 1.0f, M_PI / 2); // calculate the new x and z positions
+	}
+
+	if (!isMoving && (slidingSpeedX != 0 || slidingSpeedZ != 0)) {
+		movePlayer(0.0f, 0.0f, 0);
 	}
 
 	if (specialKeyStates[GLUT_KEY_LEFT]) {

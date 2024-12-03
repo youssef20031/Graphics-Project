@@ -3,6 +3,7 @@
 
 #include <glut.h>
 #include "../../Level1/Level1H/Level1.h"
+#include "../../Level2/Level2H/Level2.h"
 #include <windows.h>
 #include <mmsystem.h>
 #pragma comment(lib, "winmm.lib")
@@ -39,6 +40,10 @@ void drawAxis();
 
 extern float lastFrameTime;
 extern float deltaTime;
+extern int level;
+
+void level2Transition(int value);
+
 void updateDeltaTime();
 
 void stopBackgroundMusic();

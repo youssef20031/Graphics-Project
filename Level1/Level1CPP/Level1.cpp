@@ -227,6 +227,8 @@ void DisplayL1() {
             PlaySound(TEXT("music/winL1.wav"), NULL, SND_FILENAME | SND_ASYNC);
             winL1Sound = true;
         }
+        // timer function to get us to level 2
+        glutTimerFunc(3000, level2Transition, 0);
         return;
     }
  
