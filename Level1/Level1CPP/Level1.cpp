@@ -103,6 +103,17 @@ void drawGameWinScreen() {
 }
 
 
+void renderBoldStrokeText(float x, float y, float z, const char* text, float scale, float lineWidth) {
+    glPushMatrix();
+    glTranslatef(x, y, z);
+    glScalef(scale, scale, scale); 
+    glLineWidth(lineWidth);      
+    for (const char* c = text; *c != '\0'; c++) {
+        glutStrokeCharacter(GLUT_STROKE_ROMAN, *c);
+    }
+    glPopMatrix();
+}
+
 void drawHUD() {
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -112,18 +123,16 @@ void drawHUD() {
     glPushMatrix();
     glLoadIdentity();
     glDisable(GL_LIGHTING);
-    glColor3f(1.0f, 1.0f, 1.0f);
 
+    glColor3f(1.0f, 1.0f, 1.0f); 
 
-   // render the timer
     char timerPos[100];
     snprintf(timerPos, sizeof(timerPos), "Time Left: %i", timerL1);
-    renderBitmapString(550.0f, 450.0f, GLUT_BITMAP_HELVETICA_18, timerPos);
+    renderBoldStrokeText(250.0f, 450.0f, 0.0f, timerPos, 0.15f, 4.0f); 
 
-    // render the score
     char scorePos[100];
     snprintf(scorePos, sizeof(scorePos), "Score: %i", scoreL1);
-    renderBitmapString(550.0f, 430.0f, GLUT_BITMAP_HELVETICA_18, scorePos);
+    renderBoldStrokeText(530.0f, 450.0f, 0.0f, scorePos, 0.15f, 4.0f);
 
     glEnable(GL_LIGHTING);
     glMatrixMode(GL_PROJECTION);
@@ -131,6 +140,7 @@ void drawHUD() {
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
+
 
 void drawGradientSky() {
     glDisable(GL_DEPTH_TEST);
@@ -180,7 +190,7 @@ void renderCheckpointMessage(const char* message) {
     glDisable(GL_LIGHTING);
     glColor3f(1.0f, 1.0f, 1.0f);
 
-    renderBitmapString(260.0f, 450.0f, GLUT_BITMAP_HELVETICA_18, message);
+    renderBoldStrokeText(230.0f, 420.0f, 0.0f, message, 0.15f, 4.0f);
 
     glEnable(GL_LIGHTING);
     glMatrixMode(GL_PROJECTION);
