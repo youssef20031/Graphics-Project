@@ -363,6 +363,8 @@ bool updateFalling() {
 		playerY = spawnPoint.y;
 		playerZ = spawnPoint.z;
 		playerVerticalSpeed = 0;
+
+		PlaySound(TEXT("music/burn.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	}
 	
 	// check if there's something under (collision)
