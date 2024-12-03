@@ -14,7 +14,7 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
-int timerL1=200;
+int timerL1=30;
 int scoreL1=0;
 
 bool roarSound = false;
@@ -210,6 +210,7 @@ void DisplayL1() {
         return;
     }
     if (gameStatus == WIN) {
+        timerL1 = 999;
         drawGameWinScreen();
         stopBackgroundMusic();
         if (!winL1Sound) {

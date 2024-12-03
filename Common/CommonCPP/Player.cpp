@@ -5,9 +5,9 @@
 
 
 
-Vector3f spawnPoint(3.07, 0.2, 3.5);
+//Vector3f spawnPoint(3.07, 0.2, 3.5);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
-//Vector3f spawnPoint(-192.00, 5.3, 56.19);
+Vector3f spawnPoint(-192.00, 5.3, 56.19);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
 
 int whichCp = 0;
