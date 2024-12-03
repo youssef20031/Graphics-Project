@@ -42,9 +42,18 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 	GLfloat centerX = playerX + deltaX;
 	GLfloat centerY = playerY + deltaY;
 	GLfloat centerZ = playerZ + deltaZ;
-	for (int i = 0; i < L1numberOfObstacles; i++)
+
+	GLfloat (*obstacles)[6] = L1obstacles;
+	int numberOfObstacles = L1numberOfObstacles;
+
+	if (level == 2) {
+		obstacles = L2obstacles;
+		numberOfObstacles = L2numberOfObstacles;
+	}
+
+	for (int i = 0; i < numberOfObstacles; i++)
 	{
-		GLfloat* currentObstacle = L1obstacles[i];
+		GLfloat* currentObstacle = obstacles[i];
 		if (checkCollision(centerX, centerY, centerZ, currentObstacle[0], currentObstacle[1], currentObstacle[2], currentObstacle[3], currentObstacle[4], currentObstacle[5])) {
 			GLfloat high = currentObstacle[2];
 			GLfloat low = currentObstacle[3];
@@ -115,7 +124,7 @@ void handleAxeCollision(Axe& axe) {
 // Horizontal Moving Platform
 void handleMovingPlatformHorizontal() {
 	// makes the player move with the moving platform
-	if (-228 < playerX && playerX < -203) { //men x=-203 le7ad x=-227
+	if (level == 1 && -228 < playerX && playerX < -203) { //men x=-203 le7ad x=-227
 		GLfloat obstacleCenterX = (L1obstacles[39][0] + L1obstacles[39][1]) / 2;
 		playerX = obstacleCenterX;
 	}
@@ -134,6 +143,5 @@ void handleCoinCollision(Collectible& coin) {
 		coin.Collect();
 
 		scoreL1 += 50;
-
 	}
 }
