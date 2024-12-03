@@ -154,8 +154,7 @@ void handleCoinCollision(Collectible& coin) {
 // level 2 stuff
 
 void handleSlipperyFloor() {
-	//if (level == 2 && 25 < playerX && playerX < 49 && -20 < playerZ && playerZ < 35) {
-	if (level == 2 && 0 < playerX && playerX < 49 && -20 < playerZ && playerZ < 35) {
+	if (level == 2 && 25 < playerX && playerX < 49 && -20 < playerZ && playerZ < 35) {
 		if (isMoving) {
 			isSliding = true; // trigger sliding action
 		}

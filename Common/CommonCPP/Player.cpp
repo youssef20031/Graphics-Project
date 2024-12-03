@@ -292,42 +292,19 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 		speedZ = speedZ / magnitude * playerMovementSpeed;
 	}
 
+
 	if (isMoving && isSliding) {
 		slidingSpeedX = originalSpeedX;
 		slidingSpeedZ = originalSpeedZ;
 	}
 
-	// reduce sliding speed to 0 linearly
-	if (slidingSpeedX > 0) {
-		slidingSpeedX -= 0.00005f;
-		if (slidingSpeedX < 0) {
-			slidingSpeedX = 0;
-		}
-	}
-	else if (slidingSpeedX < 0) {
-		slidingSpeedX += 0.00005f;
-		if (slidingSpeedX > 0) {
-			slidingSpeedX = 0;
-		}
-	}
-	else {
-		slidingSpeedX = 0.0f;
-	}
-	if (slidingSpeedZ > 0) {
-		slidingSpeedZ -= 0.00005f;
-		if (slidingSpeedZ < 0) {
-			slidingSpeedZ = 0;
-		}
-	}
-	else if (slidingSpeedZ < 0) {
-		slidingSpeedZ += 0.00005f;
-		if (slidingSpeedZ > 0) {
-			slidingSpeedZ = 0;
-		}
-	}
-	else {
-		slidingSpeedZ = 0.0f;
-	}
+	// Apply sliding decay (exponential decay example)
+	slidingSpeedX *= 0.98f;  // Adjust factor for faster/slower decay
+	slidingSpeedZ *= 0.98f;
+
+	// Clamp very small values to zero
+	if (fabs(slidingSpeedX) < 0.0001f) slidingSpeedX = 0.0f;
+	if (fabs(slidingSpeedZ) < 0.0001f) slidingSpeedZ = 0.0f;
 
 	if (!isColliding(speedX, 0, 0)) {
 		playerX += speedX;
