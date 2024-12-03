@@ -65,5 +65,6 @@ extern Model_3DS torch4;
  void drawLavaCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
  void LoadAssetsL1();
  void drawSkybox();
+ void configureTorchLight(GLenum light, float x, float y, float z,float time);
 
 #endif // PLAYGROUND_OBSTACLES_H

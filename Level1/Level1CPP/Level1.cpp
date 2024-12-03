@@ -234,7 +234,7 @@ void DisplayL1() {
  
     //drawSkybox();
 	setupCamera();
-	setupLights();
+	//setupLights(currentTime);
 	glutFullScreen();
     glClearColor(1.0f, 0.65f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -310,10 +310,7 @@ void DisplayL1() {
 	axe4.Draw();
 	axe5.Draw();
 
-    
-
-    //loadBMP(&texL1, "Textures/blu-sky-3.bmp", true);
-    
+        
 
     flag1.Draw();
     flag2.Draw();
