@@ -18,6 +18,7 @@ int timerL1=200;
 int scoreL1=0;
 
 bool roarSound = false;
+bool checkPointSound = false;
 
 
 
@@ -326,6 +327,11 @@ void DisplayL1() {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
         if (currentTime - checkpointMessageStartTime < 3.0f) {
             renderCheckpointMessage("Checkpoint Reached!");
+
+            if (!checkPointSound) {
+                PlaySound(TEXT("music/checkpoint.wav"), NULL, SND_FILENAME | SND_ASYNC);
+                checkPointSound = true;
+            }
         }
         else {
             showCheckpointMessage = false;

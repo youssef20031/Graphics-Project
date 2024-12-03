@@ -27,6 +27,7 @@ extern int timerL1;
 extern int scoreL1;
 
 extern bool roarSound;
+extern bool checkPointSound;
 
 
 // Lighting setup functions

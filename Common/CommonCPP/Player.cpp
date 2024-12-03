@@ -66,19 +66,21 @@ void updateCheckpoint() {
 	}
 
 	if ((playerX >= -74.37 && playerX <= -74.1 && playerZ >= 42.53 && playerZ <= 52.81) && whichCp == 1) {
+		checkPointSound = false;
 		spawnPoint.x = -71.59;
 		spawnPoint.y = 0.2+0.2;
 		spawnPoint.z = 48.18;
 		whichCp = 2;
 		showCheckpointMessage = true;
 		checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-
+		checkPointSound = false;
 		
 		
 
 	}
 
 	if ((playerX >= -139.43 && playerX <= -139.32 && playerZ >= 43.0 && playerZ <= 47.0) && whichCp == 2) {
+		checkPointSound = false;
 		spawnPoint.x = -138.84;
 		spawnPoint.y = 4.2 + 0.2;
 		spawnPoint.z = 45.34;
