@@ -6,7 +6,7 @@
 
 float lastFrameTime = 0.0f;
 float deltaTime = 0.016f;
-
+float currentTime = 0.0f;
 
 // Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
 
@@ -32,6 +32,9 @@ void updateStates() {
 	updateWinLevel1();
 
 	updateDeltaTime();
+
+	currentTime += deltaTime;
+	setupLights(currentTime);
 
 	for (int i = 0; i < 5; i++) {
 		if (axes[i] != nullptr) {

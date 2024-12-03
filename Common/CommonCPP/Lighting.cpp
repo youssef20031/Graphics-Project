@@ -2,17 +2,16 @@
 #include "../CommonH/Lighting.h"
 
 
-void setupLights() {
+void setupLights(float time) {
 	glEnable(GL_LIGHTING);
 
 	GLfloat global_ambient[] = { 0.05f, 0.05f, 0.05f, 1.0f };
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);
 
-	// Configure torch lights
-	configureTorchLight(GL_LIGHT0, torch.pos.x, torch.pos.y, torch.pos.z);
-	configureTorchLight(GL_LIGHT1, torch2.pos.x, torch2.pos.y, torch2.pos.z);
-	configureTorchLight(GL_LIGHT2, torch3.pos.x, torch3.pos.y, torch3.pos.z);
-	configureTorchLight(GL_LIGHT3, torch4.pos.x, torch4.pos.y, torch4.pos.z);
+	configureTorchLight(GL_LIGHT0, torch.pos.x, torch.pos.y, torch.pos.z,time);
+	configureTorchLight(GL_LIGHT1, torch2.pos.x, torch2.pos.y, torch2.pos.z,time);
+	configureTorchLight(GL_LIGHT2, torch3.pos.x, torch3.pos.y, torch3.pos.z,time);
+	configureTorchLight(GL_LIGHT3, torch4.pos.x, torch4.pos.y, torch4.pos.z,time);
 
 
     // Cave and Stage 1 Lighting
@@ -36,4 +35,28 @@ void setupLights() {
     glLightf(GL_LIGHT4, GL_QUADRATIC_ATTENUATION, quadratic_attenuation);
 
     glEnable(GL_LIGHT4);
+
+
+
+    // Stage 2 Lighting
+
+    GLfloat light_position2[] = { -150.73f, 26.75f, 56.72f, 1.0f };
+    GLfloat light_diffuse2[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat light_specular2[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat light_ambient2[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+
+    GLfloat constant_attenuation2 = 0.8f;
+    GLfloat linear_attenuation2 = 0.05f;
+    GLfloat quadratic_attenuation2 = 0.02f;
+
+    glLightfv(GL_LIGHT5, GL_POSITION, light_position2);
+    glLightfv(GL_LIGHT5, GL_DIFFUSE, light_diffuse2);
+    glLightfv(GL_LIGHT5, GL_SPECULAR, light_specular2);
+    glLightfv(GL_LIGHT5, GL_AMBIENT, light_ambient2);
+
+    glLightf(GL_LIGHT5, GL_CONSTANT_ATTENUATION, constant_attenuation2);
+    glLightf(GL_LIGHT5, GL_LINEAR_ATTENUATION, linear_attenuation2);
+    glLightf(GL_LIGHT5, GL_QUADRATIC_ATTENUATION, quadratic_attenuation2);
+
+    glEnable(GL_LIGHT5);
 }

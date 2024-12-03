@@ -1,5 +1,8 @@
 #include "../Level1H/Level1Obstacles.h"
 #include <iostream>
+#include <cmath>  
+#include <cstdlib>
+
 
 
 
@@ -356,20 +359,32 @@ void drawSkybox() {
 }
 
 
-void configureTorchLight(GLenum light, float x, float y, float z) {
-    GLfloat light_position[] = { x, y, z, 1.0f };
-    GLfloat light_diffuse[] = { 1.0f, 0.5f, 0.0f, 1.0f };
-    GLfloat light_specular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
-    GLfloat light_ambient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+void configureTorchLight(GLenum light, float x, float y, float z, float time) {
+    GLfloat base_diffuse[] = { 1.0f, 0.5f, 0.0f, 1.0f }; 
+    GLfloat base_specular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+    GLfloat base_ambient[] = { 0.0f, 0.0f, 0.0f, 1.0f }; 
 
+    float flickerAmplitude = 0.2f;  
+    float flickerSpeed = 3.0f;         
+
+
+     float flicker = 1.0f + flickerAmplitude * ((float)rand() / RAND_MAX * 2.0f - 1.0f);
+
+    GLfloat dynamic_diffuse[] = { base_diffuse[0] * flicker, base_diffuse[1] * flicker, base_diffuse[2] * flicker, base_diffuse[3] };
+    GLfloat dynamic_specular[] = { base_specular[0] * flicker, base_specular[1] * flicker, base_specular[2] * flicker, base_specular[3] };
+
+    GLfloat light_position[] = { x, y, z, 1.0f }; 
+
+   
     GLfloat constant_attenuation = 1.0f;
     GLfloat linear_attenuation = 0.1f;
     GLfloat quadratic_attenuation = 0.05f;
 
     glLightfv(light, GL_POSITION, light_position);
-    glLightfv(light, GL_DIFFUSE, light_diffuse);
-    glLightfv(light, GL_SPECULAR, light_specular);
-    glLightfv(light, GL_AMBIENT, light_ambient);
+    glLightfv(light, GL_DIFFUSE, dynamic_diffuse);
+    glLightfv(light, GL_SPECULAR, dynamic_specular);
+    glLightfv(light, GL_AMBIENT, base_ambient);
+
     glLightf(light, GL_CONSTANT_ATTENUATION, constant_attenuation);
     glLightf(light, GL_LINEAR_ATTENUATION, linear_attenuation);
     glLightf(light, GL_QUADRATIC_ATTENUATION, quadratic_attenuation);

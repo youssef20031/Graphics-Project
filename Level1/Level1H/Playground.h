@@ -20,7 +20,7 @@
 
 
 // Lighting setup functions
-void setupLights();
+//void setupLights();
 
 // Display function
 void Display();

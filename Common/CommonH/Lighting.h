@@ -1,4 +1,4 @@
 #pragma once
 #include "glut.h"
 
-void setupLights();
+void setupLights(float time);
