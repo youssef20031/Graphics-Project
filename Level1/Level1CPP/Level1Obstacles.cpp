@@ -2,6 +2,7 @@
 #include <iostream>
 
 
+
 extern GLfloat L1obstacles[L1numberOfObstacles][6];
 
 
@@ -171,7 +172,8 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 };
 
 void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
-    glDisable(GL_LIGHTING);
+
+    //glDisable(GL_LIGHTING);
 
     glColor3f(0.6, 0.6, 0.6);
 
@@ -353,6 +355,32 @@ void drawSkybox() {
 
     glPopMatrix();
 }
+
+
+void configureTorchLight(GLenum light, float x, float y, float z) {
+    GLfloat light_position[] = { x, y, z, 1.0f };
+    GLfloat light_diffuse[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+    GLfloat light_specular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+    GLfloat light_ambient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+
+    GLfloat constant_attenuation = 1.0f;
+    GLfloat linear_attenuation = 0.1f;
+    GLfloat quadratic_attenuation = 0.05f;
+
+    glLightfv(light, GL_POSITION, light_position);
+    glLightfv(light, GL_DIFFUSE, light_diffuse);
+    glLightfv(light, GL_SPECULAR, light_specular);
+    glLightfv(light, GL_AMBIENT, light_ambient);
+    glLightf(light, GL_CONSTANT_ATTENUATION, constant_attenuation);
+    glLightf(light, GL_LINEAR_ATTENUATION, linear_attenuation);
+    glLightf(light, GL_QUADRATIC_ATTENUATION, quadratic_attenuation);
+
+    glEnable(light);
+}
+
+
+
+
 
 void LoadAssetsL1()
 {
