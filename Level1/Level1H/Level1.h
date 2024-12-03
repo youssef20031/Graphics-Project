@@ -13,6 +13,8 @@
 #include "../../Common/CommonH/Lighting.h"
 #include "Level1Obstacles.h"
 #include <glut.h>
+#include <windows.h>
+#include <mmsystem.h>
 
 // Constants
 #define GLUT_KEY_ESCAPE 27
@@ -24,6 +26,7 @@ extern GameStatus gameStatus;
 extern int timerL1;
 extern int scoreL1;
 
+extern bool roarSound;
 
 
 // Lighting setup functions
@@ -33,6 +36,8 @@ void setupLights();
 void DisplayL1();
 
 void updateTimer(int value);
+
+void dragonRoar();
 
 
 

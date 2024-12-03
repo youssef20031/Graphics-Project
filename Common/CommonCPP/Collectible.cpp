@@ -46,6 +46,8 @@ void Collectible::SetScale(float s) {
 
 
 
+
+
 void Collectible::Draw() {
 
     if (isCollected) {

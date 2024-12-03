@@ -1,6 +1,9 @@
 #ifndef COLLECTIBLE_H
 #define COLLECTIBLE_H
 
+#include <windows.h>
+#include <mmsystem.h>
+
 #include "Model_3DS.h"
 
 class Collectible {
@@ -14,6 +17,7 @@ public:
     float minRotation;
     int rotationDirection;
     bool isCollected;
+
 
     Collectible();
 
@@ -32,7 +36,10 @@ public:
     float GetRotY() const { return rotY; }
     float GetRotZ() const { return rotZ; }
     bool IsCollected() const { return isCollected; }
-    void Collect() { isCollected = true; }
+    void Collect() {
+        isCollected = true;   
+        PlaySound(TEXT("music/coin.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    }
 
 
     void Collectible::SetScale(float s);

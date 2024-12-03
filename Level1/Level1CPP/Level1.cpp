@@ -17,6 +17,8 @@ GLfloat originalYEnd[L1numberOfObstacles];
 int timerL1=200;
 int scoreL1=0;
 
+bool roarSound = false;
+
 
 
 void updateTimer(int value){
@@ -184,6 +186,14 @@ void renderCheckpointMessage(const char* message) {
     glPopMatrix();
 }
 
+void dragonRoar() {
+    if (!roarSound) {
+        if (playerX <= -14.36 && playerX >= -14.42 && playerZ >= 46.10 && playerZ <= 49.9) {
+            PlaySound(TEXT("music/roar.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            roarSound = true;
+        }
+    }
+}
 
 void DisplayL1() {
 
@@ -265,6 +275,7 @@ void DisplayL1() {
 	
 
 	drawPlayer();
+
   
 	
 	axe.Draw();
