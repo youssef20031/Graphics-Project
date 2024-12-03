@@ -173,12 +173,11 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 void drawTexturedCuboid(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
 
-    //glDisable(GL_LIGHTING);
-
     glColor3f(0.6, 0.6, 0.6);
 
     glEnable(GL_TEXTURE_2D);
 
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glBindTexture(GL_TEXTURE_2D, rocktex.texture[0]);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);

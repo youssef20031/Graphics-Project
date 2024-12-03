@@ -308,10 +308,7 @@ void DisplayL1() {
 	axe4.Draw();
 	axe5.Draw();
 
-    
-
-    //loadBMP(&texL1, "Textures/blu-sky-3.bmp", true);
-    
+        
 
     flag1.Draw();
     flag2.Draw();
