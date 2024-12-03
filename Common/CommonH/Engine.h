@@ -3,6 +3,9 @@
 
 #include <glut.h>
 #include "../../Level1/Level1H/Level1.h"
+#include <windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 
 // Constants
 #define WIDTH 800  

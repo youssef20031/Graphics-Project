@@ -138,8 +138,13 @@ void playgroundMain(int argc, char** argv) {
 	glutMainLoop();
 }
 
+void playBackgroundMusic() {
+	mciSendString(TEXT("open \"music/bgm1.wav\" type mpegvideo alias bgm"), NULL, 0, NULL);
+	mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
+}
 
 void Level1Main(int argc, char** argv) {
+	playBackgroundMusic();
 	glutInit(&argc, argv);
 
 	glutInitWindowSize(640, 480);
