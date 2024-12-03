@@ -4,8 +4,12 @@
 #include "../../Level1/Level1H/Level1Obstacles.h"
 #include "../../Level1/Level1H/Level1.h"
 
+#include "../../Level2/Level2H/Level2Obstacles.h"
+#include "../../Level2/Level2H/Level2.h"
+
 float lastFrameTime = 0.0f;
 float deltaTime = 0.016f;
+bool level = 1;
 
 
 // Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
@@ -151,6 +155,16 @@ void stopBackgroundMusic() {
 	mciSendString(TEXT("close bgm"), NULL, 0, NULL);
 }
 
+void level2Transition(int value) {
+	level = 2;
+	gameStatus = PLAYING;
+	glutDisplayFunc(DisplayL2);
+	Vector3f spawnPoint(0, 0.2, 0);
+	playerX = spawnPoint.x;
+	playerY = spawnPoint.y;
+	playerZ = spawnPoint.z;
+}
+
 void Level1Main(int argc, char** argv) {
 	playBackgroundMusic();
 	glutInit(&argc, argv);
@@ -171,6 +185,8 @@ void Level1Main(int argc, char** argv) {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
 	LoadAssetsL1();
+	LoadAssetsL2();
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);

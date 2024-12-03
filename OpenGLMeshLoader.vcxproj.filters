@@ -68,6 +68,12 @@
     <ClCompile Include="Common\CommonCPP\Collectible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level2\Level2CPP\Level2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2\Level2CPP\Level2Obstacles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLTexture.h">
@@ -121,6 +127,12 @@
     <ClInclude Include="Common\CommonH\Cpflag.h" />
     <ClInclude Include="Common\CommonH\Goal.h" />
     <ClInclude Include="Common\CommonH\Collectible.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2\Level2H\Level2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2\Level2H\Level2Obstacles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
