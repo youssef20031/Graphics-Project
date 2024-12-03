@@ -4,11 +4,11 @@
 #include <algorithm>
 
 
-//Vector3f spawnPoint(3.07, 0.2, 3.5);
+Vector3f spawnPoint(3.07, 0.2, 3.5);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
 //Vector3f spawnPoint(-192.00, 5.3, 56.19);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
-Vector3f spawnPoint(-233, 11, 56);
+//Vector3f spawnPoint(-233, 11, 56);
 
 int whichCp = 0;
 bool showCheckpointMessage = false;
@@ -21,6 +21,10 @@ GLfloat playerHeight = 0.6f;
 GLfloat playerWidth = 0.2f;
 GLfloat playerMovementSpeed = 5.0f;
  
+GLfloat slidingSpeedX = 0;
+GLfloat slidingSpeedZ = 0;
+bool isMoving = false;
+bool isSliding = false;
 
 Model_3DS wolfplayermodel;
 
@@ -269,16 +273,60 @@ void updatePlayerRotation() {
 
 void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinCosAngleShift = 0.0f) {
 	// calculate the new x and z positions
-	GLfloat speedX = playerMovementSpeed * speedSign * deltaTime * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
-	GLfloat speedZ = playerMovementSpeed * speedSign * deltaTime * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
+	GLfloat originalSpeedX = playerMovementSpeed * speedSign * deltaTime * cos(angleSign * playerDirectionRotationFacing * M_PI / 180.0f - sinCosAngleShift);
+	GLfloat originalSpeedZ = playerMovementSpeed * speedSign * deltaTime * sin(angleSign * playerDirectionRotationFacing * M_PI / 180.0f + sinCosAngleShift);
 
-	
+	GLfloat speedX = originalSpeedX;
+	GLfloat speedZ = originalSpeedZ;
+
+	if (speedX == 0 && speedZ == 0) {
+		speedX = slidingSpeedX;
+		speedZ = slidingSpeedZ;
+	}
+
 	// normalizing the vector 3ashan to prevent speed boost while moving diagonally
 	GLfloat magnitude = sqrt(speedX * speedX + speedZ * speedZ);
 
 	if (magnitude > 0.0f && magnitude > playerMovementSpeed) {
 		speedX = speedX / magnitude * playerMovementSpeed;
 		speedZ = speedZ / magnitude * playerMovementSpeed;
+	}
+
+	if (isMoving && isSliding) {
+		slidingSpeedX = originalSpeedX;
+		slidingSpeedZ = originalSpeedZ;
+	}
+
+	// reduce sliding speed to 0 linearly
+	if (slidingSpeedX > 0) {
+		slidingSpeedX -= 0.00005f;
+		if (slidingSpeedX < 0) {
+			slidingSpeedX = 0;
+		}
+	}
+	else if (slidingSpeedX < 0) {
+		slidingSpeedX += 0.00005f;
+		if (slidingSpeedX > 0) {
+			slidingSpeedX = 0;
+		}
+	}
+	else {
+		slidingSpeedX = 0.0f;
+	}
+	if (slidingSpeedZ > 0) {
+		slidingSpeedZ -= 0.00005f;
+		if (slidingSpeedZ < 0) {
+			slidingSpeedZ = 0;
+		}
+	}
+	else if (slidingSpeedZ < 0) {
+		slidingSpeedZ += 0.00005f;
+		if (slidingSpeedZ > 0) {
+			slidingSpeedZ = 0;
+		}
+	}
+	else {
+		slidingSpeedZ = 0.0f;
 	}
 
 	if (!isColliding(speedX, 0, 0)) {
@@ -293,6 +341,7 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 void updatePlayerMovement() {
 
 	bool moving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'] || specialKeyStates[GLUT_KEY_LEFT] || specialKeyStates[GLUT_KEY_RIGHT] || specialKeyStates[GLUT_KEY_UP] || specialKeyStates[GLUT_KEY_DOWN];
+	isMoving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'];
 	if (keyStates['w']) {
 		movePlayer(1.0f, -1.0); // calculate the new x and z positions
 	}
@@ -304,6 +353,10 @@ void updatePlayerMovement() {
 	}
 	if (keyStates['a']) {
 		movePlayer(-1.0f, 1.0f, M_PI / 2); // calculate the new x and z positions
+	}
+
+	if (!isMoving && (slidingSpeedX != 0 || slidingSpeedZ != 0)) {
+		movePlayer(0.0f, 0.0f, 0);
 	}
 
 	if (specialKeyStates[GLUT_KEY_LEFT]) {

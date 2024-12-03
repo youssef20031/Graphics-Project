@@ -64,6 +64,10 @@ bool isColliding(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ) {
 			if (deltaY != 0) {
 				// make player move with the horizontally moving platform
 				handleMovingPlatformHorizontal();
+
+				// make player slide if standing on slippery ground
+				handleSlipperyFloor();
+
 				// player on top of object and platform is moving
 				if (playerY != high && (playerY + playerHeight) >= low) {
 					playerY = high + 0.001f;
@@ -143,5 +147,20 @@ void handleCoinCollision(Collectible& coin) {
 		coin.Collect();
 
 		scoreL1 += 50;
+	}
+}
+
+
+// level 2 stuff
+
+void handleSlipperyFloor() {
+	//if (level == 2 && 25 < playerX && playerX < 49 && -20 < playerZ && playerZ < 35) {
+	if (level == 2 && 0 < playerX && playerX < 49 && -20 < playerZ && playerZ < 35) {
+		if (isMoving) {
+			isSliding = true; // trigger sliding action
+		}
+	}
+	else {
+		isSliding = false;
 	}
 }

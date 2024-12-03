@@ -24,3 +24,7 @@ bool checkAxeCollision(Axe& axe);
 void handleMovingPlatformHorizontal();
 
 void handleCoinCollision(Collectible& coin);
+
+// level 2 stuff
+
+void handleSlipperyFloor();

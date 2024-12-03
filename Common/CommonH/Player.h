@@ -22,6 +22,11 @@ extern GLfloat playerHeight;
 extern GLfloat playerWidth;
 extern GLfloat playerMovementSpeed;
 
+extern GLfloat slidingSpeedX;
+extern GLfloat slidingSpeedZ;
+extern bool isMoving;
+extern bool isSliding;
+
 // Player rotation variables
 extern GLfloat playerDirectionRotationFacing; // Direction player is facing
 extern GLfloat playerDirectionRotationFacingVertical; // Direction player is facing up and down

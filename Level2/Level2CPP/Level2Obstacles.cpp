@@ -38,16 +38,32 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
     // CAVE SECTION (STAGE 0)
 
-   { -5.0f, 35.0f, 0.0f, 0.1f, -10.0f, 10.0f },  // cave ground
-   { -5.0f, 35.0f, 3.0f, 3.1f, -10.0f, 10.0f },  // cave roof
+   { -5.0f, 25.0f, 0.0f, 0.1f, -10.0f, 10.0f },  // cave ground
+   { -5.0f, 25.0f, 3.0f, 3.1f, -10.0f, 10.0f },  // cave roof
    { -5.0f, -5.1f, 0.0f, 3.0f, -10.0f, 10.0f },   // cave back wall
-   { -5.0f, 35.0f, 0.0f, 3.0f, -10.0f, -10.1f },   // cave left wall
-   { -5.0f, 35.0f, 0.0f, 3.0f, 10.0f, 10.1f },   // cave right wall
-   { 35.0f, 35.1f, 0.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
-   { 35.0f, 35.1f, 0.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
+   { -5.0f, 25.0f, 0.0f, 3.0f, -10.0f, -10.1f },   // cave left wall
+   { -5.0f, 25.0f, 0.0f, 3.0f, 10.0f, 10.1f },   // cave right wall
+   { 25.0f, 25.1f, 0.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
+   { 25.0f, 25.1f, 0.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
    //{ 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
    //{ 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
    //{ 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3
+
+
+    // Section 1 - Sliding Platforms
+   { 25.0f, 30.0f, 0.0f, 0.1f, -2.0f, 2.0f },  // initial platform
+   { 30.0f, 40.0f, 0.0f, 0.1f, -0.5f, 0.5f },  // 1 - forwards
+   { 39.0f, 40.0f, 0.0f, 0.1f, -0.5f, -10.0f },  // 2 - left
+   { 39.0f, 35.0f, 0.0f, 0.1f, -9.0f, -10.0f },  // 3 - backwards
+   { 34.0f, 35.0f, 0.0f, 0.1f, -9.0f, -20.0f },  // 4 - left
+   { 48.0f, 35.0f, 0.0f, 0.1f, -19.0f, -20.0f },  // 5 - forwards
+   { 48.0f, 49.0f, 0.0f, 0.1f, -20.0f, 20.0f },  // 6 - right
+   { 48.0f, 38.0f, 0.0f, 0.1f, 20.0f, 19.0f },  // 7 - backwards
+   { 37.0f, 38.0f, 0.0f, 0.1f, 20.0f, 8.0f },  // 8 - left
+   { 37.0f, 30.0f, 0.0f, 0.1f, 9.0f, 8.0f },  // 9 - backwards
+   { 31.0f, 30.0f, 0.0f, 0.1f, 9.0f, 28.0f },  // 10 - right
+   { 44.0f, 30.0f, 0.0f, 0.1f, 29.0f, 28.0f },  // 11 - forwards
+   { 44.0f, 45.0f, 0.0f, 0.1f, 35.0f, 28.0f },  // 12 - right
 
 };
 
