@@ -11,6 +11,7 @@ float lastFrameTime = 0.0f;
 float deltaTime = 0.016f;
 float currentTime = 0.0f;
 int level = 1;
+GLfloat fallAcceleration = -0.05f; // e3tebro gravity
 
 // Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
 
@@ -53,6 +54,14 @@ void updateStates() {
 	}
 
 	dragonRoar();
+
+	// level 2
+
+	for (int i = 0; i < 15; i++) {
+		if (chandeliers[i] != nullptr) {
+			handleChandelierCollision(*chandeliers[i]);
+		}
+	}
 
 	glutPostRedisplay();
 }

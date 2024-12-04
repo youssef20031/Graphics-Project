@@ -41,6 +41,7 @@ void drawAxis();
 extern float lastFrameTime;
 extern float deltaTime;
 extern int level;
+extern GLfloat fallAcceleration; // e3tebro gravity
 
 void level2Transition(int value);
 

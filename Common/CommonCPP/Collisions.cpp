@@ -163,3 +163,29 @@ void handleSlipperyFloor() {
 		isSliding = false;
 	}
 }
+
+void handleChandelierCollision(Chandelier& chandelier) {
+	float chandelierCenterX = chandelier.GetPosX();
+	float chandelierCenterY = chandelier.GetPosY();
+	float chandelierCenterZ = chandelier.GetPosZ();
+	float chandelierSideLength = chandelier.getSideLength() / 2;
+
+	float startX = chandelierCenterX - chandelierSideLength;
+	float endX = chandelierCenterX + chandelierSideLength;
+	float startZ = chandelierCenterZ - chandelierSideLength;
+	float endZ = chandelierCenterZ + chandelierSideLength;
+	float startY = chandelierCenterY;
+	float endY = chandelierCenterY + 2.0f;
+	float y = playerY + playerHeight;
+
+	if (level == 2 && 
+		startX < playerX && playerX < endX && 
+		startZ < playerZ && playerZ < endZ && 
+		startY < y && y < endY) {
+		// kill the player - send him to Jesus
+
+		playerX = spawnPoint.x;
+		playerY = spawnPoint.y;
+		playerZ = spawnPoint.z;
+	}
+}

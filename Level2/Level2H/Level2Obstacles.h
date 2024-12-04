@@ -9,6 +9,7 @@
 #include "../../Common/CommonH/Cpflag.h"
 #include "../../Common/CommonH/Collectible.h"
 #include "../../Common/CommonH/Goal.h"
+#include "Chandelier.h"
 #include <glut.h>
 
 // Define the number of obstacles
@@ -41,6 +42,25 @@ extern Model_3DS torchL2;
 extern Model_3DS torch2L2;
 extern Model_3DS torch3L2;
 extern Model_3DS torch4L2;
+
+// Chandelier
+extern Chandelier chandelier1;
+extern Chandelier chandelier2;
+extern Chandelier chandelier3;
+extern Chandelier chandelier4;
+extern Chandelier chandelier5;
+extern Chandelier chandelier6;
+extern Chandelier chandelier7;
+extern Chandelier chandelier8;
+extern Chandelier chandelier9;
+extern Chandelier chandelier10;
+extern Chandelier chandelier11;
+extern Chandelier chandelier12;
+extern Chandelier chandelier13;
+extern Chandelier chandelier14;
+extern Chandelier chandelier15;
+
+extern Chandelier* chandeliers[15];
 
 void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
 void LoadAssetsL2();

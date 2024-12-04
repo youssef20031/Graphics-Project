@@ -46,7 +46,6 @@ extern bool rotatingBack;
 extern bool isPlayerJumping;
 extern GLfloat playerVerticalSpeed;
 extern GLfloat playerVerticalJumpInitialSpeed;
-extern GLfloat fallAcceleration; // e3tebro gravity
 
 //checkpoint
 extern Vector3f spawnPoint;

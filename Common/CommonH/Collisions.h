@@ -3,6 +3,7 @@
 
 #include "Player.h"
 #include "../../Level1/Level1H/Axe.h"
+#include "../../Level2/Level2H/Chandelier.h"
 #include "../CommonH/Collectible.h"
 #include <glut.h>
 
@@ -28,3 +29,5 @@ void handleCoinCollision(Collectible& coin);
 // level 2 stuff
 
 void handleSlipperyFloor();
+
+void handleChandelierCollision(Chandelier& chandelier);

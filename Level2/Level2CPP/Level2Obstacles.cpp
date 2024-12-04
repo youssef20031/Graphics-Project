@@ -33,6 +33,43 @@ Model_3DS torch2L2;
 Model_3DS torch3L2;
 Model_3DS torch4L2;
 
+// Chandelier
+
+// Chandelier
+Chandelier chandelier1;
+Chandelier chandelier2;
+Chandelier chandelier3;
+Chandelier chandelier4;
+Chandelier chandelier5;
+Chandelier chandelier6;
+Chandelier chandelier7;
+Chandelier chandelier8;
+Chandelier chandelier9;
+Chandelier chandelier10;
+Chandelier chandelier11;
+Chandelier chandelier12;
+Chandelier chandelier13;
+Chandelier chandelier14;
+Chandelier chandelier15;
+
+Chandelier* chandeliers[15] = {
+    &chandelier1, 
+    &chandelier2, 
+    &chandelier3, 
+    &chandelier4, 
+    &chandelier5,
+    &chandelier6,
+    &chandelier7,
+    &chandelier8,
+    &chandelier9,
+    &chandelier10,
+    &chandelier11,
+    &chandelier12,
+    &chandelier13,
+    &chandelier14,
+    &chandelier15
+};
+
 // obstacles
 GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
@@ -257,6 +294,22 @@ void LoadAssetsL2()
     torch4L2.pos.y = 1.5;
     torch4L2.pos.z = 49.88;
     torch4L2.rot.y = 90;
+
+    // Chandeliers
+    for (int i = 0; i < 15; i++)
+    { // final touches spread them out aktar ka y values
+        float maxY = 10.0f;
+        //float yInitial = (i * maxY) / 15.0f; // Initial Y position
+        float yInitial = (maxY * pow(5, i)) / 6103515625.0f;
+        //float initialSpeed = -1.0f * sqrt(2.0f * (-1.0f * fallAcceleration) * yInitial * deltaTime); // fallAcc is -ve inside sqrt so we get the magnitude and add the sign back later
+        //printf("initial y: %f, speed: %f\n", yInitial, initialSpeed);
+        //float initialSpeed = -(3.0f * (15-i)) / 15.0f;
+        float initialSpeed = 0;
+        chandeliers[i]->Load();
+        chandeliers[i]->SetBoundaries(34.0f, 56.0f, 0.0f, maxY, 35.0f, 60.0f);
+        chandeliers[i]->SetPosition(chandeliers[i]->GetPosX(), yInitial, chandeliers[i]->GetPosZ());
+        chandeliers[i]->SetFallingSpeed(initialSpeed);
+    }
 
     //drawSkybox();
 }
