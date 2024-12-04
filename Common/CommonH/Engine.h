@@ -47,3 +47,9 @@ void level2Transition(int value);
 void updateDeltaTime();
 
 void stopBackgroundMusic();
+
+void renderBoldStrokeText(float x, float y, float z, const char* text, float scale, float lineWidth);
+
+void drawHUD();
+
+void renderCheckpointMessage(const char* message);

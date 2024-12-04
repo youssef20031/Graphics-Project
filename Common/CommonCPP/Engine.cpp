@@ -57,6 +57,65 @@ void updateStates() {
 	glutPostRedisplay();
 }
 
+
+void renderBoldStrokeText(float x, float y, float z, const char* text, float scale, float lineWidth) {
+	glPushMatrix();
+	glTranslatef(x, y, z);
+	glScalef(scale, scale, scale);
+	glLineWidth(lineWidth);
+	for (const char* c = text; *c != '\0'; c++) {
+		glutStrokeCharacter(GLUT_STROKE_ROMAN, *c);
+	}
+	glPopMatrix();
+}
+
+void drawHUD() {
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 640, 0, 480);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	glDisable(GL_LIGHTING);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	char timerPos[100];
+	snprintf(timerPos, sizeof(timerPos), "Time Left: %i", timerL1);
+	renderBoldStrokeText(250.0f, 450.0f, 0.0f, timerPos, 0.15f, 4.0f);
+
+	char scorePos[100];
+	snprintf(scorePos, sizeof(scorePos), "Score: %i", scoreL1);
+	renderBoldStrokeText(530.0f, 450.0f, 0.0f, scorePos, 0.15f, 4.0f);
+
+	glEnable(GL_LIGHTING);
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+}
+
+void renderCheckpointMessage(const char* message) {
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 640, 0, 480);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	glDisable(GL_LIGHTING);
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	renderBoldStrokeText(230.0f, 420.0f, 0.0f, message, 0.15f, 4.0f);
+
+	glEnable(GL_LIGHTING);
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+}
+
 void drawAxis() {
 	glPushMatrix();
 
@@ -160,15 +219,13 @@ void stopBackgroundMusic() {
 
 void level2Transition(int value) {
 	level = 2;
+	whichCp = 0;
 	gameStatus = PLAYING;
-	spawnPoint.x = 0;
-	spawnPoint.y = 0.5;
-	spawnPoint.z = 0;
-	//printf("%i %i %i", spawnPoint.x, spawnPoint.y, spawnPoint.z);
+	spawnPoint = spawnPoint1L2;
+	playerDirectionRotationFacing = spawnPoint1DirectionL2;
 	playerX = spawnPoint.x;
 	playerY = spawnPoint.y;
 	playerZ = spawnPoint.z;
-	playerDirectionRotationFacing = 0;
 	playerVerticalSpeed = 0.0f;
 	isPlayerJumping = false;
 	glutDisplayFunc(DisplayL2);

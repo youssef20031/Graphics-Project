@@ -16,6 +16,11 @@
 #include <windows.h>
 #include <mmsystem.h>
 
+extern Vector3f spawnPoint0L2;
+extern GLfloat spawnPoint0DirectionL2;
+extern Vector3f spawnPoint1L2;
+extern GLfloat spawnPoint1DirectionL2;
+
 void DisplayL2();
 
 

@@ -102,46 +102,6 @@ void drawGameWinScreen() {
     glPopAttrib();
 }
 
-
-void renderBoldStrokeText(float x, float y, float z, const char* text, float scale, float lineWidth) {
-    glPushMatrix();
-    glTranslatef(x, y, z);
-    glScalef(scale, scale, scale); 
-    glLineWidth(lineWidth);      
-    for (const char* c = text; *c != '\0'; c++) {
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, *c);
-    }
-    glPopMatrix();
-}
-
-void drawHUD() {
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, 640, 0, 480);
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-    glDisable(GL_LIGHTING);
-
-    glColor3f(1.0f, 1.0f, 1.0f); 
-
-    char timerPos[100];
-    snprintf(timerPos, sizeof(timerPos), "Time Left: %i", timerL1);
-    renderBoldStrokeText(250.0f, 450.0f, 0.0f, timerPos, 0.15f, 4.0f); 
-
-    char scorePos[100];
-    snprintf(scorePos, sizeof(scorePos), "Score: %i", scoreL1);
-    renderBoldStrokeText(530.0f, 450.0f, 0.0f, scorePos, 0.15f, 4.0f);
-
-    glEnable(GL_LIGHTING);
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glPopMatrix();
-}
-
-
 void drawGradientSky() {
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_LIGHTING);
@@ -176,27 +136,6 @@ void drawGradientSky() {
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
-}
-
-
-void renderCheckpointMessage(const char* message) {
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, 640, 0, 480);
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-    glDisable(GL_LIGHTING);
-    glColor3f(1.0f, 1.0f, 1.0f);
-
-    renderBoldStrokeText(230.0f, 420.0f, 0.0f, message, 0.15f, 4.0f);
-
-    glEnable(GL_LIGHTING);
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glPopMatrix();
 }
 
 void dragonRoar() {

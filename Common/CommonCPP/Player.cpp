@@ -98,7 +98,13 @@ void updateCheckpoint() {
 		}
 	}
 	else { // level 2
-		
+		if (34 < playerX && playerX < 56 && 35 < playerZ && playerZ < 40 && whichCp < 1) {
+			spawnPoint = spawnPoint1L2;
+			playerDirectionRotationFacing = spawnPoint1DirectionL2;
+			whichCp = 1;
+			showCheckpointMessage = true;
+			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+		}
 	}
 	
 

@@ -43,12 +43,18 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { -5.0f, -5.1f, 0.0f, 3.0f, -10.0f, 10.0f },   // cave back wall
    { -5.0f, 25.0f, 0.0f, 3.0f, -10.0f, -10.1f },   // cave left wall
    { -5.0f, 25.0f, 0.0f, 3.0f, 10.0f, 10.1f },   // cave right wall
-   { 25.0f, 25.1f, 0.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
-   { 25.0f, 25.1f, 0.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
+   { 25.0f, 25.1f, -21.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
+   { 25.0f, 25.1f, -21.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
+   { 25.0f, 25.1f, -21.0f, 0.0f, -2.0f, 2.0f },   // cave front middle wall (under platform)
    //{ 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
    //{ 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
    //{ 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3
 
+    // Big Cave Walls
+   //{ 0.0f, 60.0f, -20.5f, -21.0f, -30.0f, 50.0f }, // ground (spikes)
+   { 25.0f, 25.1f, -21.0f, 10.0f, -10.0f, -30.0f }, // 1- left
+   { 25.0f, 60.0f, -21.0f, 10.0f, -30.1f, -30.0f }, // 2- forward
+   { 60.0f, 60.1f, -21.0f, 10.0f, 50.0f, -30.1f }, // 3- right
 
     // Section 1 - Sliding Platforms
    { 25.0f, 30.0f, 0.0f, 0.1f, -2.0f, 2.0f },  // initial platform
@@ -64,6 +70,12 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { 31.0f, 30.0f, 0.0f, 0.1f, 9.0f, 28.0f },  // 10 - right
    { 44.0f, 30.0f, 0.0f, 0.1f, 29.0f, 28.0f },  // 11 - forwards
    { 44.0f, 45.0f, 0.0f, 0.1f, 35.0f, 28.0f },  // 12 - right
+
+   
+   // Section 2 - Falling Chandeliers
+   { 34.0f, 56.0f, 0.0f, 0.1f, 35.0f, 60.0f },  // stage platform
+
+
 
 };
 
@@ -181,7 +193,7 @@ void LoadAssetsL2()
     //checkpoint flags
 
     flag1L2.Load();
-    flag1L2.SetPosition(-144.63f, 6.2f, 43.75f);
+    flag1L2.SetPosition(40.0f, 2.1f, 39.0f);
 
     flag2L2.Load();
     flag2L2.SetPosition(-76.34, 2.2f, 45.56f);

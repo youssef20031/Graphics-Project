@@ -1,6 +1,12 @@
 #include "../../OpenGLMeshLoader.h"
 #include "../Level2H/Level2.h"
 
+Vector3f spawnPoint0L2 = Vector3f(0, 0.5, 0);
+GLfloat spawnPoint0DirectionL2 = 0;
+Vector3f spawnPoint1L2 = Vector3f(44.5, 0.5, 36.0);
+GLfloat spawnPoint1DirectionL2 = 270;
+
+
 void DisplayL2() {
     //if (gameStatus == LOSE) {
     //    drawGameOverScreen();
@@ -123,7 +129,7 @@ void DisplayL2() {
     if (showCheckpointMessage) {
         float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
         if (currentTime - checkpointMessageStartTime < 3.0f) {
-            //renderCheckpointMessage("Checkpoint Reached!");
+            renderCheckpointMessage("Checkpoint Reached!");
 
             if (!checkPointSound) {
                 PlaySound(TEXT("music/checkpoint.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -135,7 +141,7 @@ void DisplayL2() {
         }
     }
 
-    //drawHUD();
+    drawHUD();
 
     glFlush();
     glutSwapBuffers();
