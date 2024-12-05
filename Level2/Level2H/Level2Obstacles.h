@@ -2,7 +2,6 @@
 #ifndef LEVEL2_OBSTACLES_H
 #define LEVEL2_OBSTACLES_H
 
-
 #include "Common/CommonH/Model_3DS.h"
 #include "../../Common/CommonH/Collisions.h"
 #include "../../Common/CommonH/Player.h"

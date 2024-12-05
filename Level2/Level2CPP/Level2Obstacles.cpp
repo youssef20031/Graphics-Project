@@ -280,7 +280,7 @@ void LoadAssetsL2()
 
     // Textures
 
-    icetex.Load("Textures/rockwall3.bmp");
+    icetex.Load("Textures/snow.bmp");
 
 
     //checkpoint flags
