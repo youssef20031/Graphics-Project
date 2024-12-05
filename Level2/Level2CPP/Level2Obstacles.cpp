@@ -83,9 +83,9 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { 25.0f, 25.1f, -21.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
    { 25.0f, 25.1f, -21.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
    { 25.0f, 25.1f, -21.0f, 0.0f, -2.0f, 2.0f },   // cave front middle wall (under platform)
-   //{ 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
-   //{ 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
-   //{ 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3
+   { 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
+   { 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
+   { 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3
 
     // Big Cave Walls
    //{ 0.0f, 60.0f, -20.5f, -21.0f, -30.0f, 50.0f }, // ground (spikes)
@@ -163,6 +163,12 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { -30.0f, -25.0f, 5.0f, 5.1f, 68.0f, 70.0f },  // small platform to stand on
 
    { -30.0f, -25.0f, 0.0f, 0.1f, 55.0f, 60.0f },  // jump for the win hehe
+
+
+
+   // more big walls- i put them here in case you made this array order-dependant
+
+    { 24.89f, 23.9f, -21.36f, 10.0f, 9.9f, 45.1f },
 
 };
 
@@ -312,9 +318,9 @@ void LoadAssetsL2()
 
     //dragon
     dinosaur.Load("Models/dinosaur/body.3ds");
-    dinosaur.pos.x = -90.51;
-    dinosaur.pos.y = 0.2;
-    dinosaur.pos.z = 70.12;
+    dinosaur.pos.x = 20.81;
+    dinosaur.pos.y = 0.52;
+    dinosaur.pos.z = 55.12;
     dinosaur.rot.y = 110;
 
     //torches

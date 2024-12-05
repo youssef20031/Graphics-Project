@@ -306,7 +306,7 @@ void Level1Main(int argc, char** argv) {
 	glutKeyboardUpFunc(KeyboardUp);
 	glutSpecialFunc(Special);
 	glutSpecialUpFunc(SpecialUp);
-	glutPassiveMotionFunc(MouseMovement);  
+	//glutPassiveMotionFunc(MouseMovement);  
 
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
