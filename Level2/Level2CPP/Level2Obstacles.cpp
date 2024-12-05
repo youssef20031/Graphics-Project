@@ -119,8 +119,50 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
    // Section 3 - Platforms with snow balls
    { 25.0f, 30.0f, 0.0f, 0.1f, 75.0f, 85.0f },  // stage 3 safe zone
+   { 24.0f, 25.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 1
+   { 21.0f, 22.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 2
+   { 18.0f, 19.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 3
+   { 14.0f, 15.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 4
+   { 11.0f, 12.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 5
+   { 6.0f, 7.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 6
+   { 3.0f, 4.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 7
+   { -1.0f, 0.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 8
+   { -7.0f, -6.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 9
+   { -13.0f, -12.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 10
+   { -19.0f, -18.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 11
+   { -25.0f, -24.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 12
+   { -30.0f, -25.0f, 0.0f, 0.1f, 75.0f, 85.0f },  // safe zone
 
+   
+   // staircase to game win!
+   { -28.0f, -27.0f, 0.0f, 0.3f, 75.0f, 74.8f },  // step 1
+   { -28.0f, -27.0f, 0.3f, 0.5f, 74.8f, 74.6f },  // step 2
+   { -28.0f, -27.0f, 0.5f, 0.7f, 74.6f, 74.4f },  // step 3
+   { -28.0f, -27.0f, 0.7f, 0.9f, 74.4f, 74.2f },  // step 4
+   { -28.0f, -27.0f, 0.9f, 1.1f, 74.2f, 74.0f },  // step 5
+   { -28.0f, -27.0f, 1.1f, 1.3f, 74.0f, 73.8f },  // step 6
+   { -28.0f, -27.0f, 1.3f, 1.5f, 73.8f, 73.6f },  // step 7
+   { -28.0f, -27.0f, 1.5f, 1.7f, 73.6f, 73.4f },  // step 8
+   { -28.0f, -27.0f, 1.7f, 1.9f, 73.4f, 73.2f },  // step 9
+   { -28.0f, -27.0f, 1.9f, 2.1f, 73.2f, 73.0f },  // step 10
+   { -28.0f, -27.0f, 2.1f, 2.3f, 73.0f, 72.8f },  // step 11
+   { -28.0f, -27.0f, 2.3f, 2.5f, 72.8f, 72.6f },  // step 12
+   { -28.0f, -27.0f, 2.5f, 2.7f, 72.6f, 72.4f },  // step 13
+   { -28.0f, -27.0f, 2.7f, 2.9f, 72.4f, 72.2f },  // step 14
+   { -28.0f, -27.0f, 2.9f, 3.1f, 72.2f, 72.0f },  // step 15
+   { -28.0f, -27.0f, 3.1f, 3.3f, 72.0f, 71.8f },  // step 16
+   { -28.0f, -27.0f, 3.3f, 3.5f, 71.8f, 71.6f },  // step 17
+   { -28.0f, -27.0f, 3.5f, 3.7f, 71.6f, 71.4f },  // step 18
+   { -28.0f, -27.0f, 3.7f, 3.9f, 71.4f, 71.2f },  // step 19
+   { -28.0f, -27.0f, 3.9f, 4.1f, 71.2f, 71.0f },  // step 20
+   { -28.0f, -27.0f, 4.1f, 4.3f, 71.0f, 70.8f },  // step 21
+   { -28.0f, -27.0f, 4.3f, 4.5f, 70.8f, 70.6f },  // step 22
+   { -28.0f, -27.0f, 4.5f, 4.7f, 70.6f, 70.4f },  // step 23
+   { -28.0f, -27.0f, 4.7f, 4.9f, 70.4f, 70.2f },  // step 24
+   { -28.0f, -27.0f, 4.9f, 5.1f, 70.2f, 70.0f },  // step 25
+   { -30.0f, -25.0f, 5.0f, 5.1f, 68.0f, 70.0f },  // small platform to stand on
 
+   { -30.0f, -25.0f, 0.0f, 0.1f, 55.0f, 60.0f },  // jump for the win hehe
 
 };
 
@@ -265,8 +307,8 @@ void LoadAssetsL2()
 
 
     // goal
-    //goalL2.Load();
-    //goalL2.SetPosition(-237.8, 10.5, 56.96);
+    goalL2.Load();
+    goalL2.SetPosition(-27.5, 0.5, 56.0);
 
     //dragon
     dragonL2.Load("Models/dragon/Drachen_1.0_3ds.3ds");

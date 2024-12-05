@@ -92,9 +92,7 @@ void DisplayL2() {
         //}
 
         // Draw the obstacle
-        if (!(i >= 45 && i <= 48) && i != 50)   // invisible collisions for the checkpoints and other models
-            drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2],
-                L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
+        drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
 
 
