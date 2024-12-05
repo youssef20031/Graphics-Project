@@ -14,7 +14,7 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
-int timerL1=10;
+int timerL1=900;
 int scoreL1=0;
 
 bool roarSound = false;

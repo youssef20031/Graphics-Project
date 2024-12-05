@@ -10,6 +10,7 @@ GLfloat spawnPoint1DirectionL2 = 270;
 Vector3f spawnPoint2L2 = Vector3f(29.0, 0.5, 80.0);
 GLfloat spawnPoint2DirectionL2 = 180;
 
+bool winL2Sound = false;
 
 void DisplayL2() {
     if (gameStatus == LOSE) {
@@ -25,10 +26,10 @@ void DisplayL2() {
         timerL1 = 999;
         drawGameWinScreen();
         stopBackgroundMusic();
-        //if (!winL1Sound) {
-            //PlaySound(TEXT("music/winL1.wav"), NULL, SND_FILENAME | SND_ASYNC);
-            //winL1Sound = true;
-        //}
+        if (!winL2Sound) {
+            PlaySound(TEXT("music/winL2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            winL2Sound = true;
+        }
         return;
     }
 
