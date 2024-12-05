@@ -4,12 +4,12 @@
 #include <algorithm>
 
 
-//Vector3f spawnPoint(3.07, 0.2, 3.5);
+Vector3f spawnPoint(3.07, 0.2, 3.5);
 float spawnPointDirection = 0.0f;
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
 //Vector3f spawnPoint(-192.00, 5.3, 56.19);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
-Vector3f spawnPoint(-233, 11, 56);
+//Vector3f spawnPoint(-233, 11, 56);
 
 int whichCp = 0;
 bool showCheckpointMessage = false;
@@ -425,7 +425,12 @@ bool updateFalling() {
 		playerDirectionRotationFacing = spawnPointDirection;
 		playerVerticalSpeed = 0;
 
+		if (level==1)
 		PlaySound(TEXT("music/burn.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		else {
+			PlaySound(TEXT("music/snowfall.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
+		}
 	}
 	
 	// check if there's something under (collision)
