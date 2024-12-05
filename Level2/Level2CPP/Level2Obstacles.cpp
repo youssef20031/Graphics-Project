@@ -199,9 +199,9 @@ void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd
 
     glBegin(GL_QUADS);
 
-    double textureScaleX = scaleX * 1.3;     //can be masalan 1.5,1.2,1.8  -- experiment with values
-    double textureScaleY = scaleY * 1.7;
-    double textureScaleZ = scaleZ * 1.2;
+    double textureScaleX = 1.0;  
+    double textureScaleY = 1.0;
+    double textureScaleZ = 1.0;
 
     // Front face (zEnd)
     glNormal3f(0, 0, 1);

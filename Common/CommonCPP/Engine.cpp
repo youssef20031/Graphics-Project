@@ -378,8 +378,8 @@ void level2Transition(int value) {
 	level = 2;
 	whichCp = 0;
 	gameStatus = PLAYING;
-	spawnPoint = spawnPoint2L2;
-	playerDirectionRotationFacing = spawnPoint2DirectionL2;
+	spawnPoint = spawnPoint0L2;
+	playerDirectionRotationFacing = spawnPoint0DirectionL2;
 	playerX = spawnPoint.x;
 	playerY = spawnPoint.y;
 	playerZ = spawnPoint.z;
