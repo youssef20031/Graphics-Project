@@ -129,7 +129,7 @@ void displayCameraCoords() {
 
 void updateCameraMovement() {
 	float d = 50*deltaTime;
-	float a = 50*deltaTime;
+	float a = 100*deltaTime;
 
 	if (viewMode != FREE) return;
 
