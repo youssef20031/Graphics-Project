@@ -54,3 +54,5 @@ void renderBoldStrokeText(float x, float y, float z, const char* text, float sca
 void drawHUD();
 
 void renderCheckpointMessage(const char* message);
+
+void drawGradientSky();

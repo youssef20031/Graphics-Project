@@ -40,7 +40,7 @@ void DisplayL2() {
     glutFullScreen();
     glClearColor(1.0f, 0.65f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    //drawGradientSky();
+    drawGradientSky();
     displayCameraCoords();
     drawAxis();
     glColor3f(0.2f, 0.7f, 0.8f);

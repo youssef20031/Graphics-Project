@@ -65,7 +65,56 @@ void updateStates() {
 		}
 	}
 
+
 	glutPostRedisplay();
+}
+
+void drawGradientSky() {
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_LIGHTING);
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0.0, 1.0, 0.0, 1.0);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glShadeModel(GL_SMOOTH);
+
+	glBegin(GL_QUADS);
+
+	if (level == 1) {
+		// Level 1: Gradient from Bright orange to Bright red
+		glColor3f(1.0f, 0.5f, 0.0f);
+		glVertex2f(0.0f, 1.0f);
+		glVertex2f(1.0f, 1.0f);
+
+		glColor3f(1.0f, 0.0f, 0.0f);
+		glVertex2f(1.0f, 0.0f);
+		glVertex2f(0.0f, 0.0f);
+	}
+	else if (level == 2) {
+		// Level 2: Gradient from light blue to dark blue
+		glColor3f(0.53f, 0.81f, 0.98f);
+		glVertex2f(0.0f, 1.0f);
+		glVertex2f(1.0f, 1.0f);
+
+		glColor3f(0.0f, 0.0f, 0.5f);
+		glVertex2f(1.0f, 0.0f);
+		glVertex2f(0.0f, 0.0f);
+	}
+	glEnd();
+
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
 }
 
 
@@ -239,6 +288,7 @@ void level2Transition(int value) {
 	playerZ = spawnPoint.z;
 	playerVerticalSpeed = 0.0f;
 	isPlayerJumping = false;
+	drawGradientSky();
 	glutDisplayFunc(DisplayL2);
 }
 
