@@ -350,7 +350,8 @@ void LoadAssetsL2()
     { // final touches spread them out aktar ka y values
         float maxY = 10.0f;
         //float yInitial = (i * maxY) / 15.0f; // Initial Y position
-        float yInitial = (maxY * pow(5, i)) / 6103515625.0f;
+        //float yInitial = (maxY * pow(5, i)) / 6103515625.0f;
+        float yInitial = 2.0f * pow(2,(15 - i));
         //float initialSpeed = -1.0f * sqrt(2.0f * (-1.0f * fallAcceleration) * yInitial * deltaTime); // fallAcc is -ve inside sqrt so we get the magnitude and add the sign back later
         //printf("initial y: %f, speed: %f\n", yInitial, initialSpeed);
         //float initialSpeed = -(3.0f * (15-i)) / 15.0f;
