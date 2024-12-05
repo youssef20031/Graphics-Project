@@ -162,7 +162,7 @@ void SpecialUp(int key, int x, int y) {
 }
 
 void MouseMovement(int x, int y) {
-	static const float sensitivity = 4.0f;
+	static const float sensitivity = 3.0f;
 	int windowWidth = glutGet(GLUT_WINDOW_WIDTH);
 	int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
 	int centerX = windowWidth / 2;
