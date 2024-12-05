@@ -383,6 +383,7 @@ void drawGameWinScreen() {
 
 
 void level2Transition(int value) {
+	checkPointSound = false;
 	level = 2;
 	gameStatus = PLAYING;
 	playBackgroundMusic();
@@ -429,7 +430,7 @@ void Level1Main(int argc, char** argv) {
 
 	glShadeModel(GL_SMOOTH);
 
-	level2Transition(0); // go to level 2 directly
+	//level2Transition(0); // go to level 2 directly
 	glutMainLoop();
 }
 
