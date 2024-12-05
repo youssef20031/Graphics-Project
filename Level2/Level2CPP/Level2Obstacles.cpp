@@ -4,6 +4,7 @@
 extern GLfloat L2obstacles[L2numberOfObstacles][6];
 
 GLTexture icetex;
+GLTexture icetex2;
 GLuint texL2;
 
 Cpflag flag1L2;
@@ -26,7 +27,7 @@ Collectible* coinsL2[5] = {
 
 Goal goalL2;
 
-Model_3DS dragonL2;
+Model_3DS dinosaur;
 
 Model_3DS torchL2;
 Model_3DS torch2L2;
@@ -83,9 +84,9 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { 25.0f, 25.1f, -21.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
    { 25.0f, 25.1f, -21.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
    { 25.0f, 25.1f, -21.0f, 0.0f, -2.0f, 2.0f },   // cave front middle wall (under platform)
-   //{ 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
-   //{ 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
-   //{ 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3
+   { 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
+   { 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
+   { 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3
 
     // Big Cave Walls
    //{ 0.0f, 60.0f, -20.5f, -21.0f, -30.0f, 50.0f }, // ground (spikes)
@@ -94,19 +95,19 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { 60.0f, 60.1f, -21.0f, 10.0f, 50.0f, -30.1f }, // 3- right
 
     // Section 1 - Sliding Platforms
-   { 25.0f, 30.0f, 0.0f, 0.1f, -2.0f, 2.0f },  // initial platform
-   { 30.0f, 40.0f, 0.0f, 0.1f, -0.5f, 0.5f },  // 1 - forwards
-   { 39.0f, 40.0f, 0.0f, 0.1f, -0.5f, -10.0f },  // 2 - left
-   { 39.0f, 35.0f, 0.0f, 0.1f, -9.0f, -10.0f },  // 3 - backwards
-   { 34.0f, 35.0f, 0.0f, 0.1f, -9.0f, -20.0f },  // 4 - left
-   { 48.0f, 35.0f, 0.0f, 0.1f, -19.0f, -20.0f },  // 5 - forwards
-   { 48.0f, 49.0f, 0.0f, 0.1f, -20.0f, 20.0f },  // 6 - right
-   { 48.0f, 38.0f, 0.0f, 0.1f, 20.0f, 19.0f },  // 7 - backwards
-   { 37.0f, 38.0f, 0.0f, 0.1f, 20.0f, 8.0f },  // 8 - left
-   { 37.0f, 30.0f, 0.0f, 0.1f, 9.0f, 8.0f },  // 9 - backwards
-   { 31.0f, 30.0f, 0.0f, 0.1f, 9.0f, 28.0f },  // 10 - right
-   { 44.0f, 30.0f, 0.0f, 0.1f, 29.0f, 28.0f },  // 11 - forwards
-   { 44.0f, 45.0f, 0.0f, 0.1f, 35.0f, 28.0f },  // 12 - right
+   { 25.0f, 30.0f, 0.0f, 0.5f, -2.0f, 2.0f },  // initial platform  i=14
+   { 30.0f, 40.0f, 0.0f, 0.5f, -0.5f, 0.5f },  // 1 - forwards
+   { 39.0f, 40.0f, 0.0f, 0.5f, -0.5f, -10.0f },  // 2 - left
+   { 39.0f, 35.0f, 0.0f, 0.5f, -9.0f, -10.0f },  // 3 - backwards
+   { 34.0f, 35.0f, 0.0f, 0.5f, -9.0f, -20.0f },  // 4 - left
+   { 48.0f, 35.0f, 0.0f, 0.5f, -19.0f, -20.0f },  // 5 - forwards
+   { 48.0f, 49.0f, 0.0f, 0.5f, -20.0f, 20.0f },  // 6 - right
+   { 48.0f, 38.0f, 0.0f, 0.5f, 20.0f, 19.0f },  // 7 - backwards
+   { 37.0f, 38.0f, 0.0f, 0.5f, 20.0f, 8.0f },  // 8 - left
+   { 37.0f, 30.0f, 0.0f, 0.5f, 9.0f, 8.0f },  // 9 - backwards
+   { 31.0f, 30.0f, 0.0f, 0.5f, 9.0f, 28.0f },  // 10 - right
+   { 44.0f, 30.0f, 0.0f, 0.5f, 29.0f, 28.0f },  // 11 - forwards
+   { 44.0f, 45.0f, 0.0f, 0.5f, 35.0f, 28.0f },  // 12 - right    i=26
 
    
    // Section 2 - Falling Chandeliers
@@ -164,6 +165,12 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
    { -30.0f, -25.0f, 0.0f, 0.1f, 55.0f, 60.0f },  // jump for the win hehe
 
+
+
+   // more big walls- i put them here in case you made this array order-dependant
+
+    { 24.89f, 23.9f, -21.36f, 10.0f, 9.9f, 45.1f },
+
 };
 
 void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
@@ -193,9 +200,9 @@ void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd
 
     glBegin(GL_QUADS);
 
-    double textureScaleX = scaleX * 1.3;     //can be masalan 1.5,1.2,1.8  -- experiment with values
-    double textureScaleY = scaleY * 1.7;
-    double textureScaleZ = scaleZ * 1.2;
+    double textureScaleX = 1.0;  
+    double textureScaleY = 1.0;
+    double textureScaleZ = 1.0;
 
     // Front face (zEnd)
     glNormal3f(0, 0, 1);
@@ -248,6 +255,91 @@ void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd
     glColor3f(1, 1, 1);
 }
 
+void drawTexturedCuboidL2Sliding(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
+    glDisable(GL_LIGHTING);
+
+    glColor3f(0.6, 0.6, 0.6);
+
+    glEnable(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, icetex2.texture[0]);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glPushMatrix();
+
+    double centerX = (xStart + xEnd) / 2.0;
+    double centerY = (yStart + yEnd) / 2.0;
+    double centerZ = (zStart + zEnd) / 2.0;
+
+    double scaleX = fabs(xEnd - xStart);
+    double scaleY = fabs(yEnd - yStart);
+    double scaleZ = fabs(zEnd - zStart);
+
+    glTranslated(centerX, centerY, centerZ);
+    glScaled(scaleX, scaleY, scaleZ);
+
+    glBegin(GL_QUADS);
+
+    double textureScaleX = 1.0;
+    double textureScaleY = 1.0;
+    double textureScaleZ = 1.0;
+
+    // Front face (zEnd)
+    glNormal3f(0, 0, 1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Back face (zStart)
+    glNormal3f(0, 0, -1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Left face (xStart)
+    glNormal3f(-1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Right face (xEnd)
+    glNormal3f(1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
+
+    // Top face (yEnd)
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Bottom face (yStart)
+    glNormal3f(0, -1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, -0.5, 0.5);
+
+    glEnd();
+
+    glPopMatrix();
+
+    glEnable(GL_LIGHTING);
+
+    glColor3f(1, 1, 1);
+}
+
+
+
+
 void LoadAssetsL2()
 {
     // Loading Model files
@@ -274,7 +366,8 @@ void LoadAssetsL2()
 
     // Textures
 
-    icetex.Load("Textures/rockwall3.bmp");
+    icetex.Load("Textures/snow.bmp");
+    icetex2.Load("Textures/snow3.bmp");
 
 
     //checkpoint flags
@@ -290,32 +383,33 @@ void LoadAssetsL2()
 
     // collectibles
 
-    //coinsL2[0]->Load();
-    //coinsL2[0]->SetPosition(-178.21f, 4.3f, 37.28f);
+    coinsL2[0]->Load();
+    coinsL2[0]->SetPosition(48.54f, 1.08f, -1.08);
 
-    //coinsL2[1]->Load();
-    //coinsL2[1]->SetPosition(-92.07f, 0.4f, 46.73f);
+    coinsL2[1]->Load();
+    coinsL2[1]->SetPosition(49.3f, 0.1f, 50.22f);
 
-    //coinsL2[2]->Load();
-    //coinsL2[2]->SetPosition(4.64f, 0.2f, 17.19f);
+    coinsL2[2]->Load();
+    coinsL2[2]->SetPosition(11.4f, 1.0f, 81.76f);
 
-    //coinsL2[3]->Load();
-    //coinsL2[3]->SetPosition(-45.97f, 0.3f, 48.12f);
+    coinsL2[3]->Load();
+    coinsL2[3]->SetPosition(42.02f, 0.1f, 41.56f);
 
-    //coinsL2[4]->Load();
-    //coinsL2[4]->SetPosition(-192.63f, 4.2f, 56.22f);
+    coinsL2[4]->Load();
+    coinsL2[4]->SetPosition(-27.45f, 0.1f, 77.18f);
 
 
     // goal
     goalL2.Load();
     goalL2.SetPosition(-27.5, 0.5, 56.0);
+    
 
     //dragon
-    dragonL2.Load("Models/dragon/Drachen_1.0_3ds.3ds");
-    dragonL2.pos.x = -90.51;
-    dragonL2.pos.y = 0.2;
-    dragonL2.pos.z = 70.12;
-    dragonL2.rot.y = 110;
+    dinosaur.Load("Models/dinosaur/body.3ds");
+    dinosaur.pos.x = 20.81;
+    dinosaur.pos.y = 0.52;
+    dinosaur.pos.z = 55.12;
+    dinosaur.rot.y = 110;
 
     //torches
 

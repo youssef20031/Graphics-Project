@@ -14,7 +14,7 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
-int timerL1=200;
+int timerL1=900;
 int scoreL1=0;
 
 bool roarSound = false;
@@ -36,107 +36,6 @@ void updateTimer(int value){
    
 }
 
-void drawGameOverScreen() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, 640, 0, 480);
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glDisable(GL_LIGHTING);
-    glColor3f(1.0f, 0.0f, 0.0f);
-
-    renderBitmapString(270.0f, 300.0f, GLUT_BITMAP_TIMES_ROMAN_24, "Game Over");
-
-    renderBitmapString(260.0f, 250.0f, GLUT_BITMAP_HELVETICA_18, "You ran out of time!");
-
-    glEnable(GL_LIGHTING);
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-
-    glMatrixMode(GL_MODELVIEW);
-    glFlush();
-    glutSwapBuffers();
-}
-
-void drawGameWinScreen() {
-    glPushAttrib(GL_ALL_ATTRIB_BITS);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, 640, 0, 480);
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glDisable(GL_LIGHTING);
-    glColor3f(0.0f, 0.0f, 1.0f);
-
-    renderBitmapString(270.0f, 300.0f, GLUT_BITMAP_TIMES_ROMAN_24, "You win level 1!");
-
-    char scorePos[100];
-    snprintf(scorePos, sizeof(scorePos), "Score: %i", scoreL1);
-    renderBitmapString(290.0f, 280.0f, GLUT_BITMAP_HELVETICA_18, scorePos);
-
-    renderBitmapString(275.0f, 250.0f, GLUT_BITMAP_HELVETICA_18, "Loading Level 2...");
-
-    glEnable(GL_LIGHTING);
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-
-    glMatrixMode(GL_MODELVIEW);
-    glFlush();
-    glutSwapBuffers();
-    glPopAttrib();
-}
-
-void drawGradientSky() {
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_LIGHTING);
-
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0.0, 1.0, 0.0, 1.0); 
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glShadeModel(GL_SMOOTH);
-
-    glBegin(GL_QUADS);
-    // Top: Bright orange
-    glColor3f(1.0f, 0.5f, 0.0f); 
-    glVertex2f(0.0f, 1.0f);      // Top-left
-    glVertex2f(1.0f, 1.0f);      // Top-right
-
-    // Bottom: Bright red
-    glColor3f(1.0f, 0.0f, 0.0f);
-    glVertex2f(1.0f, 0.0f);      // Bottom-right
-    glVertex2f(0.0f, 0.0f);      // Bottom-left
-    glEnd();
-
-    glPopMatrix();
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
-}
 
 void dragonRoar() {
     if (!roarSound) {

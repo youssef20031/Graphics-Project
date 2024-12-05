@@ -34,10 +34,10 @@ void updateStates() {
 	glutSetCursor(GLUT_CURSOR_NONE);
 
 
-	// Level 1
 	updateCheckpoint();
 
 	updateWinLevel1();
+	updateWinLevel2();
 
 	updateDeltaTime();
 
@@ -56,6 +56,12 @@ void updateStates() {
 		}
 	}
 
+	for (int i = 0; i < 5; i++) {
+		if (coinsL2[i] != nullptr) {
+			handleCoinCollision(*coinsL2[i]);
+		}
+	}
+
 	dragonRoar();
 
 	// level 2
@@ -66,7 +72,56 @@ void updateStates() {
 		}
 	}
 
+
 	glutPostRedisplay();
+}
+
+void drawGradientSky() {
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_LIGHTING);
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0.0, 1.0, 0.0, 1.0);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glShadeModel(GL_SMOOTH);
+
+	glBegin(GL_QUADS);
+
+	if (level == 1) {
+		// Level 1: Gradient from Bright orange to Bright red
+		glColor3f(1.0f, 0.5f, 0.0f);
+		glVertex2f(0.0f, 1.0f);
+		glVertex2f(1.0f, 1.0f);
+
+		glColor3f(1.0f, 0.0f, 0.0f);
+		glVertex2f(1.0f, 0.0f);
+		glVertex2f(0.0f, 0.0f);
+	}
+	else if (level == 2) {
+		// Level 2: Gradient from light blue to dark blue
+		glColor3f(0.53f, 0.81f, 0.98f);
+		glVertex2f(0.0f, 1.0f);
+		glVertex2f(1.0f, 1.0f);
+
+		glColor3f(0.0f, 0.0f, 0.5f);
+		glVertex2f(1.0f, 0.0f);
+		glVertex2f(0.0f, 0.0f);
+	}
+	glEnd();
+
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
 }
 
 
@@ -229,12 +284,103 @@ void stopBackgroundMusic() {
 	mciSendString(TEXT("close bgm"), NULL, 0, NULL);
 }
 
+void drawGameOverScreen() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 640, 0, 480);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glDisable(GL_LIGHTING);
+	if(level==1){
+		glColor3f(1.0f, 0.0f, 0.0f);
+	}
+	else {
+		glClearColor(0.0f, 0.0f, 0.8f, 0.8f);
+		glColor3f(1.0f, 1.0f, 1.0f);
+	}
+	
+
+	renderBitmapString(270.0f, 300.0f, GLUT_BITMAP_TIMES_ROMAN_24, "Game Over");
+
+	renderBitmapString(260.0f, 250.0f, GLUT_BITMAP_HELVETICA_18, "You ran out of time!");
+
+	glEnable(GL_LIGHTING);
+
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+
+	glMatrixMode(GL_MODELVIEW);
+	glFlush();
+	glutSwapBuffers();
+}
+
+void drawGameWinScreen() {
+	glPushAttrib(GL_ALL_ATTRIB_BITS);
+
+	if (level == 2) {
+		glClearColor(0.0f, 0.0f, 0.8f, 1.0f); 
+	}
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 640, 0, 480);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glDisable(GL_LIGHTING);
+	glColor3f(0.0f, 0.0f, 1.0f);
+
+	if (level == 1) {
+
+		renderBitmapString(270.0f, 300.0f, GLUT_BITMAP_TIMES_ROMAN_24, "You win level 1!");
+
+		char scorePos[100];
+		snprintf(scorePos, sizeof(scorePos), "Score: %i", scoreL1);
+		renderBitmapString(290.0f, 280.0f, GLUT_BITMAP_HELVETICA_18, scorePos);
+
+		renderBitmapString(275.0f, 250.0f, GLUT_BITMAP_HELVETICA_18, "Loading Level 2...");
+	}
+	else {
+		glColor3f(1.0f, 1.0f, 1.0f);
+		renderBitmapString(250.0f, 300.0f, GLUT_BITMAP_TIMES_ROMAN_24, "Congrats! You beat the game!");
+
+		char scorePos[100];
+		snprintf(scorePos, sizeof(scorePos), "Final Score: %i", scoreL1);
+		renderBitmapString(280.0f, 280.0f, GLUT_BITMAP_HELVETICA_18, scorePos);
+
+	}
+
+	glEnable(GL_LIGHTING);
+
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+
+	glMatrixMode(GL_MODELVIEW);
+	glFlush();
+	glutSwapBuffers();
+	glPopAttrib();
+}
+
+
 void level2Transition(int value) {
 	level = 2;
 	whichCp = 0;
 	gameStatus = PLAYING;
-	spawnPoint = spawnPoint1L2;
-	playerDirectionRotationFacing = spawnPoint1DirectionL2;
+	spawnPoint = spawnPoint0L2;
+	playerDirectionRotationFacing = spawnPoint0DirectionL2;
 	playerX = spawnPoint.x;
 	playerY = spawnPoint.y;
 	playerZ = spawnPoint.z;
@@ -258,7 +404,7 @@ void Level1Main(int argc, char** argv) {
 	glutKeyboardUpFunc(KeyboardUp);
 	glutSpecialFunc(Special);
 	glutSpecialUpFunc(SpecialUp);
-	glutPassiveMotionFunc(MouseMovement);  
+	//glutPassiveMotionFunc(MouseMovement);  
 
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

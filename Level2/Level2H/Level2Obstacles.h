@@ -2,7 +2,6 @@
 #ifndef LEVEL2_OBSTACLES_H
 #define LEVEL2_OBSTACLES_H
 
-
 #include "Common/CommonH/Model_3DS.h"
 #include "../../Common/CommonH/Collisions.h"
 #include "../../Common/CommonH/Player.h"
@@ -36,7 +35,7 @@ extern Collectible* coinsL2[5];
 
 extern Goal goalL2;
 
-extern Model_3DS dragonL2;
+extern Model_3DS dinosaur;
 
 extern Model_3DS torchL2;
 extern Model_3DS torch2L2;
@@ -63,6 +62,8 @@ extern Chandelier chandelier15;
 extern Chandelier* chandeliers[15];
 
 void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
+void drawTexturedCuboidL2Sliding(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
+
 void LoadAssetsL2();
 
 #endif
