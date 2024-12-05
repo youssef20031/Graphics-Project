@@ -326,9 +326,6 @@ void drawGameWinScreen() {
 	if (level == 2) {
 		glClearColor(0.0f, 0.0f, 0.8f, 1.0f); 
 	}
-	else {
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f); 
-	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -423,7 +420,7 @@ void Level1Main(int argc, char** argv) {
 
 	glShadeModel(GL_SMOOTH);
 
-	level2Transition(0); // go to level 2 directly
+	//level2Transition(0); // go to level 2 directly
 	glutMainLoop();
 }
 
