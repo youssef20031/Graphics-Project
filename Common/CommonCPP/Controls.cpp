@@ -14,7 +14,7 @@ int lastMouseX = 0;
 int lastMouseY = 0;
 bool firstMouse = true;
 
-int MOVE_THRESHOLD = 10;
+int MOVE_THRESHOLD = 5;
 
 
 void Keyboard(unsigned char key, int x, int y) {

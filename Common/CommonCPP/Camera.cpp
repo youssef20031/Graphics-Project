@@ -152,16 +152,16 @@ void updateCameraMovement() {
 		camera.moveZ(-d);
 	}
 
-	if (specialKeyStates[GLUT_KEY_UP]) {
+	if (specialKeyStates[GLUT_KEY_UP]||mouseStates[GLUT_KEY_UP]) {
 		camera.rotateX(a);
 	}
-	if (specialKeyStates[GLUT_KEY_DOWN]) {
+	if (specialKeyStates[GLUT_KEY_DOWN] || mouseStates[GLUT_KEY_DOWN]) {
 		camera.rotateX(-a);
 	}
-	if (specialKeyStates[GLUT_KEY_LEFT]) {
+	if (specialKeyStates[GLUT_KEY_LEFT] || mouseStates[GLUT_KEY_LEFT]) {
 		camera.rotateY(a);
 	}
-	if (specialKeyStates[GLUT_KEY_RIGHT]) {
+	if (specialKeyStates[GLUT_KEY_RIGHT] || mouseStates[GLUT_KEY_RIGHT]) {
 		camera.rotateY(-a);
 	}
 }
