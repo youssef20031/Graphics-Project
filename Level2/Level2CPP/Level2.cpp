@@ -53,7 +53,7 @@ void DisplayL2() {
             drawTexturedCuboidL2Sliding(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
         }
-        // Draw the obstacle
+        if (i!=73)
         drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
 
@@ -77,6 +77,8 @@ void DisplayL2() {
     torch2L2.Draw();
     torch3L2.Draw();
     torch4L2.Draw();
+
+    snowman.Draw();
 
 
     // Chandeliers

@@ -61,6 +61,9 @@ extern Chandelier chandelier15;
 
 extern Chandelier* chandeliers[15];
 
+extern Model_3DS snowman;
+
+
 void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
 void drawTexturedCuboidL2Sliding(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
 
