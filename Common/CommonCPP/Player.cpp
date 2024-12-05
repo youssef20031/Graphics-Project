@@ -329,47 +329,52 @@ void movePlayer(GLfloat speedSign = 1.0f, GLfloat angleSign = 1.0f, GLfloat sinC
 
 
 void updatePlayerMovement() {
+	bool moving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'] ||
+		specialKeyStates[GLUT_KEY_LEFT] || specialKeyStates[GLUT_KEY_RIGHT] ||
+		specialKeyStates[GLUT_KEY_UP] || specialKeyStates[GLUT_KEY_DOWN] ||
+		mouseStates[GLUT_KEY_LEFT] || mouseStates[GLUT_KEY_RIGHT] ||
+		mouseStates[GLUT_KEY_UP] || mouseStates[GLUT_KEY_DOWN];
 
-	bool moving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'] || specialKeyStates[GLUT_KEY_LEFT] || specialKeyStates[GLUT_KEY_RIGHT] || specialKeyStates[GLUT_KEY_UP] || specialKeyStates[GLUT_KEY_DOWN];
 	isMoving = keyStates['w'] || keyStates['s'] || keyStates['d'] || keyStates['a'];
+
 	if (keyStates['w']) {
-		movePlayer(1.0f, -1.0); // calculate the new x and z positions
+		movePlayer(1.0f, -1.0f); 
 	}
 	if (keyStates['s']) {
-		movePlayer(-1.0f, -1.0); // calculate the new x and z positions
+		movePlayer(-1.0f, -1.0f); 
 	}
 	if (keyStates['d']) {
-		movePlayer(1.0f, 1.0f, M_PI / 2); // calculate the new x and z positions
+		movePlayer(1.0f, 1.0f, M_PI / 2); 
 	}
 	if (keyStates['a']) {
-		movePlayer(-1.0f, 1.0f, M_PI / 2); // calculate the new x and z positions
+		movePlayer(-1.0f, 1.0f, M_PI / 2);
 	}
 
 	if (!isMoving && (slidingSpeedX != 0 || slidingSpeedZ != 0)) {
 		movePlayer(0.0f, 0.0f, 0);
 	}
 
-	if (specialKeyStates[GLUT_KEY_LEFT]) {
-		playerDirectionRotationFacing += playerRotationSpeed;
+	if (specialKeyStates[GLUT_KEY_LEFT] || mouseStates[GLUT_KEY_LEFT]) {
+		playerDirectionRotationFacing += playerRotationSpeed; 
 	}
-	if (specialKeyStates[GLUT_KEY_RIGHT]) {
-		playerDirectionRotationFacing -= playerRotationSpeed;
+	if (specialKeyStates[GLUT_KEY_RIGHT] || mouseStates[GLUT_KEY_RIGHT]) {
+		playerDirectionRotationFacing -= playerRotationSpeed; 
 	}
-	if (specialKeyStates[GLUT_KEY_UP] && playerDirectionRotationFacingVertical <= playerDirectionRotationFacingVerticalMax) {
-		playerDirectionRotationFacingVertical += playerRotationSpeed;
+	if ((specialKeyStates[GLUT_KEY_UP] || mouseStates[GLUT_KEY_UP]) &&
+		playerDirectionRotationFacingVertical <= playerDirectionRotationFacingVerticalMax) {
+		playerDirectionRotationFacingVertical += playerRotationSpeed; 
 	}
-	if (specialKeyStates[GLUT_KEY_DOWN] && playerDirectionRotationFacingVertical >= playerDirectionRotationFacingVerticalMin) {
-		playerDirectionRotationFacingVertical -= playerRotationSpeed;
+	if ((specialKeyStates[GLUT_KEY_DOWN] || mouseStates[GLUT_KEY_DOWN]) &&
+		playerDirectionRotationFacingVertical >= playerDirectionRotationFacingVerticalMin) {
+		playerDirectionRotationFacingVertical -= playerRotationSpeed; 
 	}
 
-	// player direction rotation
 	rotatingForward = keyStates['w'];
 	rotatingBack = keyStates['s'];
 	rotatingLeft = keyStates['a'];
 	rotatingRight = keyStates['d'];
 
 	if (moving) {
-		// update camera as well
 		if (viewMode == FIRST_PERSON) {
 			setFirstPersonCamera();
 		}
@@ -378,6 +383,7 @@ void updatePlayerMovement() {
 		}
 	}
 }
+
 
 void updatePlayerVerticalMovement() {
 	bool moving = updateFalling();

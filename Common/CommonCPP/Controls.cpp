@@ -8,6 +8,13 @@
 
 bool keyStates[256] = { false };       // Tracks the state of normal keys
 bool specialKeyStates[256] = { false }; // Tracks the state of special keys
+bool mouseStates[256] = { false };
+
+int lastMouseX = 0;
+int lastMouseY = 0;
+bool firstMouse = true;
+
+int MOVE_THRESHOLD = 10;
 
 
 void Keyboard(unsigned char key, int x, int y) {
@@ -149,6 +156,42 @@ void SpecialUp(int key, int x, int y) {
 	case GLUT_KEY_RIGHT:
 		specialKeyStates[GLUT_KEY_RIGHT] = false;
 		break;
+	}
+
+	glutPostRedisplay();
+}
+
+void MouseMovement(int x, int y) {
+	if (firstMouse) {
+		lastMouseX = x;
+		lastMouseY = y;
+		firstMouse = false;
+		return;
+	}
+
+	int deltaX = x - lastMouseX;
+	int deltaY = y - lastMouseY;
+
+	lastMouseX = x;
+	lastMouseY = y;
+
+	mouseStates[GLUT_KEY_RIGHT] = false;
+	mouseStates[GLUT_KEY_LEFT] = false;
+	mouseStates[GLUT_KEY_UP] = false;
+	mouseStates[GLUT_KEY_DOWN] = false;
+
+	if (deltaX > MOVE_THRESHOLD) {
+		mouseStates[GLUT_KEY_RIGHT] = true;
+	}
+	else if (deltaX < -MOVE_THRESHOLD) {
+		mouseStates[GLUT_KEY_LEFT] = true;
+	}
+
+	if (deltaY > MOVE_THRESHOLD) {
+		mouseStates[GLUT_KEY_DOWN] = true;
+	}
+	else if (deltaY < -MOVE_THRESHOLD) {
+		mouseStates[GLUT_KEY_UP] = true;
 	}
 
 	glutPostRedisplay();

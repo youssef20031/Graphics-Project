@@ -255,6 +255,8 @@ void Level1Main(int argc, char** argv) {
 	glutKeyboardUpFunc(KeyboardUp);
 	glutSpecialFunc(Special);
 	glutSpecialUpFunc(SpecialUp);
+	glutPassiveMotionFunc(MouseMovement);  
+
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
