@@ -42,6 +42,7 @@ extern float lastFrameTime;
 extern float deltaTime;
 extern int level;
 extern GLfloat fallAcceleration; // e3tebro gravity
+extern bool loseL1Sound;
 
 void level2Transition(int value);
 

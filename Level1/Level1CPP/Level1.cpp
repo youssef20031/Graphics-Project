@@ -20,7 +20,7 @@ int scoreL1=0;
 bool roarSound = false;
 bool checkPointSound = false;
 bool winL1Sound = false;
-bool loseL1Sound = false;
+
 
 
 
@@ -66,7 +66,7 @@ void DisplayL1() {
             winL1Sound = true;
         }
         // timer function to get us to level 2
-        glutTimerFunc(3000, level2Transition, 0);
+        glutTimerFunc(7000, level2Transition, 0);
         return;
     }
  

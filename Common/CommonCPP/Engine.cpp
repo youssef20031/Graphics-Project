@@ -13,6 +13,7 @@ float deltaTime = 0.016f;
 float currentTime = 0.0f;
 int level = 1;
 GLfloat fallAcceleration = -0.05f; // e3tebro gravity
+bool loseL1Sound = false;
 
 // Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
 
@@ -276,8 +277,15 @@ void playgroundMain(int argc, char** argv) {
 }
 
 void playBackgroundMusic() {
-	mciSendString(TEXT("open \"music/bgm1.wav\" type mpegvideo alias bgm"), NULL, 0, NULL);
-	mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
+
+	if (level == 1) {
+		mciSendString(TEXT("open \"music/bgm1.wav\" type mpegvideo alias bgm"), NULL, 0, NULL);
+		mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
+	}
+	else {
+		mciSendString(TEXT("open \"music/bgm2.wav\" type mpegvideo alias bgm"), NULL, 0, NULL);
+		mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
+	}
 }
 
 
@@ -378,16 +386,22 @@ void drawGameWinScreen() {
 
 
 void level2Transition(int value) {
+	checkPointSound = false;
+	playBackgroundMusic();
+
 	level = 2;
 	whichCp = 0;
 	gameStatus = PLAYING;
+
 	spawnPoint = spawnPoint2L2;
 	playerDirectionRotationFacing = spawnPoint2DirectionL2;
+
 	playerX = spawnPoint.x;
 	playerY = spawnPoint.y;
 	playerZ = spawnPoint.z;
 	playerVerticalSpeed = 0.0f;
 	isPlayerJumping = false;
+
 	glutDisplayFunc(DisplayL2);
 }
 

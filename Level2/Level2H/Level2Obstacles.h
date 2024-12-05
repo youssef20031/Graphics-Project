@@ -43,6 +43,8 @@ extern Model_3DS torch2L2;
 extern Model_3DS torch3L2;
 extern Model_3DS torch4L2;
 
+extern Model_3DS snowman;
+
 // Chandelier
 extern Chandelier chandelier1;
 extern Chandelier chandelier2;
@@ -80,7 +82,6 @@ extern SnowBall snowBall14;
 extern SnowBall snowBall15;
 
 extern SnowBall* snowBalls[15];
-
 
 
 void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);

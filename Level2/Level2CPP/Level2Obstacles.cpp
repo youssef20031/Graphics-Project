@@ -34,6 +34,8 @@ Model_3DS torch2L2;
 Model_3DS torch3L2;
 Model_3DS torch4L2;
 
+Model_3DS snowman;
+
 // Chandelier
 Chandelier chandelier1;
 Chandelier chandelier2;
@@ -204,6 +206,12 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    // more big walls- i put them here in case you made this array order-dependant
 
     { 24.89f, 23.9f, -21.36f, 10.0f, 9.9f, 45.1f },
+
+
+
+    // snowman model collision
+
+   { 42.59f, 43.39f, 0.1f, 1.5f, 63.96f, 64.8f },  //i=73
 
 };
 
@@ -436,6 +444,14 @@ void LoadAssetsL2()
     // goal
     goalL2.Load();
     goalL2.SetPosition(-27.5, 0.5, 56.0);
+
+    // snowman
+    snowman.Load("Models/snowman/snowman.3ds");
+    snowman.pos.x = 43.04;
+    snowman.pos.y = 0.1;
+    snowman.pos.z = 64.41;
+    snowman.scale = 0.5;
+    snowman.rot.y = 67;
     
 
     //dragon

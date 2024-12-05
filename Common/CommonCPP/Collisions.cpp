@@ -184,6 +184,7 @@ void handleChandelierCollision(Chandelier& chandelier) {
 		startY < y && y < endY) {
 		// kill the player - send him to Jesus
 
+		PlaySound(TEXT("music/axe.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		playerX = spawnPoint.x;
 		playerY = spawnPoint.y;
 		playerZ = spawnPoint.z;
