@@ -126,7 +126,7 @@ void updateWinLevel1() {
 }
 
 void updateWinLevel2() {
-	if (playerX<=-25.13&&playerX>=-29.88&&playerZ>=59.74&&playerZ<=60.01) {
+	if (playerX<=-25.13&&playerX>=-29.88&&playerZ>=59.74&&playerZ<=60.01&&playerY>=0.92) {
 		gameStatus = WIN;
 	}
 }

@@ -315,6 +315,7 @@ void LoadAssetsL2()
     // goal
     goalL2.Load();
     goalL2.SetPosition(-27.5, 0.5, 56.0);
+    
 
     //dragon
     dinosaur.Load("Models/dinosaur/body.3ds");
