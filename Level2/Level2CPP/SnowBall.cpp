@@ -15,7 +15,7 @@ SnowBall::SnowBall() {
     posY = 0.0f;
     posZ = 0.0f;
     rot = 0.0f;
-    scale = 0.03f;
+    scale = 0.2f;
 
     rotationSpeed = 0.5f;
     rotationDirection = 1;
@@ -41,8 +41,8 @@ void SnowBall::SetPosition(float x, float y, float z) {
     posZ = z;
 }
 
-float SnowBall::getSideLength() {
-    return scale * 333.33f;
+float SnowBall::getRadius() {
+    return scale;
 }
 
 void SnowBall::SetBoundaries(float xStart, float xEnd, float yStart, float yEnd, float zStart, float zEnd) {
@@ -99,7 +99,7 @@ void SnowBall::resetPosition() {
     }
 
     // generate new X, Z coordinates inside X, Z boundaries when gets out of border
-    if (posZ <= minZ || posZ >= maxZ) {
+    if ((posZ <= minZ && fallingSpeedDirection > 0) || (posZ >= maxZ && fallingSpeedDirection < 0)) {
         float randomFloatX = minX + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxX - minX)));
         float randomFloatY = minY + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxY - minY)));
 
@@ -132,7 +132,7 @@ void SnowBall::Draw() {
     glRotatef(rot, 0.0f, 1.0f, 0.0f);
     glScalef(scale, scale, scale);
     //model.Draw();
-    glutSolidSphere(5.0f, 10.0f, 10.0f);
+    glutSolidSphere(1.0f, 10.0f, 10.0f);
 
     glPopMatrix();
 

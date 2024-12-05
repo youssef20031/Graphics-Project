@@ -189,3 +189,28 @@ void handleChandelierCollision(Chandelier& chandelier) {
 		playerZ = spawnPoint.z;
 	}
 }
+void handleSnowBallCollision(SnowBall& snowBall) {
+	float snowBallCenterX = snowBall.GetPosX();
+	float snowBallCenterY = snowBall.GetPosY();
+	float snowBallCenterZ = snowBall.GetPosZ();
+	float snowBallRadius = snowBall.getRadius();
+
+	float startX = snowBallCenterX - snowBallRadius;
+	float endX = snowBallCenterX + snowBallRadius;
+	float startZ = snowBallCenterZ - snowBallRadius;
+	float endZ = snowBallCenterZ + snowBallRadius;
+	float startY = snowBallCenterY - snowBallRadius;
+	float endY = snowBallCenterY + snowBallRadius;
+	float y = playerY + playerHeight;
+
+	if (level == 2 && 
+		startX < playerX && playerX < endX && 
+		startZ < playerZ && playerZ < endZ && 
+		(playerY < startY && startY < y || playerY < endY && endY < y)) {
+		// kill the player - send him to Jesus
+
+		playerX = spawnPoint.x;
+		playerY = spawnPoint.y;
+		playerZ = spawnPoint.z;
+	}
+}

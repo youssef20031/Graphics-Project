@@ -32,3 +32,5 @@ void handleCoinCollision(Collectible& coin);
 void handleSlipperyFloor();
 
 void handleChandelierCollision(Chandelier& chandelier);
+
+void handleSnowBallCollision(SnowBall& snowBall);

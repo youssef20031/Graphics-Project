@@ -26,7 +26,7 @@ public:
     void SnowBall::SetBoundaries(float xStart, float xEnd, float yStart, float yEnd, float zStart, float zEnd);
     void SnowBall::SetFallingSpeed(float speed);
     void SnowBall::resetPosition();
-    float SnowBall::getSideLength();
+    float SnowBall::getRadius();
 
     void SetRotation(float rot);
     void SetRotationSpeed(float speed);

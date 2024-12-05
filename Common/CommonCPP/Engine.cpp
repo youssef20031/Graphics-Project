@@ -63,6 +63,7 @@ void updateStates() {
 	for (int i = 0; i < 15; i++) {
 		if (chandeliers[i] != nullptr) {
 			handleChandelierCollision(*chandeliers[i]);
+			handleSnowBallCollision(*snowBalls[i]);
 		}
 	}
 
@@ -380,8 +381,8 @@ void level2Transition(int value) {
 	level = 2;
 	whichCp = 0;
 	gameStatus = PLAYING;
-	spawnPoint = spawnPoint0L2;
-	playerDirectionRotationFacing = spawnPoint0DirectionL2;
+	spawnPoint = spawnPoint2L2;
+	playerDirectionRotationFacing = spawnPoint2DirectionL2;
 	playerX = spawnPoint.x;
 	playerY = spawnPoint.y;
 	playerZ = spawnPoint.z;

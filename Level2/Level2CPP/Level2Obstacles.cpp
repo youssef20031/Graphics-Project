@@ -475,26 +475,21 @@ void LoadAssetsL2()
 
     // Chandeliers
     for (int i = 0; i < 15; i++)
-    { // final touches spread them out aktar ka y values
+    { 
         float maxY = 10.0f;
-        //float yInitial = (i * maxY) / 15.0f; // Initial Y position
-        //float yInitial = (maxY * pow(5, i)) / 6103515625.0f;
         float yInitial = 2.0f * pow(2,(15 - i));
-        //float initialSpeed = -1.0f * sqrt(2.0f * (-1.0f * fallAcceleration) * yInitial * deltaTime); // fallAcc is -ve inside sqrt so we get the magnitude and add the sign back later
-        //printf("initial y: %f, speed: %f\n", yInitial, initialSpeed);
-        //float initialSpeed = -(3.0f * (15-i)) / 15.0f;
-        float initialSpeed = 0;
         chandeliers[i]->Load();
         chandeliers[i]->SetBoundaries(40.0f, 50.0f, 0.0f, maxY, 40.0f, 60.0f);
         chandeliers[i]->SetPosition(45, yInitial, 50);
-        chandeliers[i]->SetFallingSpeed(initialSpeed);
     }
 
     // SnowBalls
     for (int i = 0; i < 15; i++)
     {
+        float zInitial = 75.0f + 1.0f * pow(2, (15 - i));
         snowBalls[i]->Load();
-        snowBalls[i]->SetBoundaries(24.0f, -25.0f, 0.1f, 1.0f, 78.0f, 82.0f);
+        snowBalls[i]->SetBoundaries(24.0f, -25.0f, 0.2f, 1.2f, 75.0f, 85.0f);
+        snowBalls[i]->SetPosition(20.0f, 0.5f, zInitial);
     }
 
     //drawSkybox();
