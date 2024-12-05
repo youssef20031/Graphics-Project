@@ -273,8 +273,15 @@ void playgroundMain(int argc, char** argv) {
 }
 
 void playBackgroundMusic() {
-	mciSendString(TEXT("open \"music/bgm1.wav\" type mpegvideo alias bgm"), NULL, 0, NULL);
-	mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
+
+	if (level == 1) {
+		mciSendString(TEXT("open \"music/bgm1.wav\" type mpegvideo alias bgm"), NULL, 0, NULL);
+		mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
+	}
+	else {
+		mciSendString(TEXT("open \"music/bgm2.wav\" type mpegvideo alias bgm"), NULL, 0, NULL);
+		mciSendString(TEXT("play bgm repeat"), NULL, 0, NULL);
+	}
 }
 
 
@@ -376,8 +383,9 @@ void drawGameWinScreen() {
 
 void level2Transition(int value) {
 	level = 2;
-	whichCp = 0;
 	gameStatus = PLAYING;
+	playBackgroundMusic();
+	whichCp = 0;
 	spawnPoint = spawnPoint0L2;
 	playerDirectionRotationFacing = spawnPoint0DirectionL2;
 	playerX = spawnPoint.x;
@@ -420,7 +428,7 @@ void Level1Main(int argc, char** argv) {
 
 	glShadeModel(GL_SMOOTH);
 
-	level2Transition(0); // go to level 2 directly
+	//level2Transition(0); // go to level 2 directly
 	glutMainLoop();
 }
 
