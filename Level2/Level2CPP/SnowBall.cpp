@@ -15,12 +15,13 @@ SnowBall::SnowBall() {
     posY = 0.0f;
     posZ = 0.0f;
     rot = 0.0f;
-    scale = 0.003f;
+    scale = 0.03f;
 
     rotationSpeed = 0.5f;
     rotationDirection = 1;
 
     fallingSpeed = 0.0f;
+    fallingSpeedDirection = 1.0f;
 
     width = 2.0f;
     length = 2.0f;
@@ -29,7 +30,8 @@ SnowBall::SnowBall() {
 
 
 void SnowBall::Load() {
-    model.Load("Models/snowBall/snowBall.3ds");
+    //model.Load("Models/snowBall/snowBall.3ds");
+
 }
 
 
@@ -76,35 +78,42 @@ void SnowBall::SetRotationSpeed(float speed) {
 }
 
 void SnowBall::resetPosition() {
+    float minX = boundaryStartX;
+    float maxX = boundaryEndX;
     float minY = boundaryStartY;
     float maxY = boundaryEndY;
+    float minZ = boundaryStartZ;
+    float maxZ = boundaryEndZ;
 
+    if (boundaryStartX > boundaryEndX) {
+        minX = boundaryEndX;
+        maxX = boundaryStartX;
+    }
     if (boundaryStartY > boundaryEndY) {
         minY = boundaryEndY;
         maxY = boundaryStartY;
     }
+    if (boundaryStartZ > boundaryEndZ) {
+        minZ = boundaryEndZ;
+        maxZ = boundaryStartZ;
+    }
 
-    // generate new X, Z coordinates inside X, Z boundaries when reaches minY
-    if (posY <= minY) {
-        float minX = boundaryStartX;
-        float maxX = boundaryEndX;
-        float minZ = boundaryStartZ;
-        float maxZ = boundaryEndZ;
-
-        if (boundaryStartX > boundaryEndX) {
-            minX = boundaryEndX;
-            maxX = boundaryStartX;
-        }
-        if (boundaryStartZ > boundaryEndZ) {
-            minZ = boundaryEndZ;
-            maxZ = boundaryStartZ;
-        }
-
+    // generate new X, Z coordinates inside X, Z boundaries when gets out of border
+    if (posZ <= minZ || posZ >= maxZ) {
         float randomFloatX = minX + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxX - minX)));
-        float randomFloatZ = minZ + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxZ - minZ)));
+        float randomFloatY = minY + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxY - minY)));
 
+        float randomFloat = static_cast<float>(rand()) / static_cast<float>(RAND_MAX); // Generates a float between 0.0 and 1.0
+        if (randomFloat > 0.5f) {
+            fallingSpeedDirection = 1.0f;
+            SetPosition(randomFloatX, randomFloatY, maxZ);
+        }
+        else {
+            fallingSpeedDirection = -1.0f;
+            SetPosition(randomFloatX, randomFloatY, minZ);
+        }
         fallingSpeed = 0.0f;
-        SetPosition(randomFloatX, maxY, randomFloatZ);
+
     }
 }
 
@@ -112,9 +121,9 @@ void SnowBall::Draw() {
     // checks if chandelier has to reset position and resets it if it has to
     resetPosition();
 
-    // make chandelier fall
+    // make snowball move
     fallingSpeed += fallAcceleration * deltaTime;
-    SetPosition(posX, posY + fallingSpeed, posZ);
+    SetPosition(posX, posY, posZ + fallingSpeed * fallingSpeedDirection);
 
     rot += rotationSpeed * rotationDirection;
     glPushMatrix();
@@ -122,7 +131,9 @@ void SnowBall::Draw() {
     /// Rotation animation
     glRotatef(rot, 0.0f, 1.0f, 0.0f);
     glScalef(scale, scale, scale);
-    model.Draw();
+    //model.Draw();
+    glutSolidSphere(5.0f, 10.0f, 10.0f);
 
     glPopMatrix();
+
 }

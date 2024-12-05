@@ -9,6 +9,7 @@
 #include "../../Common/CommonH/Collectible.h"
 #include "../../Common/CommonH/Goal.h"
 #include "Chandelier.h"
+#include "SnowBall.h"
 #include <glut.h>
 
 // Define the number of obstacles
@@ -60,6 +61,27 @@ extern Chandelier chandelier14;
 extern Chandelier chandelier15;
 
 extern Chandelier* chandeliers[15];
+
+// snowballs
+extern SnowBall snowBall1;
+extern SnowBall snowBall2;
+extern SnowBall snowBall3;
+extern SnowBall snowBall4;
+extern SnowBall snowBall5;
+extern SnowBall snowBall6;
+extern SnowBall snowBall7;
+extern SnowBall snowBall8;
+extern SnowBall snowBall9;
+extern SnowBall snowBall10;
+extern SnowBall snowBall11;
+extern SnowBall snowBall12;
+extern SnowBall snowBall13;
+extern SnowBall snowBall14;
+extern SnowBall snowBall15;
+
+extern SnowBall* snowBalls[15];
+
+
 
 void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
 void drawTexturedCuboidL2Sliding(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);

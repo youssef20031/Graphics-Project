@@ -83,8 +83,9 @@ void DisplayL2() {
     for (int i = 0; i < 15; i++)
     {
         chandeliers[i]->Draw();
+        snowBalls[i]->Draw();
     }
-
+    
 
     // this is because sometimes the model for some reason messes with the skybox
     glPushAttrib(GL_ALL_ATTRIB_BITS);

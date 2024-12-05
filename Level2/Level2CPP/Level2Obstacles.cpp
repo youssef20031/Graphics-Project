@@ -35,8 +35,6 @@ Model_3DS torch3L2;
 Model_3DS torch4L2;
 
 // Chandelier
-
-// Chandelier
 Chandelier chandelier1;
 Chandelier chandelier2;
 Chandelier chandelier3;
@@ -70,6 +68,42 @@ Chandelier* chandeliers[15] = {
     &chandelier14,
     &chandelier15
 };
+
+// Snow Balls
+SnowBall snowBall1;
+SnowBall snowBall2;
+SnowBall snowBall3;
+SnowBall snowBall4;
+SnowBall snowBall5;
+SnowBall snowBall6;
+SnowBall snowBall7;
+SnowBall snowBall8;
+SnowBall snowBall9;
+SnowBall snowBall10;
+SnowBall snowBall11;
+SnowBall snowBall12;
+SnowBall snowBall13;
+SnowBall snowBall14;
+SnowBall snowBall15;
+
+SnowBall* snowBalls[15] = {
+    &snowBall1, 
+    &snowBall2, 
+    &snowBall3, 
+    &snowBall4, 
+    &snowBall5,
+    &snowBall6,
+    &snowBall7,
+    &snowBall8,
+    &snowBall9,
+    &snowBall10,
+    &snowBall11,
+    &snowBall12,
+    &snowBall13,
+    &snowBall14,
+    &snowBall15
+};
+
 
 // obstacles
 GLfloat L2obstacles[L2numberOfObstacles][6] = {
@@ -452,8 +486,15 @@ void LoadAssetsL2()
         float initialSpeed = 0;
         chandeliers[i]->Load();
         chandeliers[i]->SetBoundaries(40.0f, 50.0f, 0.0f, maxY, 40.0f, 60.0f);
-        chandeliers[i]->SetPosition(chandeliers[i]->GetPosX(), yInitial, chandeliers[i]->GetPosZ());
+        chandeliers[i]->SetPosition(45, yInitial, 50);
         chandeliers[i]->SetFallingSpeed(initialSpeed);
+    }
+
+    // SnowBalls
+    for (int i = 0; i < 15; i++)
+    {
+        snowBalls[i]->Load();
+        snowBalls[i]->SetBoundaries(24.0f, -25.0f, 0.1f, 1.0f, 78.0f, 82.0f);
     }
 
     //drawSkybox();

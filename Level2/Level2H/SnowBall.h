@@ -15,6 +15,7 @@ public:
     float rotationSpeed;
     int rotationDirection;
     float fallingSpeed;
+    float fallingSpeedDirection;
     float length, width, height;
 
     SnowBall();

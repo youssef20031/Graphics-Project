@@ -56,12 +56,6 @@ void updateStates() {
 		}
 	}
 
-	for (int i = 0; i < 5; i++) {
-		if (coinsL2[i] != nullptr) {
-			handleCoinCollision(*coinsL2[i]);
-		}
-	}
-
 	dragonRoar();
 
 	// level 2
@@ -71,6 +65,13 @@ void updateStates() {
 			handleChandelierCollision(*chandeliers[i]);
 		}
 	}
+
+	for (int i = 0; i < 5; i++) {
+		if (coinsL2[i] != nullptr) {
+			handleCoinCollision(*coinsL2[i]);
+		}
+	}
+
 
 
 	glutPostRedisplay();

@@ -77,6 +77,9 @@
     <ClCompile Include="Level2\Level2CPP\Chandelier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level2\Level2CPP\SnowBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLTexture.h">
@@ -139,6 +142,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\CommonH\Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2\Level2H\SnowBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -104,6 +104,7 @@
     <ClCompile Include="Level2\Level2CPP\Chandelier.cpp" />
     <ClCompile Include="Level2\Level2CPP\Level2.cpp" />
     <ClCompile Include="Level2\Level2CPP\Level2Obstacles.cpp" />
+    <ClCompile Include="Level2\Level2CPP\SnowBall.cpp" />
     <ClCompile Include="OpenGLMeshLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,7 @@
     <ClInclude Include="Level2\Level2H\Chandelier.h" />
     <ClInclude Include="Level2\Level2H\Level2.h" />
     <ClInclude Include="Level2\Level2H\Level2Obstacles.h" />
+    <ClInclude Include="Level2\Level2H\SnowBall.h" />
     <ClInclude Include="OpenGLMeshLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

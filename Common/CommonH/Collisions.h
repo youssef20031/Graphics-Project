@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "../../Level1/Level1H/Axe.h"
 #include "../../Level2/Level2H/Chandelier.h"
+#include "../../Level2/Level2H/SnowBall.h"
 #include "../CommonH/Collectible.h"
 #include <glut.h>
 
