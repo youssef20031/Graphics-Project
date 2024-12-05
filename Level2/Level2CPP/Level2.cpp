@@ -42,7 +42,7 @@ void DisplayL2() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     drawGradientSky();
     displayCameraCoords();
-    drawAxis();
+    //drawAxis();
     glColor3f(0.2f, 0.7f, 0.8f);
     float elapsedTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 
@@ -100,7 +100,6 @@ void DisplayL2() {
 
     drawPlayer();
 
-    //loadBMP(&texL1, "Textures/blu-sky-3.bmp", true);
 
     flag1L2.Draw();
     flag2L2.Draw();
@@ -133,7 +132,7 @@ void DisplayL2() {
 
 
     glPushAttrib(GL_ALL_ATTRIB_BITS);
-    dragonL2.Draw();
+    dinosaur.Draw();
     glPopAttrib();
 
     if (showCheckpointMessage) {

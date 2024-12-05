@@ -288,7 +288,6 @@ void level2Transition(int value) {
 	playerZ = spawnPoint.z;
 	playerVerticalSpeed = 0.0f;
 	isPlayerJumping = false;
-	drawGradientSky();
 	glutDisplayFunc(DisplayL2);
 }
 

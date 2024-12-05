@@ -26,7 +26,7 @@ Collectible* coinsL2[5] = {
 
 Goal goalL2;
 
-Model_3DS dragonL2;
+Model_3DS dinosaur;
 
 Model_3DS torchL2;
 Model_3DS torch2L2;
@@ -311,11 +311,11 @@ void LoadAssetsL2()
     goalL2.SetPosition(-27.5, 0.5, 56.0);
 
     //dragon
-    dragonL2.Load("Models/dragon/Drachen_1.0_3ds.3ds");
-    dragonL2.pos.x = -90.51;
-    dragonL2.pos.y = 0.2;
-    dragonL2.pos.z = 70.12;
-    dragonL2.rot.y = 110;
+    dinosaur.Load("Models/dinosaur/body.3ds");
+    dinosaur.pos.x = -90.51;
+    dinosaur.pos.y = 0.2;
+    dinosaur.pos.z = 70.12;
+    dinosaur.rot.y = 110;
 
     //torches
 

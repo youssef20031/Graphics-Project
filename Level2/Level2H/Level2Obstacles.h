@@ -36,7 +36,7 @@ extern Collectible* coinsL2[5];
 
 extern Goal goalL2;
 
-extern Model_3DS dragonL2;
+extern Model_3DS dinosaur;
 
 extern Model_3DS torchL2;
 extern Model_3DS torch2L2;
