@@ -110,7 +110,15 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
    
    // Section 2 - Falling Chandeliers
-   { 34.0f, 56.0f, 0.0f, 0.1f, 35.0f, 60.0f },  // stage platform
+   { 40.0f, 50.0f, 0.0f, 0.1f, 35.0f, 60.0f },  // stage platform
+   { 40.0f, 50.0f, 0.0f, 0.1f, 60.0f, 65.0f },  // stage safezone platform
+
+   { 44.5f, 45.5f, 0.0f, 0.1f, 65.0f, 80.5f },  // path connector to stage 3 (first part)
+   { 44.5f, 30.0f, 0.0f, 0.1f, 79.5f, 80.5f },  // path connector to stage 3 (second part)
+
+
+   // Section 3 - Platforms with snow balls
+   { 25.0f, 30.0f, 0.0f, 0.1f, 75.0f, 85.0f },  // stage 3 safe zone
 
 
 
@@ -230,35 +238,35 @@ void LoadAssetsL2()
     //checkpoint flags
 
     flag1L2.Load();
-    flag1L2.SetPosition(40.0f, 2.1f, 39.0f);
+    flag1L2.SetPosition(42.0f, 2.1f, 37.0f);
 
     flag2L2.Load();
-    flag2L2.SetPosition(-76.34, 2.2f, 45.56f);
+    flag2L2.SetPosition(28.0f, 2.1f, 82.0f);
 
-    flag3L2.Load();
-    flag3L2.SetPosition(-27.05, 2.2f, 46.34f);
+    //flag3L2.Load();
+    //flag3L2.SetPosition(-27.05, 2.2f, 46.34f);
 
     // collectibles
 
-    coinsL2[0]->Load();
-    coinsL2[0]->SetPosition(-178.21f, 4.3f, 37.28f);
+    //coinsL2[0]->Load();
+    //coinsL2[0]->SetPosition(-178.21f, 4.3f, 37.28f);
 
-    coinsL2[1]->Load();
-    coinsL2[1]->SetPosition(-92.07f, 0.4f, 46.73f);
+    //coinsL2[1]->Load();
+    //coinsL2[1]->SetPosition(-92.07f, 0.4f, 46.73f);
 
-    coinsL2[2]->Load();
-    coinsL2[2]->SetPosition(4.64f, 0.2f, 17.19f);
+    //coinsL2[2]->Load();
+    //coinsL2[2]->SetPosition(4.64f, 0.2f, 17.19f);
 
-    coinsL2[3]->Load();
-    coinsL2[3]->SetPosition(-45.97f, 0.3f, 48.12f);
+    //coinsL2[3]->Load();
+    //coinsL2[3]->SetPosition(-45.97f, 0.3f, 48.12f);
 
-    coinsL2[4]->Load();
-    coinsL2[4]->SetPosition(-192.63f, 4.2f, 56.22f);
+    //coinsL2[4]->Load();
+    //coinsL2[4]->SetPosition(-192.63f, 4.2f, 56.22f);
 
 
     // goal
-    goalL2.Load();
-    goalL2.SetPosition(-237.8, 10.5, 56.96);
+    //goalL2.Load();
+    //goalL2.SetPosition(-237.8, 10.5, 56.96);
 
     //dragon
     dragonL2.Load("Models/dragon/Drachen_1.0_3ds.3ds");
@@ -269,31 +277,31 @@ void LoadAssetsL2()
 
     //torches
 
-    torchL2.Load("models/torch/candle.3ds");
-    torchL2.scale = 0.03;
-    torchL2.pos.x = 0.22;
-    torchL2.pos.y = 1.5;
-    torchL2.pos.z = 15.12;
+    //torchL2.Load("models/torch/candle.3ds");
+    //torchL2.scale = 0.03;
+    //torchL2.pos.x = 0.22;
+    //torchL2.pos.y = 1.5;
+    //torchL2.pos.z = 15.12;
 
-    torch2L2.Load("models/torch/candle.3ds");
-    torch2L2.scale = 0.03;
-    torch2L2.pos.x = 5.8;
-    torch2L2.pos.y = 1.5;
-    torch2L2.pos.z = 26.18;
-    torch2L2.rot.y = 180;
+    //torch2L2.Load("models/torch/candle.3ds");
+    //torch2L2.scale = 0.03;
+    //torch2L2.pos.x = 5.8;
+    //torch2L2.pos.y = 1.5;
+    //torch2L2.pos.z = 26.18;
+    //torch2L2.rot.y = 180;
 
-    torch3L2.Load("models/torch/candle.3ds");
-    torch3L2.scale = 0.03;
-    torch3L2.pos.x = 0.23;
-    torch3L2.pos.y = 1.5;
-    torch3L2.pos.z = 35.9;
+    //torch3L2.Load("models/torch/candle.3ds");
+    //torch3L2.scale = 0.03;
+    //torch3L2.pos.x = 0.23;
+    //torch3L2.pos.y = 1.5;
+    //torch3L2.pos.z = 35.9;
 
-    torch4L2.Load("models/torch/candle.3ds");
-    torch4L2.scale = 0.03;
-    torch4L2.pos.x = 0.54;
-    torch4L2.pos.y = 1.5;
-    torch4L2.pos.z = 49.88;
-    torch4L2.rot.y = 90;
+    //torch4L2.Load("models/torch/candle.3ds");
+    //torch4L2.scale = 0.03;
+    //torch4L2.pos.x = 0.54;
+    //torch4L2.pos.y = 1.5;
+    //torch4L2.pos.z = 49.88;
+    //torch4L2.rot.y = 90;
 
     // Chandeliers
     for (int i = 0; i < 15; i++)
@@ -306,7 +314,7 @@ void LoadAssetsL2()
         //float initialSpeed = -(3.0f * (15-i)) / 15.0f;
         float initialSpeed = 0;
         chandeliers[i]->Load();
-        chandeliers[i]->SetBoundaries(34.0f, 56.0f, 0.0f, maxY, 35.0f, 60.0f);
+        chandeliers[i]->SetBoundaries(40.0f, 50.0f, 0.0f, maxY, 40.0f, 60.0f);
         chandeliers[i]->SetPosition(chandeliers[i]->GetPosX(), yInitial, chandeliers[i]->GetPosZ());
         chandeliers[i]->SetFallingSpeed(initialSpeed);
     }

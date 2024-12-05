@@ -5,6 +5,7 @@
 
 
 Vector3f spawnPoint(3.07, 0.2, 3.5);
+float spawnPointDirection = 0.0f;
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
 //Vector3f spawnPoint(-192.00, 5.3, 56.19);
 //Vector3f spawnPoint(-138.84, 4.2, 45.34);
@@ -97,10 +98,17 @@ void updateCheckpoint() {
 		}
 	}
 	else { // level 2
-		if (34 < playerX && playerX < 56 && 35 < playerZ && playerZ < 40 && whichCp < 1) {
+		if (30 < playerX && playerX < 50 && 35 < playerZ && playerZ < 40 && whichCp < 1) {
 			spawnPoint = spawnPoint1L2;
-			playerDirectionRotationFacing = spawnPoint1DirectionL2;
+			spawnPointDirection = spawnPoint1DirectionL2;
 			whichCp = 1;
+			showCheckpointMessage = true;
+			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+		}
+		else if (25 < playerX && playerX < 30 && 75 < playerZ && playerZ < 85 && whichCp < 2) {
+			spawnPoint = spawnPoint2L2;
+			spawnPointDirection = spawnPoint2DirectionL2;
+			whichCp = 2;
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 		}
@@ -401,6 +409,7 @@ bool updateFalling() {
 		playerX = spawnPoint.x;
 		playerY = spawnPoint.y;
 		playerZ = spawnPoint.z;
+		playerDirectionRotationFacing = spawnPointDirection;
 		playerVerticalSpeed = 0;
 
 		PlaySound(TEXT("music/burn.wav"), NULL, SND_FILENAME | SND_ASYNC);

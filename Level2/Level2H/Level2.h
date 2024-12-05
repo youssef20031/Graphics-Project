@@ -20,6 +20,8 @@ extern Vector3f spawnPoint0L2;
 extern GLfloat spawnPoint0DirectionL2;
 extern Vector3f spawnPoint1L2;
 extern GLfloat spawnPoint1DirectionL2;
+extern Vector3f spawnPoint2L2;
+extern GLfloat spawnPoint2DirectionL2;
 
 void DisplayL2();
 

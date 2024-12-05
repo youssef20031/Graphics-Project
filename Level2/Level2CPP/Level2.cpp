@@ -3,8 +3,12 @@
 
 Vector3f spawnPoint0L2 = Vector3f(0, 0.5, 0);
 GLfloat spawnPoint0DirectionL2 = 0;
+
 Vector3f spawnPoint1L2 = Vector3f(44.5, 0.5, 36.0);
 GLfloat spawnPoint1DirectionL2 = 270;
+
+Vector3f spawnPoint2L2 = Vector3f(29.0, 0.5, 80.0);
+GLfloat spawnPoint2DirectionL2 = 180;
 
 
 void DisplayL2() {
