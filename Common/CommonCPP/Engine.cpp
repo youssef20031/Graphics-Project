@@ -12,6 +12,7 @@ float deltaTime = 0.016f;
 float currentTime = 0.0f;
 int level = 1;
 GLfloat fallAcceleration = -0.05f; // e3tebro gravity
+bool loseL1Sound = false;
 
 // Note: Any time you need to use speed reference this file in the header and multiply with deltaTime
 

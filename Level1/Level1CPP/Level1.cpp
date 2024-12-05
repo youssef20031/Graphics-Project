@@ -14,13 +14,13 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
-int timerL1=900;
+int timerL1=10;
 int scoreL1=0;
 
 bool roarSound = false;
 bool checkPointSound = false;
 bool winL1Sound = false;
-bool loseL1Sound = false;
+
 
 
 

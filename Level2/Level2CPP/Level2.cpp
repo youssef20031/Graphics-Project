@@ -15,10 +15,10 @@ void DisplayL2() {
     if (gameStatus == LOSE) {
         drawGameOverScreen();
         stopBackgroundMusic();
-        //if (!loseL1Sound) {
-           // PlaySound(TEXT("music/loseL1.wav"), NULL, SND_FILENAME | SND_ASYNC);
-            //loseL1Sound = true;
-        //}
+        if (!loseL1Sound) {
+            PlaySound(TEXT("music/loseL1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            loseL1Sound = true;
+        }
         return;
     }
     if (gameStatus == WIN) {
