@@ -56,3 +56,5 @@ void drawHUD();
 void renderCheckpointMessage(const char* message);
 
 void drawGradientSky();
+void drawGameOverScreen();
+void drawGameWinScreen();

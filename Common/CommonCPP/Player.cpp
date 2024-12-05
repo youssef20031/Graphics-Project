@@ -125,6 +125,13 @@ void updateWinLevel1() {
 	}
 }
 
+void updateWinLevel2() {
+	if (playerX<=-25.13&&playerX>=-29.88&&playerZ>=59.74&&playerZ<=60.01) {
+		gameStatus = WIN;
+	}
+}
+
+
 void updatePlayerRotation() {
 	// 8 cases
 	if (rotatingForward && rotatingRight) {

@@ -63,3 +63,4 @@ void drawCuboid(double xStart, double xEnd, double yStart, double yEnd, double z
 void drawPlayer();              // Renders the player in the scene
 void updateCheckpoint();
 void updateWinLevel1();
+void updateWinLevel2();

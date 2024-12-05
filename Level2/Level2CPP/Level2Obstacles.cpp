@@ -296,20 +296,20 @@ void LoadAssetsL2()
 
     // collectibles
 
-    //coinsL2[0]->Load();
-    //coinsL2[0]->SetPosition(-178.21f, 4.3f, 37.28f);
+    coinsL2[0]->Load();
+    coinsL2[0]->SetPosition(48.54f, 1.08f, -1.08);
 
-    //coinsL2[1]->Load();
-    //coinsL2[1]->SetPosition(-92.07f, 0.4f, 46.73f);
+    coinsL2[1]->Load();
+    coinsL2[1]->SetPosition(49.3f, 0.1f, 50.22f);
 
-    //coinsL2[2]->Load();
-    //coinsL2[2]->SetPosition(4.64f, 0.2f, 17.19f);
+    coinsL2[2]->Load();
+    coinsL2[2]->SetPosition(11.4f, 1.0f, 81.76f);
 
-    //coinsL2[3]->Load();
-    //coinsL2[3]->SetPosition(-45.97f, 0.3f, 48.12f);
+    coinsL2[3]->Load();
+    coinsL2[3]->SetPosition(42.02f, 0.1f, 41.56f);
 
-    //coinsL2[4]->Load();
-    //coinsL2[4]->SetPosition(-192.63f, 4.2f, 56.22f);
+    coinsL2[4]->Load();
+    coinsL2[4]->SetPosition(-27.45f, 0.1f, 77.18f);
 
 
     // goal
