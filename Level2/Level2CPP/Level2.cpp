@@ -47,6 +47,11 @@ void DisplayL2() {
     for (int i = 0; i < L2numberOfObstacles; i++) {
         GLfloat* L2currentObstacle = L2obstacles[i];
 
+
+        if (i >= 14 && i <= 26) {
+            drawTexturedCuboidL2Sliding(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
+
+        }
         // Draw the obstacle
         drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
