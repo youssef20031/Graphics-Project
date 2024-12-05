@@ -1,5 +1,6 @@
 #include <OpenGLMeshLoader.h>
 #include "../CommonH/Engine.h"
+#include "../CommonH/Controls.h"
 #include "../../Level1/Level1H/Playground.h"
 #include "../../Level1/Level1H/Level1Obstacles.h"
 #include "../../Level1/Level1H/Level1.h"
