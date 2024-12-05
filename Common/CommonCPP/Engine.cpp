@@ -30,6 +30,8 @@ void updateStates() {
 
 	updatePlayerRotation();
 
+	glutSetCursor(GLUT_CURSOR_NONE);
+
 
 	// Level 1
 	updateCheckpoint();

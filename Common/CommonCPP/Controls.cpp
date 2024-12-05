@@ -162,18 +162,28 @@ void SpecialUp(int key, int x, int y) {
 }
 
 void MouseMovement(int x, int y) {
+	static const float sensitivity = 4.0f;
+	int windowWidth = glutGet(GLUT_WINDOW_WIDTH);
+	int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
+	int centerX = windowWidth / 2;
+	int centerY = windowHeight / 2;
+
 	if (firstMouse) {
-		lastMouseX = x;
-		lastMouseY = y;
+		lastMouseX = centerX;
+		lastMouseY = centerY;
 		firstMouse = false;
+		glutWarpPointer(centerX, centerY);
 		return;
 	}
 
-	int deltaX = x - lastMouseX;
-	int deltaY = y - lastMouseY;
+	int deltaX = x - centerX;
+	int deltaY = y - centerY;
 
-	lastMouseX = x;
-	lastMouseY = y;
+	if (deltaX == 0 && deltaY == 0)
+		return;
+
+	deltaX = static_cast<int>(deltaX * sensitivity);
+	deltaY = static_cast<int>(deltaY * sensitivity);
 
 	mouseStates[GLUT_KEY_RIGHT] = false;
 	mouseStates[GLUT_KEY_LEFT] = false;
@@ -193,6 +203,8 @@ void MouseMovement(int x, int y) {
 	else if (deltaY < -MOVE_THRESHOLD) {
 		mouseStates[GLUT_KEY_UP] = true;
 	}
+
+	glutWarpPointer(centerX, centerY);
 
 	glutPostRedisplay();
 }
