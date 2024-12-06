@@ -364,6 +364,15 @@ void configureTorchLight(GLenum light, float x, float y, float z, float time) {
     GLfloat base_specular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
     GLfloat base_ambient[] = { 0.0f, 0.0f, 0.0f, 1.0f }; 
 
+    if (level == 2) {  // blue light
+        base_diffuse[0] = 0.0f;
+        base_diffuse[1] = 0.5f;
+        base_diffuse[2] = 1.0f;
+        base_specular[0] = 0.0f;
+        base_specular[1] = 0.5f;
+        base_specular[2] = 1.0f;
+    }
+
     float flickerAmplitude = 0.2f;  
     float flickerSpeed = 3.0f;         
 

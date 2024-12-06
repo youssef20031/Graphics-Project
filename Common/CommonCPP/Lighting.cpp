@@ -8,11 +8,23 @@ void setupLights(float time) {
 	GLfloat global_ambient[] = { 0.05f, 0.05f, 0.05f, 1.0f };
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);
 
+
+    // Level 1 Torches
+
 	configureTorchLight(GL_LIGHT0, torch.pos.x, torch.pos.y, torch.pos.z,time);
 	configureTorchLight(GL_LIGHT1, torch2.pos.x, torch2.pos.y, torch2.pos.z,time);
 	configureTorchLight(GL_LIGHT2, torch3.pos.x, torch3.pos.y, torch3.pos.z,time);
 	configureTorchLight(GL_LIGHT3, torch4.pos.x, torch4.pos.y, torch4.pos.z,time);
 
+
+    // Level 2 Torches
+
+    configureTorchLight(GL_LIGHT6, torchL2.pos.x, torchL2.pos.y, torchL2.pos.z, time);
+    configureTorchLight(GL_LIGHT7, torch2L2.pos.x, torch2L2.pos.y, torch2L2.pos.z, time);
+    
+
+    
+    // LEVEL 1
 
     // Cave and Stage 1 Lighting
 
@@ -59,4 +71,11 @@ void setupLights(float time) {
     glLightf(GL_LIGHT5, GL_QUADRATIC_ATTENUATION, quadratic_attenuation2);
 
     glEnable(GL_LIGHT5);
+
+    // LEVEL 2
+
+
+
+
+
 }

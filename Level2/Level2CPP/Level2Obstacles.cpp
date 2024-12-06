@@ -217,7 +217,7 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 };
 
 void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
-    glDisable(GL_LIGHTING);
+    //glDisable(GL_LIGHTING);
 
     glColor3f(0.6, 0.6, 0.6);
 
