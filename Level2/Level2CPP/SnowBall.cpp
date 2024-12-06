@@ -133,7 +133,7 @@ void SnowBall::Draw() {
     checkOutOfBounds();
 
     // make snowball move
-    fallingSpeed += fallAcceleration * 3.0f * deltaTime;
+    fallingSpeed += fallAcceleration * 0.8f * deltaTime;
     SetPosition(posX, posY, posZ + fallingSpeed * fallingSpeedDirection);
 
     rot += rotationSpeed * rotationDirection;

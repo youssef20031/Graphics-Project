@@ -58,7 +58,7 @@ void DisplayL1() {
         return;
     }
     if (gameStatus == WIN) {
-        timerL1 = 220;
+        timerL1 = 207;
         drawGameWinScreen();
         stopBackgroundMusic();
         if (!winL1Sound) {
