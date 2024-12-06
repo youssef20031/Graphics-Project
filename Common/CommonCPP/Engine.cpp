@@ -58,6 +58,7 @@ void updateStates() {
 	}
 
 	dragonRoar();
+	dinoRoar();
 
 	// level 2
 

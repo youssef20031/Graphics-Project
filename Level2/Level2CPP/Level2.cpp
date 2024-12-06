@@ -14,6 +14,17 @@ Vector3f spawnPoint3L2 = Vector3f(29.0, 0.5, 80.0);
 GLfloat spawnPoint3DirectionL2 = 180;
 
 bool winL2Sound = false;
+bool dinoRoarSound = false;
+
+void dinoRoar() {
+    if (!dinoRoarSound) {
+        if (playerX >= 25.53 && playerX <= 29.48 && playerZ >= 0.12 && playerZ <= 1.61) {
+            PlaySound(TEXT("music/dinoroar.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            dinoRoarSound = true;
+        }
+    }
+
+}
 
 void DisplayL2() {
     if (gameStatus == LOSE) {

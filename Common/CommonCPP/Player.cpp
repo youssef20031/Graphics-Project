@@ -106,7 +106,7 @@ void updateCheckpoint() {
 			whichCp = 1;
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-		} else if (30 < playerX && playerX < 50 && 35 < playerZ && playerZ < 40 && whichCp < 2) {
+		} else if (30 < playerX && playerX < 50 && 35 < playerZ && playerZ < 40 && whichCp < 2&& playerY>=0.1) {
 			checkPointSound = false;
 			spawnPoint = spawnPoint2L2;
 			spawnPointDirection = spawnPoint2DirectionL2;
@@ -114,7 +114,7 @@ void updateCheckpoint() {
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 		}
-		else if (25 < playerX && playerX < 30 && 75 < playerZ && playerZ < 85 && whichCp < 3) {
+		else if (25 < playerX && playerX < 30 && 75 < playerZ && playerZ < 85 && whichCp < 3&& playerY >= 0.1) {
 			checkPointSound = false;
 			spawnPoint = spawnPoint3L2;
 			spawnPointDirection = spawnPoint3DirectionL2;

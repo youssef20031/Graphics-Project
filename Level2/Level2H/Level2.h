@@ -26,6 +26,7 @@ extern Vector3f spawnPoint3L2;
 extern GLfloat spawnPoint3DirectionL2;
 
 void DisplayL2();
+void dinoRoar();
 
 
 #endif
