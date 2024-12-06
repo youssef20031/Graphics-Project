@@ -157,7 +157,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
     // Dragon Platform i=49
 
-    { -60.69f, -97.32, -11.1f, -50.5f, 50.41f, 80.45f },
+    { -60.69f, -97.32, -11.1+1000.0f, -50.5f+1000.0, 50.41f, 80.45f },
 
 
     // lava floor i=50
