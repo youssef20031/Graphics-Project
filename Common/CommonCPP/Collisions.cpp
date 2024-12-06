@@ -219,6 +219,9 @@ void handleSnowBallCollision(SnowBall& snowBall) {
 		//playerY = spawnPoint.y;
 		//playerZ = spawnPoint.z;
 
+		PlaySound(TEXT("music/ballhit.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
+
 		// stun the player
 		isFrozen = true;
 		// push the player with the snowball
