@@ -26,6 +26,7 @@ GLfloat slidingSpeedX = 0;
 GLfloat slidingSpeedZ = 0;
 bool isMoving = false;
 bool isSliding = false;
+bool isFrozen = false;
 
 Model_3DS wolfplayermodel;
 
@@ -44,7 +45,7 @@ GLfloat playerDirectionRotationFacing = 270.0f; // direction player facing  (270
 GLfloat playerDirectionRotationFacingVertical = 0.0f; // direction player is facing up and down
 GLfloat playerDirectionRotationFacingVerticalMin = -30.0f;
 GLfloat playerDirectionRotationFacingVerticalMax = 30.0f; 
-GLfloat playerDirectionRotationBody = 0.0f; // direction player facing
+GLfloat playerDirectionRotationBody = 270.0f; // direction player facing
 GLfloat playerRotationAnimationSpeed = 1.0f;
 GLfloat playerRotationSpeed = 0.25f;
 bool rotatingLeft = false;
@@ -63,6 +64,7 @@ void updateCheckpoint() {
 			spawnPoint.x = -21.5;
 			spawnPoint.y = 0.1 + 0.2;
 			spawnPoint.z = 48.25;
+			spawnPointDirection = 180;
 			whichCp = 1;
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -75,6 +77,7 @@ void updateCheckpoint() {
 			spawnPoint.x = -71.59;
 			spawnPoint.y = 0.2 + 0.2;
 			spawnPoint.z = 48.18;
+			spawnPointDirection = 180;
 			whichCp = 2;
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
@@ -89,28 +92,33 @@ void updateCheckpoint() {
 			spawnPoint.x = -138.84;
 			spawnPoint.y = 4.2 + 0.2;
 			spawnPoint.z = 45.34;
+			spawnPointDirection = 180;
 			whichCp = 3;
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-
-
-
 		}
 	}
 	else { // level 2
-		if (30 < playerX && playerX < 50 && 35 < playerZ && playerZ < 40 && whichCp < 1) {
+		if (25 < playerX && playerX < 30 && -2 < playerZ && playerZ < 2 && whichCp < 1) {
 			checkPointSound = false;
 			spawnPoint = spawnPoint1L2;
 			spawnPointDirection = spawnPoint1DirectionL2;
 			whichCp = 1;
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
-		}
-		else if (25 < playerX && playerX < 30 && 75 < playerZ && playerZ < 85 && whichCp < 2) {
+		} else if (30 < playerX && playerX < 50 && 35 < playerZ && playerZ < 40 && whichCp < 2) {
 			checkPointSound = false;
 			spawnPoint = spawnPoint2L2;
 			spawnPointDirection = spawnPoint2DirectionL2;
 			whichCp = 2;
+			showCheckpointMessage = true;
+			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
+		}
+		else if (25 < playerX && playerX < 30 && 75 < playerZ && playerZ < 85 && whichCp < 3) {
+			checkPointSound = false;
+			spawnPoint = spawnPoint3L2;
+			spawnPointDirection = spawnPoint3DirectionL2;
+			whichCp = 3;
 			showCheckpointMessage = true;
 			checkpointMessageStartTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f;
 		}
@@ -359,7 +367,7 @@ void updatePlayerMovement() {
 		movePlayer(-1.0f, 1.0f, M_PI / 2);
 	}
 
-	if (!isMoving && (slidingSpeedX != 0 || slidingSpeedZ != 0)) {
+	if ((!isMoving || playerZ > 70.0f) && (slidingSpeedX != 0 || slidingSpeedZ != 0)) {
 		movePlayer(0.0f, 0.0f, 0);
 	}
 
@@ -418,14 +426,15 @@ bool updateFalling() {
 	
 	// check if player is falling in void
 
-
 	if (playerY <= -20.0f) {
 		// return to spawnpoint maslan
 		playerX = spawnPoint.x;
 		playerY = spawnPoint.y;
 		playerZ = spawnPoint.z;
 		playerDirectionRotationFacing = spawnPointDirection;
+		playerDirectionRotationBody = spawnPointDirection;
 		playerVerticalSpeed = 0;
+		isFrozen = false;
 
 		if (level==1)
 		PlaySound(TEXT("music/burn.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -438,6 +447,7 @@ bool updateFalling() {
 	// check if there's something under (collision)
 	if (isColliding(0, playerVerticalSpeed, 0)) {
 		playerVerticalSpeed = 0.0f; // set vertical speed to rest
+		isFrozen = false;
 		return false;
 	}
 	else {

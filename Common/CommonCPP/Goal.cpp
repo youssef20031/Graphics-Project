@@ -52,7 +52,7 @@ void Goal::SetScale(float s) {
 void Goal::Draw() {
     glPushMatrix();
 
-    model.rot.y = 90;
+    //model.rot.y = 90;
     scale += scaleSpeed * scalingDirection;
 
     if (scale >= maxScale) {
@@ -64,7 +64,10 @@ void Goal::Draw() {
         scalingDirection = 1;  
     }
 
+    rotY += rotationSpeed * rotationDirection;
     glTranslatef(posX, posY, posZ);
+    /// Rotation animation
+    glRotatef(rotY, 0.0f, 1.0f, 0.0f);
     glScalef(scale, scale, scale);
 
     

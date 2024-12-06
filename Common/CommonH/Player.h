@@ -26,6 +26,7 @@ extern GLfloat slidingSpeedX;
 extern GLfloat slidingSpeedZ;
 extern bool isMoving;
 extern bool isSliding;
+extern bool isFrozen;
 
 // Player rotation variables
 extern GLfloat playerDirectionRotationFacing; // Direction player is facing
@@ -49,6 +50,7 @@ extern GLfloat playerVerticalJumpInitialSpeed;
 
 //checkpoint
 extern Vector3f spawnPoint;
+extern float spawnPointDirection;
 extern bool showCheckpointMessage;
 extern float checkpointMessageStartTime;
 

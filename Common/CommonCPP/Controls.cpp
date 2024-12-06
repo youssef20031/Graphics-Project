@@ -23,24 +23,28 @@ void Keyboard(unsigned char key, int x, int y) {
 		exit(EXIT_SUCCESS);
 
 	if (gameStatus == PLAYING) {
-		switch (key) {
-			// player movement
-		case 'w':
-			keyStates['w'] = true;
-			break;
-		case 's':
-			keyStates['s'] = true;
-			break;
-		case 'a':
-			keyStates['a'] = true;
-			break;
-		case 'd':
-			keyStates['d'] = true;
-			break;
-		case ' ':
-			keyStates[' '] = true;
-			break;
+		if (!isFrozen) {
+			switch (key) {
+				// player movement
+			case 'w':
+				keyStates['w'] = true;
+				break;
+			case 's':
+				keyStates['s'] = true;
+				break;
+			case 'a':
+				keyStates['a'] = true;
+				break;
+			case 'd':
+				keyStates['d'] = true;
+				break;
+			case ' ':
+				keyStates[' '] = true;
+				break;
+			}
+		}
 
+		switch (key) {
 			// camera states
 		case '1':
 			printf("First Person View Active\n");

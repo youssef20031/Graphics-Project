@@ -108,6 +108,34 @@ void Chandelier::resetPosition() {
     }
 }
 
+void Chandelier::drawXMark() {
+    if (posY > boundaryStartY && posY > boundaryEndY) return;
+
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glPushMatrix();
+    glColor3f(1.0f, 0.0f, 0.0f); // Set color to red
+
+    // make it an x from a +
+    glTranslatef(posX, 0.11f, posZ);
+    glRotatef(45.0f, 0.0f, 1.0f, 0.0f);
+
+    // first arm
+    glPushMatrix();
+    glScalef(0.8f, 0.001f, 0.1f);
+    glutSolidCube(1.0f);        
+    glPopMatrix();
+
+    // second arm
+    glPushMatrix();
+    glRotatef(90.0f, 0.0f, 1.0f, 0.0f); 
+    glScalef(0.8f, 0.001f, 0.1f);        
+    glutSolidCube(1.0f);               
+    glPopMatrix();
+
+    glPopMatrix();
+    glPopAttrib();
+}
+
 void Chandelier::Draw() {
     // checks if chandelier has to reset position and resets it if it has to
     resetPosition();
@@ -117,6 +145,9 @@ void Chandelier::Draw() {
     SetPosition(posX, posY + fallingSpeed, posZ);
 
     rot += rotationSpeed * rotationDirection;
+
+    drawXMark();
+
     glPushMatrix();
     glTranslatef(posX, posY, posZ); 
     /// Rotation animation

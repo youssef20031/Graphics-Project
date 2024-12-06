@@ -109,53 +109,64 @@ SnowBall* snowBalls[15] = {
 
 // obstacles
 GLfloat L2obstacles[L2numberOfObstacles][6] = {
+    // Section 1 - Sliding Platforms
+    { 25.0f, 30.0f, -0.4f, 0.1f, -2.0f, 2.0f },  // initial platform  i=0
+    { 30.0f, 40.0f, -0.4f, 0.1f, -0.5f, 0.5f },  // 1 - forwards
+    { 39.0f, 40.0f, -0.4f, 0.1f, -0.5f, -10.0f },  // 2 - left
+    { 39.0f, 35.0f, -0.4f, 0.1f, -9.0f, -10.0f },  // 3 - backwards
+    { 34.0f, 35.0f, -0.4f, 0.1f, -9.0f, -20.0f },  // 4 - left
+    { 48.0f, 35.0f, -0.4f, 0.1f, -19.0f, -20.0f },  // 5 - forwards
+    { 48.0f, 49.0f, -0.4f, 0.1f, -20.0f, 20.0f },  // 6 - right
+    { 48.0f, 38.0f, -0.4f, 0.1f, 20.0f, 19.0f },  // 7 - backwards
+    { 37.0f, 38.0f, -0.4f, 0.1f, 20.0f, 8.0f },  // 8 - left
+    { 37.0f, 30.0f, -0.4f, 0.1f, 9.0f, 8.0f },  // 9 - backwards
+    { 31.0f, 30.0f, -0.4f, 0.1f, 9.0f, 28.0f },  // 10 - right
+    { 44.0f, 30.0f, -0.4f, 0.1f, 29.0f, 28.0f },  // 11 - forwards
+    { 44.0f, 45.0f, -0.4f, 0.1f, 35.0f, 28.0f },  // 12 - right    i=12
+
+    // snowman model collision
+    { 42.59f, 43.39f, 0.1f, 1.5f, 63.96f, 64.8f },  //i=13
+
+
+
 
     // CAVE SECTION (STAGE 0)
 
-   { -5.0f, 25.0f, 0.0f, 0.1f, -10.0f, 10.0f },  // cave ground
+   { -5.0f, 25.0f, -0.4f, 0.1f, -10.0f, 10.0f },  // cave ground
    { -5.0f, 25.0f, 3.0f, 3.1f, -10.0f, 10.0f },  // cave roof
-   { -5.0f, -5.1f, 0.0f, 3.0f, -10.0f, 10.0f },   // cave back wall
-   { -5.0f, 25.0f, 0.0f, 3.0f, -10.0f, -10.1f },   // cave left wall
-   { -5.0f, 25.0f, 0.0f, 3.0f, 10.0f, 10.1f },   // cave right wall
+   { -5.0f, -5.1f, -0.4f, 3.0f, -10.0f, 10.0f },   // cave back wall
+   { -5.0f, 25.0f, -0.4f, 3.0f, -10.0f, -10.1f },   // cave left wall
+   { -5.0f, 25.0f, -0.4f, 3.0f, 10.0f, 10.1f },   // cave right wall
    { 25.0f, 25.1f, -21.0f, 3.0f, -10.0f, -2.0f },   // cave front left wall
    { 25.0f, 25.1f, -21.0f, 3.0f, 10.0f, 2.0f },   // cave front right wall
    { 25.0f, 25.1f, -21.0f, 0.0f, -2.0f, 2.0f },   // cave front middle wall (under platform)
-   { 3.0f, 6.0f, 0.0f, 3.0f, 15.0f, 16.0f }, // cave middle wall 1
-   { 0.0f, 3.0f, 0.0f, 3.0f, 25.0f, 26.0f }, // cave middle wall 2
-   { 2.0f, 9.0f, 0.0f, 3.0f, 35.0f, 36.0f }, // cave middle wall 3
+   
+   { 10.0f, 10.1f, -0.4f, 3.0f, -10.0f, 6.0f }, // cave middle wall 1
+   { 18.0f, 18.1f, -0.4f, 3.0f, -6.0f, 10.0f }, // cave middle wall 2
 
     // Big Cave Walls
-   //{ 0.0f, 60.0f, -20.5f, -21.0f, -30.0f, 50.0f }, // ground (spikes)
+   { 25.0f, 60.0f, -20.5f, -21.0f, -30.0f, 90.0f }, // ground 1 (spikes)
+   { 25.0f, -40.0f, -20.5f, -21.0f, 10.1f, 90.0f }, // ground 2 (spikes)
+   { 60.0f, -40.0f, 10.0f, 10.1f, 35.0f, 65.0f }, // roof on top of spikes stage
    { 25.0f, 25.1f, -21.0f, 10.0f, -10.0f, -30.0f }, // 1- left
    { 25.0f, 60.0f, -21.0f, 10.0f, -30.1f, -30.0f }, // 2- forward
-   { 60.0f, 60.1f, -21.0f, 10.0f, 50.0f, -30.1f }, // 3- right
-
-    // Section 1 - Sliding Platforms
-   { 25.0f, 30.0f, 0.0f, 0.5f, -2.0f, 2.0f },  // initial platform  i=14
-   { 30.0f, 40.0f, 0.0f, 0.5f, -0.5f, 0.5f },  // 1 - forwards
-   { 39.0f, 40.0f, 0.0f, 0.5f, -0.5f, -10.0f },  // 2 - left
-   { 39.0f, 35.0f, 0.0f, 0.5f, -9.0f, -10.0f },  // 3 - backwards
-   { 34.0f, 35.0f, 0.0f, 0.5f, -9.0f, -20.0f },  // 4 - left
-   { 48.0f, 35.0f, 0.0f, 0.5f, -19.0f, -20.0f },  // 5 - forwards
-   { 48.0f, 49.0f, 0.0f, 0.5f, -20.0f, 20.0f },  // 6 - right
-   { 48.0f, 38.0f, 0.0f, 0.5f, 20.0f, 19.0f },  // 7 - backwards
-   { 37.0f, 38.0f, 0.0f, 0.5f, 20.0f, 8.0f },  // 8 - left
-   { 37.0f, 30.0f, 0.0f, 0.5f, 9.0f, 8.0f },  // 9 - backwards
-   { 31.0f, 30.0f, 0.0f, 0.5f, 9.0f, 28.0f },  // 10 - right
-   { 44.0f, 30.0f, 0.0f, 0.5f, 29.0f, 28.0f },  // 11 - forwards
-   { 44.0f, 45.0f, 0.0f, 0.5f, 35.0f, 28.0f },  // 12 - right    i=26
+   { 60.0f, 60.1f, -21.0f, 10.0f, 90.0f, -30.1f }, // 3- right
+   { 60.1f, -40.0f, -21.0f, 10.0f, 90.0f, 90.1f }, // 4- backwards
+   { -40.1f, -40.0f, -21.0f, 10.0f, 10.0f, 90.1f }, // 5- left
+   { 25.0f, -40.0f, -21.0f, 10.0f, 10.1f, 10.2f }, // 6- forwards
 
    
    // Section 2 - Falling Chandeliers
-   { 40.0f, 50.0f, 0.0f, 0.1f, 35.0f, 60.0f },  // stage platform
-   { 40.0f, 50.0f, 0.0f, 0.1f, 60.0f, 65.0f },  // stage safezone platform
+   { 40.0f, 50.0f, -0.4f, 0.1f, 35.0f, 40.0f },  // stage safezone platform
+   { 43.0f, 47.0f, -0.4f, 0.1f, 40.0f, 60.0f },  // stage platform
+   { 40.0f, 50.0f, -0.4f, 0.1f, 60.0f, 65.0f },  // stage safezone platform
 
    { 44.5f, 45.5f, 0.0f, 0.1f, 65.0f, 80.5f },  // path connector to stage 3 (first part)
    { 44.5f, 30.0f, 0.0f, 0.1f, 79.5f, 80.5f },  // path connector to stage 3 (second part)
 
 
    // Section 3 - Platforms with snow balls
-   { 25.0f, 30.0f, 0.0f, 0.1f, 75.0f, 85.0f },  // stage 3 safe zone
+   { 25.0f, 30.0f, -0.4f, 0.1f, 75.0f, 85.0f },  // stage 3 safe zone
    { 24.0f, 25.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 1
    { 21.0f, 22.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 2
    { 18.0f, 19.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 3
@@ -168,7 +179,7 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { -13.0f, -12.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 10
    { -19.0f, -18.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 11
    { -25.0f, -24.0f, 0.0f, 0.1f, 78.0f, 82.0f },  // floating platform 12
-   { -30.0f, -25.0f, 0.0f, 0.1f, 75.0f, 85.0f },  // safe zone
+   { -30.0f, -25.0f, -0.4f, 0.1f, 75.0f, 85.0f },  // safe zone
 
    
    // staircase to game win!
@@ -200,18 +211,6 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { -30.0f, -25.0f, 5.0f, 5.1f, 68.0f, 70.0f },  // small platform to stand on
 
    { -30.0f, -25.0f, 0.0f, 0.1f, 55.0f, 60.0f },  // jump for the win hehe
-
-
-
-   // more big walls- i put them here in case you made this array order-dependant
-
-    { 24.89f, 23.9f, -21.36f, 10.0f, 9.9f, 45.1f },
-
-
-
-    // snowman model collision
-
-   { 42.59f, 43.39f, 0.1f, 1.5f, 63.96f, 64.8f },  //i=73
 
 };
 
@@ -415,13 +414,14 @@ void LoadAssetsL2()
     //checkpoint flags
 
     flag1L2.Load();
-    flag1L2.SetPosition(42.0f, 2.1f, 37.0f);
+    flag1L2.SetPosition(27.0, 2.2f, 1.f);
 
     flag2L2.Load();
-    flag2L2.SetPosition(28.0f, 2.1f, 82.0f);
+    flag2L2.SetPosition(42.0f, 2.1f, 37.0f);
 
-    //flag3L2.Load();
-    //flag3L2.SetPosition(-27.05, 2.2f, 46.34f);
+    flag3L2.Load();
+    flag3L2.SetPosition(28.0f, 2.1f, 82.0f);
+
 
     // collectibles
 
@@ -429,13 +429,13 @@ void LoadAssetsL2()
     coinsL2[0]->SetPosition(48.54f, 1.08f, -1.08);
 
     coinsL2[1]->Load();
-    coinsL2[1]->SetPosition(49.3f, 0.1f, 50.22f);
+    coinsL2[1]->SetPosition(46.3f, 0.1f, 50.22f);
 
     coinsL2[2]->Load();
     coinsL2[2]->SetPosition(11.4f, 1.0f, 81.76f);
 
     coinsL2[3]->Load();
-    coinsL2[3]->SetPosition(42.02f, 0.1f, 41.56f);
+    coinsL2[3]->SetPosition(45.02f, 0.1f, 41.56f);
 
     coinsL2[4]->Load();
     coinsL2[4]->SetPosition(-27.45f, 0.1f, 77.18f);
@@ -456,9 +456,9 @@ void LoadAssetsL2()
 
     //dragon
     dinosaur.Load("Models/dinosaur/body.3ds");
-    dinosaur.pos.x = 20.81;
+    dinosaur.pos.x = 10.81;
     dinosaur.pos.y = 0.52;
-    dinosaur.pos.z = 55.12;
+    dinosaur.pos.z = 30.12;
     dinosaur.rot.y = 110;
 
     //torches
@@ -495,7 +495,7 @@ void LoadAssetsL2()
         float maxY = 10.0f;
         float yInitial = 2.0f * pow(2,(15 - i));
         chandeliers[i]->Load();
-        chandeliers[i]->SetBoundaries(40.0f, 50.0f, 0.0f, maxY, 40.0f, 60.0f);
+        chandeliers[i]->SetBoundaries(43.0f, 47.0f, 0.0f, maxY, 40.0f, 60.0f);
         chandeliers[i]->SetPosition(45, yInitial, 50);
     }
 

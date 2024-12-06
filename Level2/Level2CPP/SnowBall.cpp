@@ -98,31 +98,42 @@ void SnowBall::resetPosition() {
         maxZ = boundaryStartZ;
     }
 
+    float randomFloatX = minX + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxX - minX)));
+    float randomFloatY = minY + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxY - minY)));
+
+    float randomFloat = static_cast<float>(rand()) / static_cast<float>(RAND_MAX); // Generates a float between 0.0 and 1.0
+    if (randomFloat > 0.5f) {
+        fallingSpeedDirection = 1.0f;
+        SetPosition(randomFloatX, randomFloatY, maxZ);
+    }
+    else {
+        fallingSpeedDirection = -1.0f;
+        SetPosition(randomFloatX, randomFloatY, minZ);
+    }
+    fallingSpeed = 0.0f;
+}
+
+void SnowBall::checkOutOfBounds() {
+    float minZ = boundaryStartZ;
+    float maxZ = boundaryEndZ;
+
+    if (boundaryStartZ > boundaryEndZ) {
+        minZ = boundaryEndZ;
+        maxZ = boundaryStartZ;
+    }
+
     // generate new X, Z coordinates inside X, Z boundaries when gets out of border
     if ((posZ <= minZ && fallingSpeedDirection > 0) || (posZ >= maxZ && fallingSpeedDirection < 0)) {
-        float randomFloatX = minX + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxX - minX)));
-        float randomFloatY = minY + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (maxY - minY)));
-
-        float randomFloat = static_cast<float>(rand()) / static_cast<float>(RAND_MAX); // Generates a float between 0.0 and 1.0
-        if (randomFloat > 0.5f) {
-            fallingSpeedDirection = 1.0f;
-            SetPosition(randomFloatX, randomFloatY, maxZ);
-        }
-        else {
-            fallingSpeedDirection = -1.0f;
-            SetPosition(randomFloatX, randomFloatY, minZ);
-        }
-        fallingSpeed = 0.0f;
-
+        resetPosition();
     }
 }
 
 void SnowBall::Draw() {
     // checks if chandelier has to reset position and resets it if it has to
-    resetPosition();
+    checkOutOfBounds();
 
     // make snowball move
-    fallingSpeed += fallAcceleration * deltaTime;
+    fallingSpeed += fallAcceleration * 3.0f * deltaTime;
     SetPosition(posX, posY, posZ + fallingSpeed * fallingSpeedDirection);
 
     rot += rotationSpeed * rotationDirection;

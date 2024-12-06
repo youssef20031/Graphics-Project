@@ -118,6 +118,8 @@ void handleAxeCollision(Axe& axe) {
 		playerX = spawnPoint.x;
 		playerY = spawnPoint.y;
 		playerZ = spawnPoint.z; 
+		playerDirectionRotationFacing = spawnPointDirection;
+		playerDirectionRotationBody = spawnPointDirection;
 
 	
 		PlaySound(TEXT("music/axe.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -188,6 +190,9 @@ void handleChandelierCollision(Chandelier& chandelier) {
 		playerX = spawnPoint.x;
 		playerY = spawnPoint.y;
 		playerZ = spawnPoint.z;
+		playerDirectionRotationFacing = spawnPointDirection;
+		playerDirectionRotationBody = spawnPointDirection;
+
 	}
 }
 void handleSnowBallCollision(SnowBall& snowBall) {
@@ -210,8 +215,15 @@ void handleSnowBallCollision(SnowBall& snowBall) {
 		(playerY < startY && startY < y || playerY < endY && endY < y)) {
 		// kill the player - send him to Jesus
 
-		playerX = spawnPoint.x;
-		playerY = spawnPoint.y;
-		playerZ = spawnPoint.z;
+		//playerX = spawnPoint.x;
+		//playerY = spawnPoint.y;
+		//playerZ = spawnPoint.z;
+
+		// stun the player
+		isFrozen = true;
+		// push the player with the snowball
+		slidingSpeedZ = -0.5f * snowBall.fallingSpeedDirection;
+		// reset snowball
+		snowBall.resetPosition();
 	}
 }

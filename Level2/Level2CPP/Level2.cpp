@@ -4,11 +4,14 @@
 Vector3f spawnPoint0L2 = Vector3f(0, 0.5, 0);
 GLfloat spawnPoint0DirectionL2 = 0;
 
-Vector3f spawnPoint1L2 = Vector3f(44.5, 0.7, 36.0);
-GLfloat spawnPoint1DirectionL2 = 270;
+Vector3f spawnPoint1L2 = Vector3f(27.0, 0.5, 0.0);
+GLfloat spawnPoint1DirectionL2 = 0;
 
-Vector3f spawnPoint2L2 = Vector3f(29.0, 0.5, 80.0);
-GLfloat spawnPoint2DirectionL2 = 180;
+Vector3f spawnPoint2L2 = Vector3f(44.5, 0.5, 36.0);
+GLfloat spawnPoint2DirectionL2 = 270;
+
+Vector3f spawnPoint3L2 = Vector3f(29.0, 0.5, 80.0);
+GLfloat spawnPoint3DirectionL2 = 180;
 
 bool winL2Sound = false;
 
@@ -49,11 +52,11 @@ void DisplayL2() {
         GLfloat* L2currentObstacle = L2obstacles[i];
 
 
-        if (i >= 14 && i <= 26) {
+        if (i >= 0 && i <= 12) {
             drawTexturedCuboidL2Sliding(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
         }
-        if (i!=73)
+        if (i!=13)
         drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
 

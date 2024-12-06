@@ -25,6 +25,7 @@ public:
     void SetPosition(float x, float y, float z);
     void SnowBall::SetBoundaries(float xStart, float xEnd, float yStart, float yEnd, float zStart, float zEnd);
     void SnowBall::SetFallingSpeed(float speed);
+    void SnowBall::checkOutOfBounds();
     void SnowBall::resetPosition();
     float SnowBall::getRadius();
 

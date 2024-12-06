@@ -41,6 +41,7 @@ public:
     void Chandelier::SetScale(float s);
     void SetDimensions(float l, float w, float h);
 
+    void Chandelier::drawXMark();
     void Draw();
 };
 

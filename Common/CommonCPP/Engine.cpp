@@ -393,8 +393,9 @@ void level2Transition(int value) {
 	whichCp = 0;
 	gameStatus = PLAYING;
 
-	spawnPoint = spawnPoint2L2;
-	playerDirectionRotationFacing = spawnPoint2DirectionL2;
+	spawnPoint = spawnPoint0L2;
+	playerDirectionRotationFacing = spawnPoint0DirectionL2;
+	playerDirectionRotationBody = spawnPoint0DirectionL2;
 
 	playerX = spawnPoint.x;
 	playerY = spawnPoint.y;
@@ -437,7 +438,7 @@ void Level1Main(int argc, char** argv) {
 
 	glShadeModel(GL_SMOOTH);
 
-	level2Transition(0); // go to level 2 directly
+	//level2Transition(0); // go to level 2 directly
 	glutMainLoop();
 }
 
