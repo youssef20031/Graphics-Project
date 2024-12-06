@@ -56,7 +56,13 @@ void DisplayL2() {
             drawTexturedCuboidL2Sliding(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
         }
-        if (i >= 24 && i <= 32) {
+
+        if (i == 24) {
+            drawTexturedCuboidL2Spikes(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
+
+        }
+
+        if (i >= 25 && i <= 32) {
             drawTexturedCuboidL2BigWalls(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
         }
