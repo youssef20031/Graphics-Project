@@ -629,31 +629,33 @@ void LoadAssetsL2()
 
     //torches
 
-    //torchL2.Load("models/torch/candle.3ds");
-    //torchL2.scale = 0.03;
-    //torchL2.pos.x = 0.22;
-    //torchL2.pos.y = 1.5;
-    //torchL2.pos.z = 15.12;
+    torchL2.Load("models/torch/candle.3ds");
+    torchL2.scale = 0.03;
+    torchL2.pos.x = 9.9;
+    torchL2.pos.y = 1.2;
+    torchL2.pos.z = 5.38;
+    torchL2.rot.y = 180;
 
-    //torch2L2.Load("models/torch/candle.3ds");
-    //torch2L2.scale = 0.03;
-    //torch2L2.pos.x = 5.8;
-    //torch2L2.pos.y = 1.5;
-    //torch2L2.pos.z = 26.18;
-    //torch2L2.rot.y = 180;
+    torch2L2.Load("models/torch/candle.3ds");
+    torch2L2.scale = 0.03;
+    torch2L2.pos.x = 17.88;
+    torch2L2.pos.y = 1.2;
+    torch2L2.pos.z = -4.57;
+    torch2L2.rot.y = 180;
 
-    //torch3L2.Load("models/torch/candle.3ds");
-    //torch3L2.scale = 0.03;
-    //torch3L2.pos.x = 0.23;
-    //torch3L2.pos.y = 1.5;
-    //torch3L2.pos.z = 35.9;
+    torch3L2.Load("models/torch/candle.3ds");
+    torch3L2.scale = 0.03;
+    torch3L2.pos.x = 24.9;
+    torch3L2.pos.y = 1.2;
+    torch3L2.pos.z = -2.7;
+    torch3L2.rot.y = 180;
 
-    //torch4L2.Load("models/torch/candle.3ds");
-    //torch4L2.scale = 0.03;
-    //torch4L2.pos.x = 0.54;
-    //torch4L2.pos.y = 1.5;
-    //torch4L2.pos.z = 49.88;
-    //torch4L2.rot.y = 90;
+    torch4L2.Load("models/torch/candle.3ds");
+    torch4L2.scale = 0.03;
+    torch4L2.pos.x = 24.89;
+    torch4L2.pos.y = 1.2;
+    torch4L2.pos.z = 3.31;
+    torch4L2.rot.y = 180;
 
     // Chandeliers
     for (int i = 0; i < 15; i++)
