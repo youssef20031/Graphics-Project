@@ -19,6 +19,8 @@ bool firstMouse = true;
 static const float MOVE_THRESHOLD = 0.1f;
 static const float SENSITIVITY = 0.8f;
 
+int toggleView = 0; // 3rd person by default; 1 is 1st person
+
 
 bool isTouchpadActive = false;
 std::chrono::steady_clock::time_point lastInteractionTime;
@@ -177,12 +179,26 @@ void SpecialUp(int key, int x, int y) {
 // MOUSE
 
 void MouseButton(int button, int state, int x, int y) {
-	if (gameStatus == PLAYING && !isFrozen) {
-		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-			keyStates[' '] = true;
+	if (gameStatus == PLAYING) {
+		if (!isFrozen) {
+			if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+				keyStates[' '] = true;
+			}
+			else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+				keyStates[' '] = false;
+			}
 		}
-		else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
-			keyStates[' '] = false; 
+		if (button==GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
+			if (toggleView == 0) {
+				viewMode = FIRST_PERSON;
+				setFirstPersonCamera();
+				toggleView = 1;
+			}
+			else {
+				viewMode = THIRD_PERSON;
+				setThirdPersonCamera();
+				toggleView = 0;
+			}
 		}
 	}
 	glutPostRedisplay();
