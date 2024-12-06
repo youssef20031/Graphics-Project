@@ -3,6 +3,8 @@
 #include "../CommonH/Camera.h"
 #include "../../Level1/Level1H/Level1.h"
 #include <glut.h>
+#include <chrono>
+
 
 #define GLUT_KEY_ESCAPE 27
 
@@ -14,7 +16,8 @@ int lastMouseX = 0;
 int lastMouseY = 0;
 bool firstMouse = true;
 
-int MOVE_THRESHOLD = 5;
+static const float MOVE_THRESHOLD = 0.1f;
+static const float SENSITIVITY = 0.8f;
 
 
 void Keyboard(unsigned char key, int x, int y) {
@@ -165,8 +168,19 @@ void SpecialUp(int key, int x, int y) {
 	glutPostRedisplay();
 }
 
+
+
+bool isTouchpadActive = false;  // Tracks if the touchpad is active
+std::chrono::steady_clock::time_point lastInteractionTime;  // Tracks the last interaction time
+
 void MouseMovement(int x, int y) {
-	static const float sensitivity = 0.8f;
+	static bool isWarping = false;
+
+	if (isWarping) {
+		isWarping = false;
+		return;
+	}
+
 	int windowWidth = glutGet(GLUT_WINDOW_WIDTH);
 	int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
 	int centerX = windowWidth / 2;
@@ -176,39 +190,49 @@ void MouseMovement(int x, int y) {
 		lastMouseX = centerX;
 		lastMouseY = centerY;
 		firstMouse = false;
+		isWarping = true;
 		glutWarpPointer(centerX, centerY);
 		return;
 	}
 
-	int deltaX = x - centerX;
-	int deltaY = y - centerY;
+	float deltaX = static_cast<float>(x - centerX) * SENSITIVITY;
+	float deltaY = static_cast<float>(y - centerY) * SENSITIVITY;
 
-	if (deltaX == 0 && deltaY == 0)
-		return;
+	if (abs(deltaX) > MOVE_THRESHOLD || abs(deltaY) > MOVE_THRESHOLD) {
+		mouseStates[GLUT_KEY_RIGHT] = deltaX > 0.0f;
+		mouseStates[GLUT_KEY_LEFT] = deltaX < 0.0f;
+		mouseStates[GLUT_KEY_DOWN] = deltaY > 0.0f;
+		mouseStates[GLUT_KEY_UP] = deltaY < 0.0f;
 
-	deltaX = static_cast<int>(deltaX * sensitivity);
-	deltaY = static_cast<int>(deltaY * sensitivity);
-
-	mouseStates[GLUT_KEY_RIGHT] = false;
-	mouseStates[GLUT_KEY_LEFT] = false;
-	mouseStates[GLUT_KEY_UP] = false;
-	mouseStates[GLUT_KEY_DOWN] = false;
-
-	if (deltaX > MOVE_THRESHOLD) {
-		mouseStates[GLUT_KEY_RIGHT] = true;
+		isTouchpadActive = true;
+		lastInteractionTime = std::chrono::steady_clock::now();
 	}
-	else if (deltaX < -MOVE_THRESHOLD) {
-		mouseStates[GLUT_KEY_LEFT] = true;
+	else {
+		mouseStates[GLUT_KEY_RIGHT] = false;
+		mouseStates[GLUT_KEY_LEFT] = false;
+		mouseStates[GLUT_KEY_DOWN] = false;
+		mouseStates[GLUT_KEY_UP] = false;
 	}
 
-	if (deltaY > MOVE_THRESHOLD) {
-		mouseStates[GLUT_KEY_DOWN] = true;
-	}
-	else if (deltaY < -MOVE_THRESHOLD) {
-		mouseStates[GLUT_KEY_UP] = true;
-	}
-
+	isWarping = true;
 	glutWarpPointer(centerX, centerY);
-
 	glutPostRedisplay();
+}
+
+void CheckTouchpadIdle() {
+	if (isTouchpadActive) {
+		auto currentTime = std::chrono::steady_clock::now();
+
+		auto timeSinceLastInteraction = std::chrono::duration_cast<std::chrono::milliseconds>(
+			currentTime - lastInteractionTime).count();
+
+		if (timeSinceLastInteraction > 100) {
+			isTouchpadActive = false;
+
+			mouseStates[GLUT_KEY_RIGHT] = false;
+			mouseStates[GLUT_KEY_LEFT] = false;
+			mouseStates[GLUT_KEY_DOWN] = false;
+			mouseStates[GLUT_KEY_UP] = false;
+		}
+	}
 }
