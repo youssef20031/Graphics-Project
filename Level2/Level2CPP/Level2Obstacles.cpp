@@ -5,6 +5,7 @@ extern GLfloat L2obstacles[L2numberOfObstacles][6];
 
 GLTexture icetex;
 GLTexture icetex2;
+GLTexture icetex3;
 GLuint texL2;
 
 Cpflag flag1L2;
@@ -145,7 +146,7 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { 18.0f, 18.1f, -0.4f, 3.0f, -6.0f, 10.0f }, // cave middle wall 2
 
     // Big Cave Walls
-   { 25.0f, 60.0f, -20.5f, -21.0f, -30.0f, 90.0f }, // ground 1 (spikes)
+   { 25.0f, 60.0f, -20.5f, -21.0f, -30.0f, 90.0f }, // ground 1 (spikes)  i=24
    { 25.0f, -40.0f, -20.5f, -21.0f, 10.1f, 90.0f }, // ground 2 (spikes)
    { 60.0f, -40.0f, 10.0f, 10.1f, 35.0f, 65.0f }, // roof on top of spikes stage
    { 25.0f, 25.1f, -21.0f, 10.0f, -10.0f, -30.0f }, // 1- left
@@ -153,7 +154,7 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { 60.0f, 60.1f, -21.0f, 10.0f, 90.0f, -30.1f }, // 3- right
    { 60.1f, -40.0f, -21.0f, 10.0f, 90.0f, 90.1f }, // 4- backwards
    { -40.1f, -40.0f, -21.0f, 10.0f, 10.0f, 90.1f }, // 5- left
-   { 25.0f, -40.0f, -21.0f, 10.0f, 10.1f, 10.2f }, // 6- forwards
+   { 25.0f, -40.0f, -21.0f, 10.0f, 10.1f, 10.2f }, // 6- forwards      i=32
 
    
    // Section 2 - Falling Chandeliers
@@ -378,6 +379,87 @@ void drawTexturedCuboidL2Sliding(double xStart, double xEnd, double yStart, doub
     glColor3f(1, 1, 1);
 }
 
+void drawTexturedCuboidL2BigWalls(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
+    glDisable(GL_LIGHTING);
+
+    glColor3f(0.6, 0.6, 0.6);
+
+    glEnable(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, icetex3.texture[0]);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glPushMatrix();
+
+    double centerX = (xStart + xEnd) / 2.0;
+    double centerY = (yStart + yEnd) / 2.0;
+    double centerZ = (zStart + zEnd) / 2.0;
+
+    double scaleX = fabs(xEnd - xStart);
+    double scaleY = fabs(yEnd - yStart);
+    double scaleZ = fabs(zEnd - zStart);
+
+    glTranslated(centerX, centerY, centerZ);
+    glScaled(scaleX, scaleY, scaleZ);
+
+    glBegin(GL_QUADS);
+
+    double textureScaleX = 1.0;
+    double textureScaleY = 1.0;
+    double textureScaleZ = 1.0;
+
+    // Front face (zEnd)
+    glNormal3f(0, 0, 1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Back face (zStart)
+    glNormal3f(0, 0, -1);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Left face (xStart)
+    glNormal3f(-1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(-0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(-0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(-0.5, 0.5, -0.5);
+
+    // Right face (xEnd)
+    glNormal3f(1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleZ, 0); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(textureScaleZ, textureScaleY); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleY); glVertex3f(0.5, 0.5, -0.5);
+
+    // Top face (yEnd)
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, 0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, 0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, 0.5, 0.5);
+
+    // Bottom face (yStart)
+    glNormal3f(0, -1, 0);
+    glTexCoord2f(0, 0); glVertex3f(-0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, 0); glVertex3f(0.5, -0.5, -0.5);
+    glTexCoord2f(textureScaleX, textureScaleZ); glVertex3f(0.5, -0.5, 0.5);
+    glTexCoord2f(0, textureScaleZ); glVertex3f(-0.5, -0.5, 0.5);
+
+    glEnd();
+
+    glPopMatrix();
+
+    glEnable(GL_LIGHTING);
+
+    glColor3f(1, 1, 1);
+}
 
 
 
@@ -409,6 +491,7 @@ void LoadAssetsL2()
 
     icetex.Load("Textures/snow.bmp");
     icetex2.Load("Textures/snow3.bmp");
+    icetex3.Load("Textures/snow5.bmp");
 
 
     //checkpoint flags
