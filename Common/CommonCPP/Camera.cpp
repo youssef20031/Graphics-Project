@@ -99,7 +99,7 @@ void displayCameraCoords() {
 	glDisable(GL_LIGHTING);
 	glColor3f(0.0f, 0.0f, 0.0f);
 
-	char coords[100];
+	/*char coords[100];
 	snprintf(coords, sizeof(coords), "Camera Position: (%.2f, %.2f, %.2f)", camera.eye.x, camera.eye.y, camera.eye.z);
 	renderBitmapString(10, 420, GLUT_BITMAP_HELVETICA_18, coords);
 
@@ -117,7 +117,7 @@ void displayCameraCoords() {
 
 	char playerCoords[100];
 	snprintf(playerCoords, sizeof(playerCoords), "Player Position: (%.2f, %.2f, %.2f)", playerX, playerY, playerZ);
-	renderBitmapString(10, 340, GLUT_BITMAP_HELVETICA_18, playerCoords);
+	renderBitmapString(10, 340, GLUT_BITMAP_HELVETICA_18, playerCoords);*/
 
 
 	glEnable(GL_LIGHTING);
