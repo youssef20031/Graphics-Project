@@ -30,7 +30,7 @@ void DisplayL2() {
         drawGameWinScreen();
         stopBackgroundMusic();
         if (!winL2Sound) {
-            PlaySound(TEXT("music/winL2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            PlaySound(TEXT("music/win3.wav"), NULL, SND_FILENAME | SND_ASYNC);
             winL2Sound = true;
         }
         return;
