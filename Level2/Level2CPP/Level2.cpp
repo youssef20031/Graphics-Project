@@ -57,6 +57,11 @@ void DisplayL2() {
 
         }
 
+        if (i >= 14 && i <= 23) {
+            drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5], true);
+
+        }
+
         if (i == 24) {
             drawTexturedCuboidL2Spikes(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
 
@@ -67,7 +72,7 @@ void DisplayL2() {
 
         }
         if (i != 13) {
-            drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5]);
+            drawTexturedCuboidL2(L2currentObstacle[0], L2currentObstacle[1], L2currentObstacle[2], L2currentObstacle[3], L2currentObstacle[4], L2currentObstacle[5],false);
         }
      
 

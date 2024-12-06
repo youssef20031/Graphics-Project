@@ -134,7 +134,7 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
     // CAVE SECTION (STAGE 0)
 
-   { -5.0f, 25.0f, -0.4f, 0.1f, -10.0f, 10.0f },  // cave ground
+   { -5.0f, 25.0f, -0.4f, 0.1f, -10.0f, 10.0f },  // cave ground   i=14
    { -5.0f, 25.0f, 3.0f, 3.1f, -10.0f, 10.0f },  // cave roof
    { -5.0f, -5.1f, -0.4f, 3.0f, -10.0f, 10.0f },   // cave back wall
    { -5.0f, 25.0f, -0.4f, 3.0f, -10.0f, -10.1f },   // cave left wall
@@ -144,7 +144,7 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
    { 25.0f, 25.1f, -21.0f, 0.0f, -2.0f, 2.0f },   // cave front middle wall (under platform)
    
    { 10.0f, 10.1f, -0.4f, 3.0f, -10.0f, 6.0f }, // cave middle wall 1
-   { 18.0f, 18.1f, -0.4f, 3.0f, -6.0f, 10.0f }, // cave middle wall 2
+   { 18.0f, 18.1f, -0.4f, 3.0f, -6.0f, 10.0f }, // cave middle wall 2   i=23
 
     // Big Cave Walls
    { 25.0f, 60.0f, -20.5f, -21.0f, -30.0f, 90.0f }, // ground 1 (spikes)  i=24
@@ -216,8 +216,11 @@ GLfloat L2obstacles[L2numberOfObstacles][6] = {
 
 };
 
-void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd) {
-    //glDisable(GL_LIGHTING);
+void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd, bool hasLighting) {
+
+    if (!hasLighting) {
+        glDisable(GL_LIGHTING);
+    }
 
     glColor3f(0.6, 0.6, 0.6);
 

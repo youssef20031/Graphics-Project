@@ -84,7 +84,7 @@ extern SnowBall snowBall15;
 extern SnowBall* snowBalls[15];
 
 
-void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
+void drawTexturedCuboidL2(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd, bool hasLighting);
 void drawTexturedCuboidL2Sliding(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
 void drawTexturedCuboidL2BigWalls(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
 void drawTexturedCuboidL2Spikes(double xStart, double xEnd, double yStart, double yEnd, double zStart, double zEnd);
