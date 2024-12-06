@@ -387,11 +387,13 @@ void drawGameWinScreen() {
 
 void level2Transition(int value) {
 	checkPointSound = false;
-	playBackgroundMusic();
+	
 
 	level = 2;
+	
 	whichCp = 0;
 	gameStatus = PLAYING;
+	playBackgroundMusic();
 
 	spawnPoint = spawnPoint0L2;
 	playerDirectionRotationFacing = spawnPoint0DirectionL2;

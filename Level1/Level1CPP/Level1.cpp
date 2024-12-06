@@ -14,7 +14,7 @@ float platformVisibilityTimer = 0.0f;
 GLfloat originalYStart[L1numberOfObstacles];
 GLfloat originalYEnd[L1numberOfObstacles];
 
-int timerL1=900;
+int timerL1=200;
 int scoreL1=0;
 
 bool roarSound = false;
@@ -58,7 +58,7 @@ void DisplayL1() {
         return;
     }
     if (gameStatus == WIN) {
-        timerL1 = 999;
+        timerL1 = 220;
         drawGameWinScreen();
         stopBackgroundMusic();
         if (!winL1Sound) {
@@ -66,7 +66,7 @@ void DisplayL1() {
             winL1Sound = true;
         }
         // timer function to get us to level 2
-        glutTimerFunc(2000, level2Transition, 0);
+        glutTimerFunc(7000, level2Transition, 0);
         return;
     }
  
