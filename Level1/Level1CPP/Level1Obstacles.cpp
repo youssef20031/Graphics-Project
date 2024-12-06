@@ -83,8 +83,7 @@ GLfloat L1obstacles[L1numberOfObstacles][6] = {
 
 	
 	{ -23.02, -23.35f, 0.1+200.0f, 0.2+200.0f, 50.97f, 45.09f }, // checkpoint platform   i=13
-	{ -32.8, -70.35f, 0.1f, 0.2f, 46.87f, 49.44f }, // Stage 1 ground
-    //.. incomplete (handle collision of axe with player by setting player back to spawn/checkpoint)
+	{ -32.8, -70.35f, 0.1f, 0.2f, 46.87f, 48.44f }, // Stage 1 ground
 
 
     // PLATFORMING SECTION (STAGE 2)

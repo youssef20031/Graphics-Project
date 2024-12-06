@@ -440,7 +440,7 @@ void Level1Main(int argc, char** argv) {
 
 	glShadeModel(GL_SMOOTH);
 
-	level2Transition(0); // go to level 2 directly
+	//level2Transition(0); // go to level 2 directly
 	glutMainLoop();
 }
 
