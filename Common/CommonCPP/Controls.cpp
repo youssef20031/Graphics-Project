@@ -20,6 +20,12 @@ static const float MOVE_THRESHOLD = 0.1f;
 static const float SENSITIVITY = 0.8f;
 
 
+bool isTouchpadActive = false;
+std::chrono::steady_clock::time_point lastInteractionTime;
+
+
+// KEYBOARD
+
 void Keyboard(unsigned char key, int x, int y) {
 
 	if(key== GLUT_KEY_ESCAPE)
@@ -168,10 +174,20 @@ void SpecialUp(int key, int x, int y) {
 	glutPostRedisplay();
 }
 
+// MOUSE
 
+void MouseButton(int button, int state, int x, int y) {
+	if (gameStatus == PLAYING && !isFrozen) {
+		if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+			keyStates[' '] = true;
+		}
+		else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+			keyStates[' '] = false; 
+		}
+	}
+	glutPostRedisplay();
+}
 
-bool isTouchpadActive = false;  // Tracks if the touchpad is active
-std::chrono::steady_clock::time_point lastInteractionTime;  // Tracks the last interaction time
 
 void MouseMovement(int x, int y) {
 	static bool isWarping = false;

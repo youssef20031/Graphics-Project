@@ -424,6 +424,7 @@ void Level1Main(int argc, char** argv) {
 	glutSpecialFunc(Special);
 	glutSpecialUpFunc(SpecialUp);
 	glutPassiveMotionFunc(MouseMovement);  
+	glutMouseFunc(MouseButton);
 
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

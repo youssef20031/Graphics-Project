@@ -11,3 +11,5 @@ extern bool mouseStates[256];
 
 void MouseMovement(int x, int y);
 
+void MouseButton(int button, int state, int x, int y);
+
